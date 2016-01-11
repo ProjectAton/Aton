@@ -1,0 +1,412 @@
+2016-01-06 20:47:06 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1]
+2016-01-06 20:47:12 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 20:47:12 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 20:47:12 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 20:47:13 INFO  HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 20:47:13 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 20:47:13 INFO  HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 20:47:27 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 20:47:27 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=,d8:50:e6:4e:04:4f, ip=192.168.0.11, sala=Sala 1, Laboratorio 1]
+2016-01-06 20:49:24 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 20:49:24 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=,c, ip=192.168.0.11, sala=Sala 1, Laboratorio 1]
+2016-01-06 20:51:16 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1]
+2016-01-06 20:51:23 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 20:51:23 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 20:51:23 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 20:51:24 INFO  HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 20:51:24 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 20:51:24 INFO  HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 20:51:48 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 20:51:48 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=,d8:50:e6:4e:04:4f, ip=192.168.0.11, sala=Sala 1, Laboratorio 1]
+2016-01-06 20:54:16 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1]
+2016-01-06 20:54:23 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 20:54:23 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 20:54:23 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 20:54:24 INFO  HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 20:54:24 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 20:54:24 INFO  HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 20:58:22 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1]
+2016-01-06 20:58:29 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 20:58:29 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 20:58:29 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 20:58:30 INFO  HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 20:58:30 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 20:58:30 INFO  HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 20:59:10 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 20:59:10 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=,d8:50:e6:4e:04:4f, ip=192.168.0.11, sala=Sala 1, Laboratorio 1]
+2016-01-06 20:59:49 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac="1", ip=1.1.1.1, sala=Sala 1, Laboratorio 1]
+2016-01-06 20:59:56 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 20:59:56 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 20:59:56 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 20:59:57 INFO  HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 20:59:57 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 20:59:58 INFO  HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:00:07 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:00:07 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=",d8:50:e6:4e:04:4f", ip=192.168.0.11, sala=Sala 1, Laboratorio 1]
+2016-01-06 21:00:33 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:00:33 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=",d8:50:e6:4e:04:4", ip=192.168.0.11, sala=Sala 1, Laboratorio 1]
+2016-01-06 21:01:54 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 21:02:01 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:02:01 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:02:01 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:02:02 INFO  HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:02:02 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:02:02 INFO  HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:02:10 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:02:10 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=,d8:50:e6:4e:04:4f, ip=192.168.0.11, sala=Sala 1, Laboratorio 1, descripcion=Localhost]
+2016-01-06 21:09:06 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 21:09:13 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:09:13 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:09:13 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:09:13 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:09:13 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:09:14 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:09:20 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:09:20 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=,d8:50:e6:4e:04:4f, ip=192.168.0.11, sala=Sala 1, Laboratorio 1, descripcion=Localhost]
+2016-01-06 21:09:20 ERROR AppController:108 - Error guardando el equipo
+org.hibernate.PersistentObjectException: detached entity passed to persist: org.sunnycake.aton.dto.Equipo
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:139) ~[hibernate-core-4.3.6.Final.jar:4.3.6.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:75) ~[hibernate-core-4.3.6.Final.jar:4.3.6.Final]
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:811) ~[hibernate-core-4.3.6.Final.jar:4.3.6.Final]
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:784) ~[hibernate-core-4.3.6.Final.jar:4.3.6.Final]
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:789) ~[hibernate-core-4.3.6.Final.jar:4.3.6.Final]
+	at org.sunnycake.aton.dao.DAOAbstracto.persist(DAOAbstracto.java:54) ~[classes/:?]
+	at org.sunnycake.aton.dao.impl.EquipoDAOImpl.guardarEquipo(EquipoDAOImpl.java:39) ~[classes/:?]
+	at org.sunnycake.aton.service.impl.EquipoServiceImpl.guardarEquipo(EquipoServiceImpl.java:45) ~[classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_66]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_66]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_66]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_66]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317) ~[spring-aop-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190) ~[spring-aop-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157) ~[spring-aop-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:98) ~[spring-tx-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:262) ~[spring-tx-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:95) ~[spring-tx-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207) ~[spring-aop-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at com.sun.proxy.$Proxy91.guardarEquipo(Unknown Source) ~[?:?]
+	at org.sunnycake.aton.controller.AppController.guardarEquipo(AppController.java:106) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_66]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_66]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_66]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_66]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:215) [spring-web-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:132) [spring-web-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:749) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:689) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:83) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:938) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:870) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:961) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:863) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:648) [servlet-api.jar:?]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729) [servlet-api.jar:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:291) [catalina.jar:8.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) [catalina.jar:8.0.30]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-websocket.jar:8.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239) [catalina.jar:8.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) [catalina.jar:8.0.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212) [catalina.jar:8.0.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106) [catalina.jar:8.0.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502) [catalina.jar:8.0.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141) [catalina.jar:8.0.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79) [catalina.jar:8.0.30]
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616) [catalina.jar:8.0.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88) [catalina.jar:8.0.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:521) [catalina.jar:8.0.30]
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1096) [tomcat-coyote.jar:8.0.30]
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:674) [tomcat-coyote.jar:8.0.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500) [tomcat-coyote.jar:8.0.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456) [tomcat-coyote.jar:8.0.30]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_66]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_66]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-util.jar:8.0.30]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_66]
+2016-01-06 21:12:08 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 21:12:15 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:12:15 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:12:15 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:12:16 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:12:16 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:12:16 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:12:40 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:12:40 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=,d8:50:e6:4e:04:4f, ip=192.168.0.11, sala=Sala 1, Laboratorio 1, descripcion=Localhost]
+2016-01-06 21:12:40 ERROR AppController:108 - Error guardando el equipo
+org.hibernate.PersistentObjectException: detached entity passed to persist: org.sunnycake.aton.dto.Equipo
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:139) ~[hibernate-core-4.3.6.Final.jar:4.3.6.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:75) ~[hibernate-core-4.3.6.Final.jar:4.3.6.Final]
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:811) ~[hibernate-core-4.3.6.Final.jar:4.3.6.Final]
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:784) ~[hibernate-core-4.3.6.Final.jar:4.3.6.Final]
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:789) ~[hibernate-core-4.3.6.Final.jar:4.3.6.Final]
+	at org.sunnycake.aton.dao.DAOAbstracto.persist(DAOAbstracto.java:54) ~[classes/:?]
+	at org.sunnycake.aton.dao.impl.EquipoDAOImpl.guardarEquipo(EquipoDAOImpl.java:39) ~[classes/:?]
+	at org.sunnycake.aton.service.impl.EquipoServiceImpl.guardarEquipo(EquipoServiceImpl.java:45) ~[classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_66]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_66]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_66]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_66]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317) ~[spring-aop-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190) ~[spring-aop-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157) ~[spring-aop-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:98) ~[spring-tx-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:262) ~[spring-tx-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:95) ~[spring-tx-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207) ~[spring-aop-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at com.sun.proxy.$Proxy92.guardarEquipo(Unknown Source) ~[?:?]
+	at org.sunnycake.aton.controller.AppController.guardarEquipo(AppController.java:106) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_66]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_66]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_66]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_66]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:215) [spring-web-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:132) [spring-web-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:749) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:689) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:83) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:938) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:870) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:961) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:863) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:648) [servlet-api.jar:?]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837) [spring-webmvc-4.0.6.RELEASE.jar:4.0.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729) [servlet-api.jar:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:291) [catalina.jar:8.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) [catalina.jar:8.0.30]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-websocket.jar:8.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239) [catalina.jar:8.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) [catalina.jar:8.0.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212) [catalina.jar:8.0.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106) [catalina.jar:8.0.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502) [catalina.jar:8.0.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141) [catalina.jar:8.0.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79) [catalina.jar:8.0.30]
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616) [catalina.jar:8.0.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88) [catalina.jar:8.0.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:521) [catalina.jar:8.0.30]
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1096) [tomcat-coyote.jar:8.0.30]
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:674) [tomcat-coyote.jar:8.0.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500) [tomcat-coyote.jar:8.0.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456) [tomcat-coyote.jar:8.0.30]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_66]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_66]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-util.jar:8.0.30]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_66]
+2016-01-06 21:13:02 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 21:13:09 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:13:09 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:13:09 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:13:10 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:13:10 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:13:10 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:13:11 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:13:11 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=,d8:50:e6:4e:04:4f, ip=192.168.0.11, sala=Sala 1, Laboratorio 1, descripcion=Localhost]
+2016-01-06 21:15:42 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 21:15:49 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:15:49 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:15:49 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:15:50 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:15:50 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:15:50 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:17:31 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:17:31 DEBUG AppController:103 - /nuevo: Equipo a guardar: Equipo [mac=,d8:50:e6:4e:04:4f, ip=192.168.0.11, sala=Sala 1, Laboratorio 1, descripcion=Localhost]
+2016-01-06 21:19:08 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 21:19:15 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:19:15 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:19:15 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:19:16 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:19:16 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:19:17 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:19:49 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:19:50 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=d8:50:e6:4e:04:4f, ip=192.168.0.11, sala=Sala 1, Laboratorio 1, descripcion=Localhost]
+2016-01-06 21:21:04 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 21:21:11 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:21:11 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:21:11 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:21:12 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:21:12 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:21:12 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:21:24 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:21:24 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=d8:50:e6:4e:04:4, ip=192.168.0.11, sala=Sala 1, Laboratorio 1, descripcion=651]
+2016-01-06 21:22:26 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 21:22:33 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:22:33 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:22:33 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:22:34 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:22:34 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:22:34 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:22:40 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:22:40 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=d8:50:e6:4e:04:4, ip=192.168.0.11, sala=Sala 1, Laboratorio 1, descripcion=Localhost]
+2016-01-06 21:27:33 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:27:48 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:27:58 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 21:28:05 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:28:05 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:28:05 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:28:06 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:28:06 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:28:06 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:28:13 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:28:24 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:28:31 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:28:37 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:31:32 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 21:31:39 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:31:39 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:31:39 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:31:40 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:31:40 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:31:40 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:31:49 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:31:49 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=d8:50:e6:4e:04:4f, ip=192.168.0.11, sala=Sala 1, Laboratorio 1, descripcion=Localhost]
+2016-01-06 21:33:43 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 21:33:49 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:33:49 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:33:49 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:33:50 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:33:50 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:33:51 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:34:07 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:34:15 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 21:34:15 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=d8:50:e6:4e:04:4h, ip=192.168.0.11, sala=Sala 1, Laboratorio 1, descripcion=Localhost]
+2016-01-06 21:38:47 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 21:41:59 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:41:59 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:41:59 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:42:00 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:42:00 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:42:00 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:42:13 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 21:42:42 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:42:42 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:42:42 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:42:43 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:42:43 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:42:43 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:42:48 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 21:44:19 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:44:19 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:44:19 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:44:21 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:44:21 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:44:21 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:44:37 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:44:37 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:44:37 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:44:38 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:44:38 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:44:38 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 21:44:44 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 21:44:51 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 21:44:51 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 21:44:51 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 21:44:52 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 21:44:52 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 21:44:52 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 22:34:33 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 22:34:43 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 22:34:43 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 22:34:43 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 22:34:44 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 22:34:44 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 22:34:45 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 22:35:01 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 22:35:09 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 22:35:09 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 22:35:09 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 22:35:10 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 22:35:11 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 22:35:11 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 22:39:00 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 22:39:08 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 22:39:08 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 22:39:08 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 22:39:09 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 22:39:09 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 22:39:09 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 22:46:34 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 22:46:41 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 22:46:41 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 22:46:41 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 22:46:42 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 22:46:43 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 22:46:43 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 22:47:25 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 22:47:33 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 22:47:33 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 22:47:33 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 22:47:34 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 22:47:34 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 22:47:34 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 22:48:04 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 22:48:20 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 22:48:20 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=d8:50:e6:4e:0c:4f, ip=192.168.0.11, sala=Sala 1, Laboratorio 1, descripcion=Localhost]
+2016-01-06 23:00:49 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 23:00:57 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 23:00:57 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 23:00:57 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 23:00:58 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 23:00:58 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 23:00:58 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 23:01:34 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 23:02:08 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 23:02:16 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 23:02:16 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 23:02:16 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 23:02:17 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 23:02:17 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 23:02:17 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 23:02:24 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 23:03:46 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 23:03:54 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 23:03:54 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 23:03:54 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 23:03:55 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 23:03:55 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 23:03:55 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 23:03:59 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 23:04:24 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 23:04:32 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 23:04:32 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 23:04:32 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 23:04:33 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 23:04:33 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 23:04:33 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 23:04:55 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 23:06:47 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 23:06:55 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 23:06:55 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 23:06:55 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 23:06:56 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 23:06:56 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 23:06:56 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 23:07:31 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 23:09:16 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 23:09:24 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 23:09:24 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 23:09:24 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 23:09:25 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 23:09:25 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 23:09:25 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 23:09:40 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 23:10:55 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 23:11:02 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 23:11:02 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 23:11:02 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 23:11:03 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 23:11:03 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 23:11:04 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 23:11:19 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 23:12:20 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno]
+2016-01-06 23:12:28 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-06 23:12:28 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-06 23:12:28 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-06 23:12:29 DEBUG HibernateConfiguration:68 - Mensajero MessageSource creado
+2016-01-06 23:12:29 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-06 23:12:29 DEBUG HibernateConfiguration:54 - ViewResolver creado
+2016-01-06 23:13:59 DEBUG ConvertidorSala:24 - Convirtiendo: 1
+2016-01-06 23:13:59 DEBUG AppController:105 - /nuevo: Equipo a guardar: Equipo [mac=d8:50:ea:4e:0c:4f, ip=192.168.0.11, sala=Sala 1, Laboratorio 1, descripcion=Localhost]
