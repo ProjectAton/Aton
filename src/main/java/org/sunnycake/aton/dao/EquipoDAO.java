@@ -45,13 +45,13 @@ public interface EquipoDAO {
 	 * Busca en la base de datos un equipo con la clave dirección MAC igual a la
 	 * especificada en el parámetro MAC.
 	 * 
-	 * @param mac
+	 * @param ip
 	 *            Identificador del equipo
 	 * @return Equipo encontrado
 	 * @throws ExcepcionContulta
 	 *             Error en la consulta
 	 */
-	public Equipo buscarEquipoPorMac(String mac) throws ExcepcionConsulta;
+	public Equipo buscarEquipoPorIp(String ip) throws ExcepcionConsulta;
 
 	/**
 	 * Elimina de la base de datos el equipo con el mismo identificador que
@@ -62,13 +62,13 @@ public interface EquipoDAO {
 	 * @throws ExcepcionConsulta
 	 *             Error en la consulta
 	 */
-	public void eliminarEquipoPorMac(String mac) throws ExcepcionConsulta;
+	public void eliminarEquipoPorIp(String ip) throws ExcepcionConsulta;
 	
 	/**
 	 * 
-	 * @param ip
+	 * @param nombre
 	 * @return
 	 * @throws ExcepcionConsulta
 	 */
-	public Equipo buscarEquipoPorIp(String ip) throws ExcepcionConsulta;
+	public Equipo buscarEquipoPorNombre(String nombre) throws ExcepcionConsulta;
 }

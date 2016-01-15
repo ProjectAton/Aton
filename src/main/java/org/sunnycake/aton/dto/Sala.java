@@ -15,39 +15,49 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  * 
- * POJO para la tabla SALA dentro de la base de datos.
- * TODO: Getters y setters
+ * POJO para la tabla SALA dentro de la base de datos. TODO: Getters y setters
+ * 
  * @author Camilo Sampedro
  *
  */
 @Entity
-@Table(name="SALA")
+@Table(name = "SALA")
 public class Sala {
 	/**
 	 * Clave primaria.
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name="seq-gen",sequenceName="SALA_GEN")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq-gen")
 	private int id;
-	
+
+	@Size(max = 32)
+	@Column(name = "NOMBRE")
+	private String nombre;
+
 	@ManyToOne
 	@JoinColumn(name = "LABORATORIO")
 	private Laboratorio laboratorio;
-	
-	@Column(name="MEDIOSAUDIOVISUALES")
+
+	@Size()
+	@Column(name = "MEDIOSAUDIOVISUALES")
 	private String mediosAudiovisuales;
-	
-	@Column(name="ENSERES")
+
+	@Column(name = "ENSERES")
 	private String enseres;
-	
-	@OneToMany(targetEntity=Equipo.class,mappedBy="sala", cascade={CascadeType.ALL},orphanRemoval=true)
+
+	@OneToMany(targetEntity = Equipo.class, mappedBy = "sala", cascade = { CascadeType.ALL }, orphanRemoval = true)
 	Set<Equipo> equipos = new HashSet<Equipo>();
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -60,6 +70,7 @@ public class Sala {
 
 	/**
 	 * Verifica si dos salas son iguales a través de su ID
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -84,7 +95,8 @@ public class Sala {
 	}
 
 	/**
-	 * @param id el/la id a ser asignado
+	 * @param id
+	 *            el/la id a ser asignado
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -98,7 +110,8 @@ public class Sala {
 	}
 
 	/**
-	 * @param laboratorio el/la laboratorio a ser asignado
+	 * @param laboratorio
+	 *            el/la laboratorio a ser asignado
 	 */
 	public void setLaboratorio(Laboratorio laboratorio) {
 		this.laboratorio = laboratorio;
@@ -112,7 +125,8 @@ public class Sala {
 	}
 
 	/**
-	 * @param mediosAudiovisuales el/la mediosAudiovisuales a ser asignado
+	 * @param mediosAudiovisuales
+	 *            el/la mediosAudiovisuales a ser asignado
 	 */
 	public void setMediosAudiovisuales(String mediosAudiovisuales) {
 		this.mediosAudiovisuales = mediosAudiovisuales;
@@ -126,21 +140,36 @@ public class Sala {
 	}
 
 	/**
-	 * @param enseres el/la enseres a ser asignado
+	 * @param enseres
+	 *            el/la enseres a ser asignado
 	 */
 	public void setEnseres(String enseres) {
 		this.enseres = enseres;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * @return el nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre
+	 *            el/la nombre a ser asignado
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Sala " + id + ", " + laboratorio;
+		return "Sala " + nombre + ", " + laboratorio;
 	}
-	
-	
-	
-	
+
 }

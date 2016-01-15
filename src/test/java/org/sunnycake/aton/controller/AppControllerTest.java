@@ -59,7 +59,7 @@ public class AppControllerTest {
 	}
 
 	@Test
-	public void listarEmpleados() {
+	public void listarEquipos() {
 		when(equipoService.buscarTodosLosEquipos()).thenReturn(equipos);
 		Assert.assertEquals(appController.listarEquipos(model), "todoslosequipos");
 		Assert.assertEquals(model.get("equipos"), equipos);
@@ -84,62 +84,62 @@ public class AppControllerTest {
 	@Test
 	public void guardarEquipoConValidacionDeErrorMacNoUnica() {
 		when(result.hasErrors()).thenReturn(false);
-		when(equipoService.esMacUnica(anyString())).thenReturn(false);
+		when(equipoService.esIpUnica(anyString())).thenReturn(false);
 		Assert.assertEquals(appController.guardarEquipo(equipos.get(0), result, model), "registro");
 	}
 
 	@Test
 	public void guardarEmpleadoConExito() {
 		when(result.hasErrors()).thenReturn(false);
-		when(equipoService.esMacUnica(anyString())).thenReturn(true);
+		when(equipoService.esIpUnica(anyString())).thenReturn(true);
 		doNothing().when(equipoService).guardarEquipo(any(Equipo.class));
-		Assert.assertEquals(appController.guardarEquipo(equipos.get(0), result, model), "exito");
-		Assert.assertEquals(model.get("exito"), "Equipo [mac=1, ip=1.1.1.1, sala=Sala 1, Laboratorio 1, descripcion=Muy bueno], guardado exitosamente");
+		Assert.assertEquals(appController.guardarEquipo(equipos.get(0), result, model), "redirect:/editar-equipo-10.0.3.31");
+		Assert.assertEquals(model.get("equipo"), equipos.get(0));
 	}
 
 	@Test
 	public void editarEquipo() {
 		Equipo equipo = equipos.get(0);
-		when(equipoService.buscarEquipoPorMac(anyString())).thenReturn(equipo);
-		Assert.assertEquals(appController.editarEquipo(anyString(), model), "registro");
+		when(equipoService.buscarEquipoPorIp(anyString())).thenReturn(equipo);
+		Assert.assertEquals(appController.editarEquipo(anyString(), model), "edicion");
 		Assert.assertNotNull(model.get("equipo"));
 		Assert.assertTrue((Boolean) model.get("edit"));
-		Assert.assertEquals(((Equipo) model.get("equipo")).getMac(), "1");
+		Assert.assertEquals(((Equipo) model.get("equipo")).getIp(), "10.0.3.31");
 	}
 
 	@Test
 	public void actualizarEquipoConValidacionDeError() {
 		when(result.hasErrors()).thenReturn(true);
 		doNothing().when(equipoService).actualizarEquipo(any(Equipo.class));
-		Assert.assertEquals(appController.actualizarEquipo(equipos.get(0), result, model, ""), "registro");
+		Assert.assertEquals(appController.actualizarEquipo(equipos.get(0), result, model, ""), "edicion");
 	}
 	
 	@Test
     public void actualizarEquipoConValidacionDeErrorMacNoUnica(){
         when(result.hasErrors()).thenReturn(false);
-        when(equipoService.esMacUnica(anyString())).thenReturn(false);
-        Assert.assertEquals(appController.actualizarEquipo(equipos.get(0), result, model,""), "registro");
+        when(equipoService.esIpUnica(anyString())).thenReturn(false);
+        Assert.assertEquals(appController.actualizarEquipo(equipos.get(0), result, model,""), "exito");
     }
 	
 	@Test
     public void actualizarEquipoConExito(){
         when(result.hasErrors()).thenReturn(false);
-        when(equipoService.esMacUnica(anyString())).thenReturn(true);
+        when(equipoService.esIpUnica(anyString())).thenReturn(true);
         doNothing().when(equipoService).actualizarEquipo(any(Equipo.class));
         Assert.assertEquals(appController.actualizarEquipo(equipos.get(0), result, model, ""), "exito");
-        Assert.assertEquals(model.get("exito"), "Equipo 1 actualizado exitosamente");
+        Assert.assertEquals(model.get("exito"), "Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null] actualizado exitosamente");
     }
 	
 	@Test
     public void eliminarEquipo(){
-        doNothing().when(equipoService).eliminarEquipoPorMac(anyString());
+        doNothing().when(equipoService).eliminarEquipoPorIp(anyString());
         Assert.assertEquals(appController.deleteEmployee("123"), "redirect:/equipos");
     }
 	
 	public List<Equipo> buscarTodosLosEquipos(){
 		Laboratorio l1 = new Laboratorio();
 		l1.setId(1);
-		l1.setAdministracion("Lis");
+		l1.setAdministracion("AdminLIS");
 		l1.setUbicacion("LIS");
 		
 		Sala s1 = new Sala();
@@ -149,15 +149,15 @@ public class AppControllerTest {
 		s1.setLaboratorio(l1);
 		
 		Equipo e1 = new Equipo();
-        e1.setMac("1");
-        e1.setIp("1.1.1.1");
-        e1.setDescripcion("Muy bueno");
+        e1.setIp("10.0.3.31");
+        e1.setUsuario("camilo");
+        e1.setPassword("00000");
         e1.setSala(s1);
          
         Equipo e2 = new Equipo();
-        e2.setMac("2");
-        e2.setIp("2.2.2.2");
-        e2.setDescripcion("3.3.3.3");
+        e2.setIp("10.0.3.219");
+        e2.setUsuario("camilo");
+        e2.setPassword("00000");
         e2.setSala(s1);
          
         equipos.add(e1);

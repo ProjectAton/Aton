@@ -15,18 +15,18 @@ import org.sunnycake.aton.dto.Equipo;
  *
  */
 public interface EquipoService {
-	Equipo buscarEquipoPorMac(String mac);
+	Equipo buscarEquipoPorIp(String ip);
 
 	void guardarEquipo(Equipo equipo);
 
 	void actualizarEquipo(Equipo equipo);
 
-	void eliminarEquipoPorMac(String mac);
+	void eliminarEquipoPorIp(String ip);
 
 	List<Equipo> buscarTodosLosEquipos();
 
-	Equipo buscarEquipoPorIp(String ip);
+	Equipo buscarEquipoPorNombre(String nombre);
 
-	boolean esMacUnica(String mac);
+	boolean esIpUnica(String ip);
 
 }

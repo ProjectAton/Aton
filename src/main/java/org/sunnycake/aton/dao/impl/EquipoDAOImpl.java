@@ -53,8 +53,8 @@ public class EquipoDAOImpl extends DAOAbstracto<String, Equipo> implements Equip
 	 * 
 	 * @see org.sunnycake.dao.EquipoDAO#obtener(java.lang.String)
 	 */
-	public Equipo buscarEquipoPorMac(String mac) throws ExcepcionConsulta {
-		return getByKey(mac);
+	public Equipo buscarEquipoPorIp(String ip) throws ExcepcionConsulta {
+		return getByKey(ip);
 	}
 
 	/*
@@ -62,14 +62,13 @@ public class EquipoDAOImpl extends DAOAbstracto<String, Equipo> implements Equip
 	 * 
 	 * @see org.sunnycake.dao.EquipoDAO#eliminar(org.sunnycake.dto.Equipo)
 	 */
-	public void eliminarEquipoPorMac(String mac) throws ExcepcionConsulta {
-		delete(buscarEquipoPorMac(mac));
-
+	public void eliminarEquipoPorIp(String ip) throws ExcepcionConsulta {
+		delete(buscarEquipoPorIp(ip));
 	}
 
-	public Equipo buscarEquipoPorIp(String ip) throws ExcepcionConsulta {
+	public Equipo buscarEquipoPorNombre(String nombre) throws ExcepcionConsulta {
 		Criteria criteria = crearCriteria();
-		criteria.add(Restrictions.eq("IP", ip));
+		criteria.add(Restrictions.eq("NOMBRE", nombre));
 		return (Equipo) criteria.uniqueResult();
 	}
 	

@@ -31,11 +31,11 @@ public class EquipoServiceImpl implements EquipoService {
 	@Autowired
 	private EquipoDAO dao;
 
-	public Equipo buscarEquipoPorMac(String mac) {
+	public Equipo buscarEquipoPorIp(String ip) {
 		try {
-			return dao.buscarEquipoPorMac(mac);
+			return dao.buscarEquipoPorIp(ip);
 		} catch (ExcepcionConsulta e) {
-			logger.error("Ocurrió un error al buscar el equipo a través de la MAC: " + mac, e);
+			logger.error("Ocurrió un error al buscar el equipo a través de la IP: " + ip, e);
 			return null;
 		}
 	}
@@ -51,10 +51,13 @@ public class EquipoServiceImpl implements EquipoService {
 	public void actualizarEquipo(Equipo equipo) {
 		Equipo entidad;
 		try {
-			entidad = dao.buscarEquipoPorMac(equipo.getMac());
+			entidad = dao.buscarEquipoPorIp(equipo.getIp());
 			if (entidad != null) {
+				entidad.setNombre(equipo.getNombre());
+				entidad.setUsuario(equipo.getUsuario());
+				entidad.setPassword(equipo.getPassword());
 				entidad.setDescripcion(equipo.getDescripcion());
-				entidad.setIp(equipo.getIp());
+				entidad.setMac(equipo.getMac());
 				entidad.setSala(equipo.getSala());
 			}
 		} catch (ExcepcionConsulta e) {
@@ -62,9 +65,9 @@ public class EquipoServiceImpl implements EquipoService {
 		}
 	}
 
-	public void eliminarEquipoPorMac(String mac) {
+	public void eliminarEquipoPorIp(String mac) {
 		try {
-			dao.eliminarEquipoPorMac(mac);
+			dao.eliminarEquipoPorIp(mac);
 		} catch (ExcepcionConsulta e) {
 			logger.error("Ocurrió un error al actualizar el equipo: " + mac, e);
 		}
@@ -80,21 +83,21 @@ public class EquipoServiceImpl implements EquipoService {
 		}
 	}
 
-	public Equipo buscarEquipoPorIp(String ip) {
+	public Equipo buscarEquipoPorNombre(String ip) {
 		try {
-			return dao.buscarEquipoPorIp(ip);
+			return dao.buscarEquipoPorNombre(ip);
 		} catch (ExcepcionConsulta e) {
 			logger.error("Ocurrió un error al obtener todos los equipos", e);
 			return null;
 		}
 	}
 
-	public boolean esMacUnica(String mac) {
+	public boolean esIpUnica(String mac) {
 		Equipo equipo = null;
 		try {
-			equipo = dao.buscarEquipoPorMac(mac);
+			equipo = dao.buscarEquipoPorIp(mac);
 		} catch (ExcepcionConsulta e) {
-			logger.error("Ocurrió un error al buscar el equipo a través de la MAC: " + mac, e);
+			logger.error("Ocurrió un error al buscar el equipo a través de la IP: " + mac, e);
 			e.printStackTrace();
 		}
 		return (equipo == null || mac == null);

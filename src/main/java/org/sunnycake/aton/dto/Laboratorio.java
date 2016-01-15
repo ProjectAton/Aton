@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  * Contenedor de salas. POJO de la tabla laboratorio. TODO: Getters y setters
@@ -23,7 +25,8 @@ public class Laboratorio {
 	 * Clave primaria.
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name="lab-gen",sequenceName="LAB_GEN")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lab-gen")
 	private long id;
 
 	@Column(name = "UBICACION")
@@ -31,6 +34,10 @@ public class Laboratorio {
 
 	@Column(name = "ADMINISTRACION")
 	private String administracion;
+	
+	@Size(max=32)
+	@Column(name="NOMBRE")
+	private String nombre;
 
 	/*
 	 * (non-Javadoc)
@@ -111,8 +118,23 @@ public class Laboratorio {
 	 */
 	@Override
 	public String toString() {
-		return "Laboratorio " + id;
+		return "Laboratorio " + nombre;
 	}
+
+	/**
+	 * @return el nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre el/la nombre a ser asignado
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
 	
 	
 

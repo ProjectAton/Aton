@@ -9,11 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * POJO para la tabla Equipo dentro de la base de datos. TODO: Getters y setters
+ * POJO para la tabla Equipo dentro de la base de datos
  * 
  * @author Camilo Sampedro
  */
@@ -23,15 +23,30 @@ public class Equipo {
 	/**
 	 * Clave primaria.
 	 */
-	@Id
 	@Size(min = 17, max = 17)
+	@Column(name = "MAC")
 	private String mac;
+
+	@Size(max = 15)
+	@Column(name = "NOMBRE")
+	private String nombre;
+
+	@Size(max = 32)
+	@NotNull
+	@Column(name = "USUARIO")
+	private String usuario;
+
+	@NotNull
+	@Column(name = "PASSWORD")
+	private String password;
 
 	/**
 	 * Ip conformada por hileras del tipo X.X.X.X regexp es la expresión regular
 	 * para las IP permitidas
 	 */
-	@Pattern(regexp = "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")
+	@Id
+	@NotNull
+	@Size(min = 1, max = 20)
 	@Column(name = "IP", unique = true)
 	private String ip;
 
@@ -135,6 +150,51 @@ public class Equipo {
 	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	/**
+	 * @return el nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre
+	 *            el/la nombre a ser asignado
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	/**
+	 * @return el usuario
+	 */
+	public String getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * @param usuario
+	 *            el/la usuario a ser asignado
+	 */
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	/**
+	 * @return el password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password
+	 *            el/la password a ser asignado
+	 */
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	/*

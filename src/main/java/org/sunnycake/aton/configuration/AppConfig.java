@@ -19,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.sunnycake.aton.converter.ConvertidorLaboratorio;
 import org.sunnycake.aton.converter.ConvertidorSala;
 
 /**
@@ -39,6 +40,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired
 	ConvertidorSala convertidorSala;
+	@Autowired
+	ConvertidorLaboratorio convertidorLaboratorio;
 
 	/**
 	 * Configuración de dónde están las vistas del proyecto
@@ -86,6 +89,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	public void addFormatters(FormatterRegistry registry) {
 		// Integer ID -> Sala sala
 		registry.addConverter(convertidorSala);
+		registry.addConverter(convertidorLaboratorio);
 	}
 
 	/**

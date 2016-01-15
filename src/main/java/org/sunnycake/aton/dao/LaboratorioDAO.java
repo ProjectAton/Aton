@@ -29,7 +29,7 @@ public interface LaboratorioDAO {
 	 * @throws ExcepcionContulta
 	 *             Error en la consulta
 	 */
-	public void guardar(Laboratorio laboratorio) throws ExcepcionConsulta;
+	public void guardarLaboratorio(Laboratorio laboratorio) throws ExcepcionConsulta;
 
 	/**
 	 * Reemplaza la información del laboratorio con igual idenficador en la base
@@ -40,7 +40,7 @@ public interface LaboratorioDAO {
 	 * @throws ExcepcionConsulta
 	 *             Error en la consulta
 	 */
-	public void actualizar(Laboratorio laboratorio) throws ExcepcionConsulta;
+	public void actualizarLaboratorio(Laboratorio laboratorio) throws ExcepcionConsulta;
 
 	/**
 	 * Busca en la base de datos un laboratorio con la misma clave id
@@ -51,7 +51,7 @@ public interface LaboratorioDAO {
 	 * @throws ExcepcionContulta
 	 *             Error en la consulta
 	 */
-	public Laboratorio obtener(long id) throws ExcepcionConsulta;
+	public Laboratorio buscarLaboratorioPorId(long id) throws ExcepcionConsulta;
 
 	/**
 	 * Elimina de la base de datos el laboratorio con el mismo identificador
@@ -61,5 +61,5 @@ public interface LaboratorioDAO {
 	 * @throws ExcepcionConsulta
 	 *             Error en la consulta
 	 */
-	public void eliminar(Laboratorio Laboratorio) throws ExcepcionConsulta;
+	public void eliminarLaboratorioPorId(long id) throws ExcepcionConsulta;
 }
