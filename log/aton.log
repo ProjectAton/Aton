@@ -2500,3 +2500,143 @@
 2016-01-14 22:42:52 DEBUG AppController:301 - Apagar: null
 2016-01-14 22:43:00 DEBUG AppController:321 - Se han buscado todos los laboratorios, enviando a "laboratorios"
 2016-01-14 22:43:00 DEBUG AppController:312 - Se han buscado todas las salas, enviando a "salas"
+2016-01-14 22:50:20 DEBUG AppController:321 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-14 22:50:20 DEBUG AppController:312 - Se han buscado todas las salas, enviando a "salas"
+2016-01-14 23:05:00 DEBUG AppController:321 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-14 23:05:00 DEBUG AppController:312 - Se han buscado todas las salas, enviando a "salas"
+2016-01-14 23:05:02 DEBUG AppController:321 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-14 23:05:02 DEBUG AppController:312 - Se han buscado todas las salas, enviando a "salas"
+2016-01-14 23:10:35 DEBUG AppController:321 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-14 23:10:35 DEBUG AppController:312 - Se han buscado todas las salas, enviando a "salas"
+2016-01-14 23:10:36 DEBUG AppController:321 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-14 23:10:36 DEBUG AppController:312 - Se han buscado todas las salas, enviando a "salas"
+2016-01-14 23:14:17 DEBUG AppController:321 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-14 23:14:17 DEBUG AppController:312 - Se han buscado todas las salas, enviando a "salas"
+2016-01-14 23:14:18 DEBUG AppController:321 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-14 23:14:18 DEBUG AppController:312 - Se han buscado todas las salas, enviando a "salas"
+2016-01-14 23:15:46 DEBUG AppController:321 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-14 23:15:46 DEBUG AppController:312 - Se han buscado todas las salas, enviando a "salas"
+2016-01-14 23:15:47 DEBUG AppController:321 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-14 23:15:47 DEBUG AppController:312 - Se han buscado todas las salas, enviando a "salas"
+2016-01-14 23:15:49 DEBUG AppController:321 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-14 23:15:49 DEBUG AppController:312 - Se han buscado todas las salas, enviando a "salas"
+2016-01-14 23:15:51 DEBUG AppController:321 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-14 23:15:51 DEBUG AppController:312 - Se han buscado todas las salas, enviando a "salas"
+2016-01-14 23:16:07 DEBUG AppController:321 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-14 23:16:07 DEBUG AppController:312 - Se han buscado todas las salas, enviando a "salas"
+2016-01-14 23:16:07 DEBUG ConvertidorLaboratorio:24 - Convirtiendo: 50
+2016-01-14 23:16:07 DEBUG AppController:169 - Ha entrado a guardarse la sala: Sala Sala 2, Laboratorio LIS
+2016-01-14 23:16:07 DEBUG AppController:183 - /agregar-sala: Sala a guardar: Sala Sala 2, Laboratorio LIS
+2016-01-14 23:16:12 DEBUG AppController:321 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-14 23:16:12 DEBUG AppController:312 - Se han buscado todas las salas, enviando a "salas"
+2016-01-15 10:54:36 DEBUG AppController:268 - Equipo :123 eliminado
+2016-01-15 10:54:36 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 10:54:36 DEBUG AppController:124 - Buscando la dirección MAC de 10.0.3.31
+2016-01-15 10:54:36 INFO  Exec:31 - Conectando a Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 10:54:37 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 10:54:37 ERROR AppController:120 - Ip no única 10.0.3.31
+2016-01-15 10:54:37 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:01:59 DEBUG AppController:268 - Equipo :123 eliminado
+2016-01-15 11:01:59 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:01:59 DEBUG AppController:124 - Buscando la dirección MAC de 10.0.3.31
+2016-01-15 11:01:59 INFO  Exec:31 - Conectando a Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:02:00 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:02:00 ERROR AppController:120 - Ip no única 10.0.3.31
+2016-01-15 11:02:00 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:02:43 DEBUG AppController:268 - Equipo :123 eliminado
+2016-01-15 11:02:43 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:02:43 DEBUG AppController:124 - Buscando la dirección MAC de 10.0.3.31
+2016-01-15 11:02:43 INFO  Exec:31 - Conectando a Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:02:44 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:02:44 ERROR AppController:120 - Ip no única 10.0.3.31
+2016-01-15 11:02:44 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:03:36 DEBUG AppController:268 - Equipo :123 eliminado
+2016-01-15 11:03:36 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:03:36 DEBUG AppController:124 - Buscando la dirección MAC de 10.0.3.31
+2016-01-15 11:03:36 INFO  Exec:31 - Conectando a Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:03:37 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:03:37 ERROR AppController:120 - Ip no única 10.0.3.31
+2016-01-15 11:03:37 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:05:22 DEBUG AppController:268 - Equipo :123 eliminado
+2016-01-15 11:05:22 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:05:22 DEBUG AppController:124 - Buscando la dirección MAC de 10.0.3.31
+2016-01-15 11:05:22 INFO  Exec:31 - Conectando a Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:05:23 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:05:23 ERROR AppController:120 - Ip no única 10.0.3.31
+2016-01-15 11:05:23 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:06:14 DEBUG AppController:268 - Equipo :123 eliminado
+2016-01-15 11:06:14 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:06:14 DEBUG AppController:124 - Buscando la dirección MAC de 10.0.3.31
+2016-01-15 11:06:14 INFO  Exec:31 - Conectando a Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:06:15 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:06:15 ERROR AppController:120 - Ip no única 10.0.3.31
+2016-01-15 11:06:15 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:13:44 DEBUG AppController:268 - Equipo :123 eliminado
+2016-01-15 11:13:44 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:13:44 DEBUG AppController:124 - Buscando la dirección MAC de 10.0.3.31
+2016-01-15 11:13:44 INFO  Exec:31 - Conectando a Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:13:45 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:13:45 ERROR AppController:120 - Ip no única 10.0.3.31
+2016-01-15 11:13:45 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:14:29 DEBUG AppController:268 - Equipo :123 eliminado
+2016-01-15 11:14:29 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:14:29 DEBUG AppController:124 - Buscando la dirección MAC de 10.0.3.31
+2016-01-15 11:14:29 INFO  Exec:31 - Conectando a Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:14:30 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:14:30 ERROR AppController:120 - Ip no única 10.0.3.31
+2016-01-15 11:14:30 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:19:12 DEBUG AppController:268 - Equipo :123 eliminado
+2016-01-15 11:19:12 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:19:12 DEBUG AppController:124 - Buscando la dirección MAC de 10.0.3.31
+2016-01-15 11:19:12 INFO  Exec:31 - Conectando a Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:19:13 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:19:13 ERROR AppController:120 - Ip no única 10.0.3.31
+2016-01-15 11:19:13 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:24:57 DEBUG AppController:268 - Equipo :123 eliminado
+2016-01-15 11:24:57 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:24:57 DEBUG AppController:124 - Buscando la dirección MAC de 10.0.3.31
+2016-01-15 11:24:57 INFO  Exec:31 - Conectando a Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:24:58 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:24:58 ERROR AppController:120 - Ip no única 10.0.3.31
+2016-01-15 11:24:58 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:25:05 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-15 11:25:05 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-15 11:25:05 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-15 11:25:06 DEBUG HibernateConfiguration:71 - Mensajero MessageSource creado
+2016-01-15 11:25:06 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-15 11:25:06 DEBUG HibernateConfiguration:57 - ViewResolver creado
+2016-01-15 11:25:09 DEBUG AppController:312 - Se han buscado todas las salas, enviando a "salas"
+2016-01-15 11:25:10 DEBUG AppController:321 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-15 11:25:28 DEBUG AppController:268 - Equipo :123 eliminado
+2016-01-15 11:25:28 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:25:28 DEBUG AppController:124 - Buscando la dirección MAC de 10.0.3.31
+2016-01-15 11:25:28 INFO  Exec:31 - Conectando a Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:25:29 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:25:29 ERROR AppController:120 - Ip no única 10.0.3.31
+2016-01-15 11:25:29 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:26:15 DEBUG AppController:268 - Equipo :123 eliminado
+2016-01-15 11:26:15 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:26:15 DEBUG AppController:124 - Buscando la dirección MAC de 10.0.3.31
+2016-01-15 11:26:15 INFO  Exec:31 - Conectando a Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:26:16 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:26:16 ERROR AppController:120 - Ip no única 10.0.3.31
+2016-01-15 11:26:16 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 11:26:23 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-15 11:26:23 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-15 11:26:23 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-15 11:26:24 DEBUG HibernateConfiguration:71 - Mensajero MessageSource creado
+2016-01-15 11:26:24 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-15 11:26:24 DEBUG HibernateConfiguration:57 - ViewResolver creado
+2016-01-15 12:12:52 DEBUG AppController:268 - Equipo :123 eliminado
+2016-01-15 12:12:52 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 12:12:52 DEBUG AppController:124 - Buscando la dirección MAC de 10.0.3.31
+2016-01-15 12:12:52 INFO  Exec:31 - Conectando a Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 12:12:53 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 12:12:53 ERROR AppController:120 - Ip no única 10.0.3.31
+2016-01-15 12:12:53 DEBUG AppController:110 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-15 12:13:00 INFO  HibernateConfiguration:74 - Data source creado éxitosamente
+2016-01-15 12:13:00 INFO  HibernateConfiguration:90 - Propiedades de hibernate creadas éxitosamente
+2016-01-15 12:13:00 INFO  HibernateConfiguration:58 - Session factory creado éxitosamente
+2016-01-15 12:13:01 DEBUG HibernateConfiguration:71 - Mensajero MessageSource creado
+2016-01-15 12:13:01 INFO  HibernateConfiguration:105 - Transaction Manager creado éxitosamente
+2016-01-15 12:13:01 DEBUG HibernateConfiguration:57 - ViewResolver creado

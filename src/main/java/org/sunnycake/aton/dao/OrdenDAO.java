@@ -30,7 +30,7 @@ public interface OrdenDAO {
 	 * @throws ExcepcionContulta
 	 *             Error en la consulta
 	 */
-	public void guardar(Orden orden) throws ExcepcionConsulta;
+	public void guardarOrden(Orden orden) throws ExcepcionConsulta;
 
 	/**
 	 * Reemplaza la información de la orden con igual idenficador MAC en la base
@@ -41,7 +41,7 @@ public interface OrdenDAO {
 	 * @throws ExcepcionConsulta
 	 *             Error en la consulta
 	 */
-	public void actualizar(Orden orden) throws ExcepcionConsulta;
+	public void actualizarOrden(Orden orden) throws ExcepcionConsulta;
 
 	/**
 	 * Busca en la base de datos un Orden con la misma clave fecha + sesion
@@ -52,16 +52,16 @@ public interface OrdenDAO {
 	 * @throws ExcepcionContulta
 	 *             Error en la consulta
 	 */
-	public Orden obtener(OrdenPK clave) throws ExcepcionConsulta;
+	public Orden obtenerOrdenPorClave(OrdenPK clave) throws ExcepcionConsulta;
 
 	/**
 	 * Elimina de la base de datos el Orden con el mismo identificador fecha +
 	 * sesion
 	 * 
-	 * @param Orden
+	 * @param orden
 	 *            Orden a eliminar en la base de datos
 	 * @throws ExcepcionConsulta
 	 *             Error en la consulta
 	 */
-	public void eliminar(Orden Orden) throws ExcepcionConsulta;
+	public void eliminarOrdenPorClave(OrdenPK orden) throws ExcepcionConsulta;
 }

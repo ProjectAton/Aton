@@ -81,13 +81,8 @@
 								</div>
 							</div>
 							<div class="panel panel-default">
-								<div class="panel-heading">Críticas (Precaución)</div>
+								<div class="panel-heading">Orden personalizada</div>
 								<div class="panel-body">
-
-									<a type="button" class="btn btn-danger"
-										href="<c:url value='/apagar-${equipo.ip}'/>">Apagar</a> <a
-										type="button" class="btn btn-danger"
-										href="<c:url value='/reiniciar-${equipo.ip}'/>">Reiniciar</a>
 								</div>
 							</div>
 						</div>
