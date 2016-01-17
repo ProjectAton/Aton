@@ -11,11 +11,48 @@ import java.util.Date;
  */
 public class OrdenPK implements Serializable {
 	private static final long serialVersionUID = 2391560268127698216L;
-	private UsuarioWeb pkUsuario;
+	private Equipo pkEquipo;
 	private Date pkFecha;
-	
+
 	public OrdenPK() {
 		// Constructor vacío
+	}
+
+	/**
+	 * @return el pkEquipo
+	 */
+	public Equipo getPkEquipo() {
+		return pkEquipo;
+	}
+
+	/**
+	 * @param pkEquipo
+	 *            el/la pkEquipo a ser asignado
+	 */
+	public void setPkEquipo(Equipo pkEquipo) {
+		this.pkEquipo = pkEquipo;
+	}
+
+	/**
+	 * @return el pkFecha
+	 */
+	public Date getPkFecha() {
+		return pkFecha;
+	}
+
+	/**
+	 * @param pkFecha
+	 *            el/la pkFecha a ser asignado
+	 */
+	public void setPkFecha(Date pkFecha) {
+		this.pkFecha = pkFecha;
+	}
+
+	/**
+	 * @return el serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	/*
@@ -27,8 +64,8 @@ public class OrdenPK implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((pkEquipo == null) ? 0 : pkEquipo.hashCode());
 		result = prime * result + ((pkFecha == null) ? 0 : pkFecha.hashCode());
-		result = prime * result + ((pkUsuario == null) ? 0 : pkUsuario.hashCode());
 		return result;
 	}
 
@@ -46,52 +83,17 @@ public class OrdenPK implements Serializable {
 		if (!(obj instanceof OrdenPK))
 			return false;
 		OrdenPK other = (OrdenPK) obj;
+		if (pkEquipo == null) {
+			if (other.pkEquipo != null)
+				return false;
+		} else if (!pkEquipo.equals(other.pkEquipo))
+			return false;
 		if (pkFecha == null) {
 			if (other.pkFecha != null)
 				return false;
 		} else if (!pkFecha.equals(other.pkFecha))
 			return false;
-		if (pkUsuario == null) {
-			if (other.pkUsuario != null)
-				return false;
-		} else if (!pkUsuario.equals(other.pkUsuario))
-			return false;
 		return true;
-	}
-
-	/**
-	 * @return el pkUsuario
-	 */
-	public UsuarioWeb getPkUsuario() {
-		return pkUsuario;
-	}
-
-	/**
-	 * @param pkUsuario el/la pkUsuario a ser asignado
-	 */
-	public void setPkUsuario(UsuarioWeb pkUsuario) {
-		this.pkUsuario = pkUsuario;
-	}
-
-	/**
-	 * @return el pkFecha
-	 */
-	public Date getPkFecha() {
-		return pkFecha;
-	}
-
-	/**
-	 * @param pkFecha el/la pkFecha a ser asignado
-	 */
-	public void setPkFecha(Date pkFecha) {
-		this.pkFecha = pkFecha;
-	}
-
-	/**
-	 * @return el serialversionuid
-	 */
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 }

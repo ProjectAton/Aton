@@ -5,6 +5,7 @@ package org.sunnycake.aton.dao.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
 import org.sunnycake.aton.dao.DAOAbstracto;
 import org.sunnycake.aton.dao.OrdenDAO;
 import org.sunnycake.aton.dto.Orden;
@@ -15,6 +16,7 @@ import org.sunnycake.aton.exception.ExcepcionConsulta;
  * @author camilo
  *
  */
+@Repository("ordenDAO")
 public class OrdenDAOImpl extends DAOAbstracto<OrdenPK, Orden> implements OrdenDAO {
 
 	/*

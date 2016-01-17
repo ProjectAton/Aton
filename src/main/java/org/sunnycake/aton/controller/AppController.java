@@ -9,6 +9,10 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -17,14 +21,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import org.sunnycake.aton.dto.Equipo;
 import org.sunnycake.aton.dto.Laboratorio;
+import org.sunnycake.aton.dto.Orden;
 import org.sunnycake.aton.dto.Sala;
 import org.sunnycake.aton.exec.Ejecucion;
+import org.sunnycake.aton.exec.ExecBuffer;
+import org.sunnycake.aton.exec.Tarea;
 import org.sunnycake.aton.service.EquipoService;
 import org.sunnycake.aton.service.LaboratorioService;
+import org.sunnycake.aton.service.OrdenService;
 import org.sunnycake.aton.service.SalaService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 // Controlador por defecto (Con el url raíz "/")
@@ -36,6 +45,9 @@ public class AppController {
 
 	@Autowired
 	SalaService salaService;
+
+	@Autowired
+	OrdenService ordenService;
 
 	@Autowired
 	LaboratorioService laboratorioService;
@@ -51,17 +63,32 @@ public class AppController {
 	 */
 	@RequestMapping(value = { "/", "/equipos" }, method = RequestMethod.GET)
 	public String listarEquipos(ModelMap model) {
-
+		logger.debug("Obteniendo raíz");
 		List<Equipo> equipos = equipoService.buscarTodosLosEquipos();
 		model.addAttribute("equipos", equipos);
+		model.addAttribute("user", obtenerUsuario());
 		return "todoslosequipos";
+	}
+
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String adminPage(ModelMap model) {
+		model.addAttribute("user", obtenerUsuario());
+		List<Equipo> equipos = equipoService.buscarTodosLosEquipos();
+		model.addAttribute("equipos", equipos);
+		return "adminprincipal";
+	}
+
+	@RequestMapping(value = "/db", method = RequestMethod.GET)
+	public String dbaPage(ModelMap model) {
+		model.addAttribute("user", obtenerUsuario());
+		return "dba";
 	}
 
 	/*
 	 * TODO: Cambiar para ATON: Generar todos los mapping para los dto Bajo los
 	 * url "/" y "/list" se traerán todos los empleados
 	 */
-	@RequestMapping(value = { "/salas" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/salas" }, method = RequestMethod.GET)
 	public String listarSalas(ModelMap model) {
 
 		List<Sala> salas = salaService.buscarTodasLasSalas();
@@ -73,7 +100,7 @@ public class AppController {
 	 * TODO: Cambiar para ATON: Generar todos los mapping para los dto Bajo los
 	 * url "/" y "/list" se traerán todos los empleados
 	 */
-	@RequestMapping(value = { "/laboratorios" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/laboratorios" }, method = RequestMethod.GET)
 	public String listarLaboratorios(ModelMap model) {
 
 		List<Laboratorio> laboratorios = laboratorioService.buscarTodosLosLaboratorios();
@@ -84,7 +111,7 @@ public class AppController {
 	/**
 	 * Este es un método GET para nuevos equipos (Obtiene el formulario)
 	 */
-	@RequestMapping(value = { "/nuevo" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/nuevo" }, method = RequestMethod.GET)
 	public String nuevoEquipo(ModelMap model) {
 		Equipo equipo = new Equipo();
 		model.addAttribute("equipo", equipo);
@@ -105,7 +132,7 @@ public class AppController {
 	 * @param model
 	 * @return JSP
 	 */
-	@RequestMapping(value = { "/nuevo" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/admin/nuevo" }, method = RequestMethod.POST)
 	public String guardarEquipo(@Valid Equipo equipo, BindingResult resultado, ModelMap model) {
 		logger.debug("Ha entrado a guardarse el equipo: " + equipo);
 
@@ -122,13 +149,21 @@ public class AppController {
 		}
 
 		logger.debug("Buscando la dirección MAC de " + equipo.getIp());
-		String mac = Ejecucion.obtenerMac(equipo);
-		if (mac == null || "".equals(mac.trim())) {
+		Tarea tarea = Ejecucion.obtenerMac(equipo);
+		// logger.debug(ordenService == null);
+		// ordenService.guardarOrden(crearOrden(tarea));
+		logger.debug(tarea.getExecQueue().retornarBuffer());
+
+		if (tarea == null || tarea.getExecQueue() == null || "Error".equals(tarea.getExecQueue().retornarBuffer())
+				|| "".equals(tarea.getExecQueue().retornarBuffer())) {
 			FieldError errorDeIp = new FieldError("equipo", "ip",
 					messageSource.getMessage("ip.not.found", new String[] { equipo.getIp() }, Locale.getDefault()));
+			logger.error("IP no encontrada " + equipo.getIp());
 			resultado.addError(errorDeIp);
 			return "registro";
 		}
+		String mac = tarea.getExecQueue().retornarBuffer().trim();
+		logger.debug("Mac encontrada: " + mac);
 		equipo.setMac(mac);
 
 		/*
@@ -145,18 +180,18 @@ public class AppController {
 
 		// equipo.setMac(equipo.getMac().replaceAll(",", ""));
 
-		logger.debug("/nuevo: Equipo a guardar: " + equipo);
+		logger.debug("/admin/nuevo: Equipo a guardar: " + equipo);
 
 		equipoService.guardarEquipo(equipo);
 
 		logger.debug("Enviando al equipo " + equipo + " a edición adicional");
-		return "redirect:/editar-equipo-" + equipo.getIp();
+		return "redirect:/admin/editar-equipo-" + equipo.getIp();
 	}
 
 	/**
 	 * Este es un método GET para nuevas salas (Obtiene el formulario)
 	 */
-	@RequestMapping(value = { "/agregar-sala" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/agregar-sala" }, method = RequestMethod.GET)
 	public String nuevaSala(ModelMap model) {
 		Sala sala = new Sala();
 		model.addAttribute("sala", sala);
@@ -164,7 +199,7 @@ public class AppController {
 		return "registrosala";
 	}
 
-	@RequestMapping(value = { "/agregar-sala" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/admin/agregar-sala" }, method = RequestMethod.POST)
 	public String guardarSala(@Valid Sala sala, BindingResult resultado, ModelMap model) {
 		logger.debug("Ha entrado a guardarse la sala: " + sala);
 
@@ -180,7 +215,7 @@ public class AppController {
 			return "registrosala";
 		}
 
-		logger.debug("/agregar-sala: Sala a guardar: " + sala);
+		logger.debug("/admin/agregar-sala: Sala a guardar: " + sala);
 
 		salaService.guardarSala(sala);
 
@@ -191,7 +226,7 @@ public class AppController {
 	/**
 	 * Este es un método GET para nuevas salas (Obtiene el formulario)
 	 */
-	@RequestMapping(value = { "/agregar-laboratorio" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/agregar-laboratorio" }, method = RequestMethod.GET)
 	public String nuevoLaboratorio(ModelMap model) {
 		Laboratorio laboratorio = new Laboratorio();
 		model.addAttribute("laboratorio", laboratorio);
@@ -199,7 +234,7 @@ public class AppController {
 		return "registrolaboratorio";
 	}
 
-	@RequestMapping(value = { "/agregar-laboratorio" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/admin/agregar-laboratorio" }, method = RequestMethod.POST)
 	public String guardarLaboratorio(@Valid Laboratorio laboratorio, BindingResult resultado, ModelMap model) {
 		logger.debug("Ha entrado a guardarse el laboratorio: " + laboratorio);
 
@@ -215,7 +250,7 @@ public class AppController {
 			return "registrosala";
 		}
 
-		logger.debug("/agregar-sala: Laboratorio a guardar: " + laboratorio);
+		logger.debug("/admin/agregar-sala: Laboratorio a guardar: " + laboratorio);
 
 		laboratorioService.guardarLaboratorio(laboratorio);
 
@@ -234,7 +269,7 @@ public class AppController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = { "/editar-equipo-{ip}" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/editar-equipo-{ip}" }, method = RequestMethod.GET)
 	public String editarEquipo(@PathVariable String ip, ModelMap model) {
 		Equipo equipo = equipoService.buscarEquipoPorIp(ip);
 		model.addAttribute("equipo", equipo);
@@ -246,7 +281,7 @@ public class AppController {
 	 * This method will be called on form submission, handling POST request for
 	 * updating employee in database. It also validates the user input
 	 */
-	@RequestMapping(value = { "/editar-equipo-{ip}" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/admin/editar-equipo-{ip}" }, method = RequestMethod.POST)
 	public String actualizarEquipo(@Valid Equipo equipo, BindingResult result, ModelMap model,
 			@PathVariable String ip) {
 
@@ -260,13 +295,23 @@ public class AppController {
 		return "exito";
 	}
 
-	/*
-	 * This method will delete an employee by it's SSN value.
+	/**
+	 * Elimina un equipo por su ip
 	 */
-	@RequestMapping(value = { "/eliminar-equipo-{ip}" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/eliminar-equipo-{ip}" }, method = RequestMethod.GET)
 	public String deleteEmployee(@PathVariable String ip) {
 		logger.debug("Equipo :" + ip + " eliminado");
 		equipoService.eliminarEquipoPorIp(ip);
+		return "redirect:/equipos";
+	}
+	
+	/**
+	 * Elimina una sala por su id
+	 */
+	@RequestMapping(value = { "/admin/eliminar-sala-{id}" }, method = RequestMethod.GET)
+	public String eliminarSala(@PathVariable Integer id) {
+		salaService.eliminarSalaPorId(id);
+		logger.debug("Equipo :" + id + " eliminado");
 		return "redirect:/equipos";
 	}
 
@@ -278,7 +323,7 @@ public class AppController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = { "/enviar-orden-{ip}" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/enviar-orden-{ip}" }, method = RequestMethod.GET)
 	public String enviarOrden(@PathVariable String ip, ModelMap model) {
 		Equipo equipo = equipoService.buscarEquipoPorIp(ip);
 		model.addAttribute("equipo", equipo);
@@ -287,21 +332,57 @@ public class AppController {
 	}
 
 	/**
-	 * Actualiza la información de un empleado
+	 * Apaga un equipo
 	 * 
 	 * @param ip
-	 *            Identificador del empleado
+	 *            Ip del equipo
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = { "/apagar-{ip}" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/apagar-{ip}" }, method = RequestMethod.GET)
 	public String apagar(@PathVariable String ip, ModelMap model) {
 		Equipo equipo = equipoService.buscarEquipoPorIp(ip);
-		String salida = Ejecucion.apagar(equipo);
-		logger.debug("Apagar: " + salida);
+		Ejecucion.apagar(equipo);
 		model.addAttribute("equipo", equipo);
 		model.addAttribute("edit", true);
 		return "centroordenes";
+	}
+
+	/**
+	 * Reinicia un equipo
+	 * 
+	 * @param ip
+	 *            Ip del equipo
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = { "/admin/reiniciar-{ip}" }, method = RequestMethod.GET)
+	public String reiniciar(@PathVariable String ip, ModelMap model) {
+		Equipo equipo = equipoService.buscarEquipoPorIp(ip);
+		Ejecucion.reiniciar(equipo);
+		model.addAttribute("equipo", equipo);
+		model.addAttribute("edit", true);
+		return "centroordenes";
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String loginPage() {
+		return "login";
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		return "redirect:/login?logout";
+	}
+
+	@RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
+	public String accessDeniedPage(ModelMap model) {
+		model.addAttribute("user", obtenerUsuario());
+		return "accessDenied";
 	}
 
 	/**
@@ -309,8 +390,9 @@ public class AppController {
 	 */
 	@ModelAttribute("salas")
 	public List<Sala> inicializarSalas() {
-		logger.debug("Se han buscado todas las salas, enviando a \"salas\"");
-		return salaService.buscarTodasLasSalas();
+		List<Sala> salas = salaService.buscarTodasLasSalas();
+		logger.debug("Se han buscado todas las salas(" + salas.size() + "), enviando a \"salas\"");
+		return salas;
 	}
 
 	/**
@@ -320,6 +402,35 @@ public class AppController {
 	public List<Laboratorio> inicializarLaboratorios() {
 		logger.debug("Se han buscado todos los laboratorios, enviando a \"laboratorios\"");
 		return laboratorioService.buscarTodosLosLaboratorios();
+	}
+
+	private String obtenerUsuario() {
+		String nombreDeUsuario = null;
+		if (SecurityContextHolder.getContext().getAuthentication() == null) {
+			return null;
+		}
+		Object actual = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (actual instanceof UserDetails) {
+			nombreDeUsuario = ((UserDetails) actual).getUsername();
+		} else {
+			nombreDeUsuario = null;
+		}
+		return nombreDeUsuario;
+	}
+
+	private Orden crearOrden(Tarea tarea) {
+		Orden orden = new Orden();
+		orden.setCodigoSalida(tarea.getCodigoDeSalida());
+		orden.setPkEquipo(tarea.getEquipo());
+		orden.setPkFecha(tarea.getFechaInicio());
+		ExecBuffer buffer = tarea.getExecQueue();
+		if (buffer != null) {
+			orden.setResultado(buffer.retornarBuffer());
+		}
+		orden.setSesion(tarea.getSesion());
+		orden.setUsuarioWeb(tarea.getUsuarioweb());
+		return (orden);
 	}
 
 }

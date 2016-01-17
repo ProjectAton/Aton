@@ -3,19 +3,28 @@
  */
 package org.sunnycake.aton.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 /**
- * POJO para la tabla USUARIOWEB de la base de datos
- * TODO: Getters and Setters
+ * POJO para la tabla USUARIOWEB de la base de datos TODO: Getters and Setters
+ * 
  * @author Julian David Arango
+ *
+ */
+/**
+ * @author camilo
  *
  */
 @Entity
@@ -32,8 +41,11 @@ public class UsuarioWeb {
 	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 
-	@ManyToOne
-	private TipoUsuario tipoUsuario;
+	@Column(name = "ENABLED")
+	private boolean enabled;
+	
+	@OneToMany(targetEntity = Rol.class, mappedBy = "usuarioWeb", cascade = { CascadeType.ALL }, orphanRemoval = true, fetch=FetchType.LAZY)
+	private Set<Rol> rolesDeUsuario = new HashSet<Rol>(0);
 
 	/*
 	 * (non-Javadoc)
@@ -78,7 +90,8 @@ public class UsuarioWeb {
 	}
 
 	/**
-	 * @param usuario el/la usuario a ser asignado
+	 * @param usuario
+	 *            el/la usuario a ser asignado
 	 */
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
@@ -92,24 +105,52 @@ public class UsuarioWeb {
 	}
 
 	/**
-	 * @param password el/la password a ser asignado
+	 * @param password
+	 *            el/la password a ser asignado
 	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	/**
-	 * @return el tipoUsuario
+	 * @return el enabled
 	 */
-	public TipoUsuario getTipoUsuario() {
-		return tipoUsuario;
+	public boolean isEnabled() {
+		return enabled;
 	}
 
 	/**
-	 * @param tipoUsuario el/la tipoUsuario a ser asignado
+	 * @param enabled
+	 *            el/la enabled a ser asignado
 	 */
-	public void setTipoUsuario(TipoUsuario tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
+
+	public Set<Rol> getRolesDeUsuario() {
+		return this.rolesDeUsuario;
+	}
+
+	public void setRolesDeUsuario(Set<Rol> rolesDeUsuario) {
+		this.rolesDeUsuario = rolesDeUsuario;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("UsuarioWeb [usuario=");
+		builder.append(usuario);
+		builder.append(", password=");
+		builder.append(password);
+		builder.append(", enabled=");
+		builder.append(enabled);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
 
 }

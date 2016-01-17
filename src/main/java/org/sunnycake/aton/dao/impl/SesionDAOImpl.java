@@ -5,6 +5,7 @@ package org.sunnycake.aton.dao.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
 import org.sunnycake.aton.dao.DAOAbstracto;
 import org.sunnycake.aton.dao.SesionDAO;
 import org.sunnycake.aton.dto.Sesion;
@@ -15,6 +16,7 @@ import org.sunnycake.aton.exception.ExcepcionConsulta;
  * @author camilo
  *
  */
+@Repository("sesionDAO")
 public class SesionDAOImpl extends DAOAbstracto<SesionPK, Sesion> implements SesionDAO {
 
 	/*

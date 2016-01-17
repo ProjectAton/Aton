@@ -5,6 +5,7 @@ package org.sunnycake.aton.dao.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
 import org.sunnycake.aton.dao.DAOAbstracto;
 import org.sunnycake.aton.dao.EstadoDAO;
 import org.sunnycake.aton.dto.Estado;
@@ -15,6 +16,7 @@ import org.sunnycake.aton.exception.ExcepcionConsulta;
  * @author camilo
  *
  */
+@Repository("estadoDAO")
 public class EstadoDAOImpl extends DAOAbstracto<EstadoPK, Estado> implements EstadoDAO {
 
 	/*

@@ -2,9 +2,11 @@ package org.sunnycake.aton.exec;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class ExecBuffer {
-	private List<String> lines = new ArrayList<String>();
+	private Queue<String> lines = new ConcurrentLinkedQueue<String>();
 	private int maxSize;
 
 	public ExecBuffer(int maxSize) {
@@ -13,15 +15,15 @@ public class ExecBuffer {
 
 	public void push(String line) {
 		lines.add(line);
-		if (lines.size() > maxSize)
-			lines.remove(0);
 	}
 
 	public String pop() {
-		return lines.isEmpty() ? "nil" : lines.remove(maxSize);
+		return lines.isEmpty() ? "nil" : lines.poll();
 	}
 
 	public String retornarBuffer() {
+		if (lines.size() == 0)
+			return "Error";
 		StringBuffer stringB = new StringBuffer();
 		for (String linea : lines) {
 			stringB.append(linea);

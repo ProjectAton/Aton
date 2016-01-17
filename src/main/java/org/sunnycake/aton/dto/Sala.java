@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +34,7 @@ public class Sala {
 	 * Clave primaria.
 	 */
 	@Id
-	@SequenceGenerator(name="seq-gen",sequenceName="SALA_GEN")
+	@SequenceGenerator(name = "seq-gen", sequenceName = "SALA_GEN")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq-gen")
 	private int id;
 
@@ -52,8 +53,9 @@ public class Sala {
 	@Column(name = "ENSERES")
 	private String enseres;
 
-	@OneToMany(targetEntity = Equipo.class, mappedBy = "sala", cascade = { CascadeType.ALL }, orphanRemoval = true)
-	Set<Equipo> equipos = new HashSet<Equipo>();
+	@OneToMany(fetch = FetchType.EAGER, targetEntity = Equipo.class, mappedBy = "sala", cascade = {
+			CascadeType.ALL }, orphanRemoval = true)
+	private Set<Equipo> equipos = new HashSet<Equipo>();
 
 	/*
 	 * (non-Javadoc)
@@ -170,6 +172,14 @@ public class Sala {
 	@Override
 	public String toString() {
 		return "Sala " + nombre + ", " + laboratorio;
+	}
+
+	public Set<Equipo> getEquipos() {
+		return equipos;
+	}
+
+	public void setEquipos(Set<Equipo> equipos) {
+		this.equipos = equipos;
 	}
 
 }

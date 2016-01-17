@@ -93,7 +93,7 @@ public class AppControllerTest {
 		when(result.hasErrors()).thenReturn(false);
 		when(equipoService.esIpUnica(anyString())).thenReturn(true);
 		doNothing().when(equipoService).guardarEquipo(any(Equipo.class));
-		Assert.assertEquals(appController.guardarEquipo(equipos.get(0), result, model), "registro");
+		Assert.assertEquals(appController.guardarEquipo(equipos.get(0), result, model), "redirect:/admin/editar-equipo-10.0.3.31");
 		Assert.assertEquals(model.get("equipo"), equipos.get(0));
 	}
 

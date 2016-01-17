@@ -1,7 +1,7 @@
 package org.sunnycake.aton.exec;
 
 public enum ExitStatus {
-	SUCCESS("Done") {
+	SUCCESS("Hecho") {
 
 		@Override
 		boolean apply(int exitCode) {
@@ -9,7 +9,7 @@ public enum ExitStatus {
 		}
 
 	},
-	ERROR("Done with error") {
+	ERROR("Hecho con error") {
 
 		@Override
 		boolean apply(int exitCode) {
@@ -17,7 +17,7 @@ public enum ExitStatus {
 		}
 
 	},
-	NONE("Done with exit status") {
+	NONE("Hecho con estado de salida") {
 
 		@Override
 		boolean apply(int exitCode) {

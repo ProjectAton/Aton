@@ -5,6 +5,7 @@ package org.sunnycake.aton.dao.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
 import org.sunnycake.aton.dao.DAOAbstracto;
 import org.sunnycake.aton.dao.UsuarioWebDAO;
 import org.sunnycake.aton.dto.UsuarioWeb;
@@ -14,6 +15,7 @@ import org.sunnycake.aton.exception.ExcepcionConsulta;
  * @author camilo
  *
  */
+@Repository("usuarioWebDAO")
 public class UsuarioWebDAOImpl extends DAOAbstracto<String, UsuarioWeb> implements UsuarioWebDAO {
 
 	/*

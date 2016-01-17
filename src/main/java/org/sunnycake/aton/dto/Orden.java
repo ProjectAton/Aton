@@ -25,19 +25,24 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 @Table(name = "ORDEN")
-@IdClass(value=OrdenPK.class)
+@IdClass(value = OrdenPK.class)
 public class Orden {
 	/**
 	 * Clave primaria compuesta
 	 */
 	@Id
 	@ManyToOne
-	private UsuarioWeb pkUsuario;
+	private Equipo pkEquipo;
+	
 	@Id
 	@DateTimeFormat(pattern = "dd/MM/yyyy - KK:mm:ss")
 	@Type(type = "java.util.Date")
 	@Column(name = "FECHA")
 	private Date pkFecha;
+
+	@NotNull
+	@ManyToOne
+	private UsuarioWeb usuarioWeb;
 
 	@Column(name = "ORDEN")
 	private String orden;
@@ -61,13 +66,13 @@ public class Orden {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((pkEquipo == null) ? 0 : pkEquipo.hashCode());
 		result = prime * result + ((pkFecha == null) ? 0 : pkFecha.hashCode());
-		result = prime * result + ((pkUsuario == null) ? 0 : pkUsuario.hashCode());
 		return result;
 	}
 
-	/**
-	 * Verifica que dos órdenes son iguales a través del usuario y la fecha
+	/*
+	 * (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
@@ -80,31 +85,17 @@ public class Orden {
 		if (!(obj instanceof Orden))
 			return false;
 		Orden other = (Orden) obj;
+		if (pkEquipo == null) {
+			if (other.pkEquipo != null)
+				return false;
+		} else if (!pkEquipo.equals(other.pkEquipo))
+			return false;
 		if (pkFecha == null) {
 			if (other.pkFecha != null)
 				return false;
 		} else if (!pkFecha.equals(other.pkFecha))
 			return false;
-		if (pkUsuario == null) {
-			if (other.pkUsuario != null)
-				return false;
-		} else if (!pkUsuario.equals(other.pkUsuario))
-			return false;
 		return true;
-	}
-
-	/**
-	 * @return el pkUsuario
-	 */
-	public UsuarioWeb getPkUsuario() {
-		return pkUsuario;
-	}
-
-	/**
-	 * @param pkUsuario el/la pkUsuario a ser asignado
-	 */
-	public void setPkUsuario(UsuarioWeb pkUsuario) {
-		this.pkUsuario = pkUsuario;
 	}
 
 	/**
@@ -115,7 +106,8 @@ public class Orden {
 	}
 
 	/**
-	 * @param pkFecha el/la pkFecha a ser asignado
+	 * @param pkFecha
+	 *            el/la pkFecha a ser asignado
 	 */
 	public void setPkFecha(Date pkFecha) {
 		this.pkFecha = pkFecha;
@@ -129,7 +121,8 @@ public class Orden {
 	}
 
 	/**
-	 * @param orden el/la orden a ser asignado
+	 * @param orden
+	 *            el/la orden a ser asignado
 	 */
 	public void setOrden(String orden) {
 		this.orden = orden;
@@ -143,7 +136,8 @@ public class Orden {
 	}
 
 	/**
-	 * @param resultado el/la resultado a ser asignado
+	 * @param resultado
+	 *            el/la resultado a ser asignado
 	 */
 	public void setResultado(String resultado) {
 		this.resultado = resultado;
@@ -157,7 +151,8 @@ public class Orden {
 	}
 
 	/**
-	 * @param codigoSalida el/la codigoSalida a ser asignado
+	 * @param codigoSalida
+	 *            el/la codigoSalida a ser asignado
 	 */
 	public void setCodigoSalida(int codigoSalida) {
 		this.codigoSalida = codigoSalida;
@@ -171,10 +166,41 @@ public class Orden {
 	}
 
 	/**
-	 * @param sesion el/la sesion a ser asignado
+	 * @param sesion
+	 *            el/la sesion a ser asignado
 	 */
 	public void setSesion(Sesion sesion) {
 		this.sesion = sesion;
 	}
+
+	/**
+	 * @return el pkEquipo
+	 */
+	public Equipo getPkEquipo() {
+		return pkEquipo;
+	}
+
+	/**
+	 * @param pkEquipo el/la pkEquipo a ser asignado
+	 */
+	public void setPkEquipo(Equipo pkEquipo) {
+		this.pkEquipo = pkEquipo;
+	}
+
+	/**
+	 * @return el usuarioWeb
+	 */
+	public UsuarioWeb getUsuarioWeb() {
+		return usuarioWeb;
+	}
+
+	/**
+	 * @param usuarioWeb el/la usuarioWeb a ser asignado
+	 */
+	public void setUsuarioWeb(UsuarioWeb usuarioWeb) {
+		this.usuarioWeb = usuarioWeb;
+	}
+	
+	
 
 }

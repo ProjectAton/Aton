@@ -16,7 +16,8 @@ public final class Function {
 	public static final String HOST_ORDER = "cat /etc/hostname";
 	public static final String ROOT_VERIFICATION_ORDER = "id -u";
 	public static final String USER_IDENTIFIER_ORDER = "whoamai";
-	public static final String SHUTDOWN_ORDER = "shutdown -h now ~.";
+	public static final String SHUTDOWN_ORDER = "shutdown -h now";
+	public static final String REBOOT_ORDER = "shutdown -r now";
 	public static final String IP_OBTAINING_ORDER = "ifconfig eth0 2>/dev/null|awk '/Direc. inet:/ {print $2}'|sed 's/inet://'";
 	public static final String USER_LIST_ORDER = "who | cut -d' ' -f1 | sort | uniq";
 
