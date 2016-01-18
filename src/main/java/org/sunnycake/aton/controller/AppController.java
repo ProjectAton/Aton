@@ -40,30 +40,47 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/")
 public class AppController {
 
+	/**
+	 * Acceso a la base de datos con objetos Equipo
+	 */
 	@Autowired
 	EquipoService equipoService;
 
+	/**
+	 * Acceso a la base de datos con objetos Sala
+	 */
 	@Autowired
 	SalaService salaService;
 
+	/**
+	 * Acceso a la base de datos con objetos Orden
+	 */
 	@Autowired
 	OrdenService ordenService;
 
+	/**
+	 * Acceso a la base de datos con objetos Laboratorio
+	 */
 	@Autowired
 	LaboratorioService laboratorioService;
 
+	/**
+	 * Mensajes de validación
+	 */
 	@Autowired
 	MessageSource messageSource;
 
+	/**
+	 * Agregar mensajes al archivo de logger
+	 */
 	private Logger logger = LogManager.getLogger(AppController.class.getName());
 
-	/*
-	 * TODO: Cambiar para ATON: Generar todos los mapping para los dto Bajo los
-	 * url "/" y "/list" se traerán todos los empleados
+	/**
+	 * Buscar todos los equipos y devolver la página todoslosequipos.jsp
 	 */
 	@RequestMapping(value = { "/", "/equipos" }, method = RequestMethod.GET)
 	public String listarEquipos(ModelMap model) {
-		logger.debug("Obteniendo raíz");
+		logger.debug("Obteniendo raíz o /equipos");
 		List<Equipo> equipos = equipoService.buscarTodosLosEquipos();
 		model.addAttribute("equipos", equipos);
 		model.addAttribute("user", obtenerUsuario());

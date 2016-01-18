@@ -3,6 +3,12 @@ package org.sunnycake.aton.configuration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import org.sunnycake.aton.configuration.AppConfig;
 
+/**
+ * Inicializa las configuraciones generales web.
+ * 
+ * @author Camilo Sampedro
+ *
+ */
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override

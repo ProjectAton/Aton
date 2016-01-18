@@ -24,7 +24,7 @@ import org.sunnycake.aton.converter.ConvertidorLaboratorio;
 import org.sunnycake.aton.converter.ConvertidorSala;
 
 /**
- * @author camilo
+ * @author Camilo Sampedro
  *
  */
 // Especifica que habrán métodos "bean" anotados con @Bean que podrán ser
@@ -39,13 +39,20 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
 	private Logger logger = LogManager.getLogger(HibernateConfiguration.class);
 
+	/**
+	 * Objeto utilizado para obtener a través del id de una sala (Por ejemplo en un formulario), el enlace a una sala.
+	 */
 	@Autowired
 	ConvertidorSala convertidorSala;
+	
+	/**
+	 * Objeto utilizado para obtener a través del id de un laboratorio (Por ejemplo en un formulario), el enlace a un laboratorio.
+	 */
 	@Autowired
 	ConvertidorLaboratorio convertidorLaboratorio;
 
 	/**
-	 * Configuración de dónde están las vistas del proyecto
+	 * Configuración de dónde están las vistas del proyecto.
 	 * 
 	 * @return
 	 */
@@ -60,7 +67,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	}
 
 	/**
-	 * Configuración de los mensajes (Errores)
+	 * Configuración de los mensajes (Errores). (Validaciones)
 	 * 
 	 * @return Objeto con las configuraciones
 	 */

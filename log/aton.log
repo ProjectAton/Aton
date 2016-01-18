@@ -15054,3 +15054,14 @@ com.jcraft.jsch.JSchException: Auth fail
 2016-01-17 11:29:10 DEBUG AppController:71 - Obteniendo raíz
 2016-01-17 11:29:13 DEBUG AppController:399 - Se han buscado todas las salas(2), enviando a "salas"
 2016-01-17 11:29:13 DEBUG AppController:408 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-17 12:28:54 DEBUG AppController:399 - Se han buscado todas las salas(2), enviando a "salas"
+2016-01-17 12:28:54 DEBUG AppController:408 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-17 12:28:56 DEBUG UserDetailsServiceAton:36 - Usuario (admin): UsuarioWeb [usuario=admin, password=admin, enabled=true]
+2016-01-17 12:28:56 DEBUG UserDetailsServiceAton:48 - Rol: Rol [id=1, usuarioWeb=UsuarioWeb [usuario=admin, password=admin, enabled=true], rol=ADMIN]
+2016-01-17 12:28:56 DEBUG UserDetailsServiceAton:48 - Rol: Rol [id=2, usuarioWeb=UsuarioWeb [usuario=admin, password=admin, enabled=true], rol=DBA]
+2016-01-17 12:28:56 DEBUG UserDetailsServiceAton:51 - Autoridades: [ROLE_ADMIN, ROLE_DBA]
+2016-01-17 12:28:56 DEBUG AppController:399 - Se han buscado todas las salas(2), enviando a "salas"
+2016-01-17 12:28:56 DEBUG AppController:408 - Se han buscado todos los laboratorios, enviando a "laboratorios"
+2016-01-17 12:28:56 DEBUG AppController:71 - Obteniendo raíz
+2016-01-17 12:29:00 DEBUG AppController:399 - Se han buscado todas las salas(2), enviando a "salas"
+2016-01-17 12:29:00 DEBUG AppController:408 - Se han buscado todos los laboratorios, enviando a "laboratorios"

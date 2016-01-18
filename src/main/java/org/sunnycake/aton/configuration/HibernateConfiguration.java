@@ -38,6 +38,9 @@ public class HibernateConfiguration {
 	@Autowired
 	private Environment environment;
 	
+	/**
+	 * Mensajes al archivo de logger.
+	 */
 	private Logger logger = LogManager.getLogger(HibernateConfiguration.class);
 
 	/**
