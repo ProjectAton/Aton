@@ -63,7 +63,9 @@ public class EquipoDAOImpl extends DAOAbstracto<String, Equipo> implements Equip
 	 * @see org.sunnycake.dao.EquipoDAO#eliminar(org.sunnycake.dto.Equipo)
 	 */
 	public void eliminarEquipoPorIp(String ip) throws ExcepcionConsulta {
-		delete(buscarEquipoPorIp(ip));
+		Equipo equipo = buscarEquipoPorIp(ip);
+		equipo.getSala().getEquipos().remove(equipo);
+		delete(equipo);
 	}
 
 	public Equipo buscarEquipoPorNombre(String nombre) throws ExcepcionConsulta {

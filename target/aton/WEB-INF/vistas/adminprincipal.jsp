@@ -155,7 +155,7 @@
 							</c:otherwise>
 						</c:choose>
 						<div class="btn-agregar-tabla">
-							<a href="<c:url value='/nuevo' />" class="btn btn-default"
+							<a href="<c:url value='/admin/nuevo' />" class="btn btn-default"
 								role="button">Agregar equipos</a>
 						</div>
 

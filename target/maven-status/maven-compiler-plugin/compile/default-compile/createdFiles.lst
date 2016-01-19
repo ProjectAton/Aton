@@ -8,6 +8,7 @@ org/sunnycake/aton/dao/DAOAbstracto.class
 org/sunnycake/aton/dto/Sala.class
 org/sunnycake/aton/dao/EquipoDAO.class
 org/sunnycake/aton/exec/ExitStatus$3.class
+org/sunnycake/aton/converter/ConvertidorEquipo.class
 org/sunnycake/aton/configuration/SecurityWebApplicationInitializer.class
 org/sunnycake/aton/converter/ConvertidorSala.class
 org/sunnycake/aton/exec/ExecBuffer.class
@@ -32,6 +33,7 @@ org/sunnycake/aton/dto/Rol.class
 org/sunnycake/aton/dao/EstadoDAO.class
 org/sunnycake/aton/dao/LaboratorioDAO.class
 org/sunnycake/aton/dao/impl/SalaDAOImpl.class
+org/sunnycake/aton/converter/ConvertidorUsuarioWeb.class
 org/sunnycake/aton/dao/impl/EquipoDAOImpl.class
 org/sunnycake/aton/exec/ExitStatus$1.class
 org/sunnycake/aton/service/impl/EquipoServiceImpl.class

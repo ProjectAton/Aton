@@ -20,8 +20,10 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.sunnycake.aton.converter.ConvertidorEquipo;
 import org.sunnycake.aton.converter.ConvertidorLaboratorio;
 import org.sunnycake.aton.converter.ConvertidorSala;
+import org.sunnycake.aton.converter.ConvertidorUsuarioWeb;
 
 /**
  * @author Camilo Sampedro
@@ -50,6 +52,18 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	 */
 	@Autowired
 	ConvertidorLaboratorio convertidorLaboratorio;
+	
+	/**
+	 * Objeto utilizado para obtener a través de la ip de un equipo (Por ejemplo en un formulario), el enlace a un equipo.
+	 */
+	@Autowired
+	ConvertidorEquipo convertidorEquipo;
+	
+	/**
+	 * Objeto utilizado para obtener a través del usuario (Por ejemplo en un formulario), el enlace a un UsuarioWeb.
+	 */
+	@Autowired
+	ConvertidorUsuarioWeb convertidorUsuarioWeb;
 
 	/**
 	 * Configuración de dónde están las vistas del proyecto.
@@ -98,6 +112,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		// Integer ID -> Sala sala
 		registry.addConverter(convertidorSala);
 		registry.addConverter(convertidorLaboratorio);
+		registry.addConverter(convertidorEquipo);
+		registry.addConverter(convertidorUsuarioWeb);
 	}
 
 	/**

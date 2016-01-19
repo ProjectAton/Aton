@@ -3,11 +3,17 @@
  */
 package org.sunnycake.aton.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -56,6 +62,10 @@ public class Equipo {
 
 	@Column(name = "DESCRIPCION")
 	private String descripcion;
+	
+	@OneToMany(fetch = FetchType.EAGER, targetEntity = Orden.class, mappedBy = "pkEquipo", cascade = {
+			CascadeType.ALL }, orphanRemoval = true)
+	private Set<Orden> ordenes = new HashSet<Orden>();
 
 	/*
 	 * (non-Javadoc)
@@ -216,5 +226,21 @@ public class Equipo {
 		builder.append("]");
 		return builder.toString();
 	}
+
+	/**
+	 * @return el ordenes
+	 */
+	public Set<Orden> getOrdenes() {
+		return ordenes;
+	}
+
+	/**
+	 * @param ordenes el/la ordenes a ser asignado
+	 */
+	public void setOrdenes(Set<Orden> ordenes) {
+		this.ordenes = ordenes;
+	}
+	
+	
 
 }

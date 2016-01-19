@@ -118,7 +118,7 @@ public class AppControllerTest {
     public void actualizarEquipoConValidacionDeErrorMacNoUnica(){
         when(result.hasErrors()).thenReturn(false);
         when(equipoService.esIpUnica(anyString())).thenReturn(false);
-        Assert.assertEquals(appController.actualizarEquipo(equipos.get(0), result, model,""), "exito");
+        Assert.assertEquals(appController.actualizarEquipo(equipos.get(0), result, model,""), "redirect:/admin/");
     }
 	
 	@Test
@@ -126,7 +126,7 @@ public class AppControllerTest {
         when(result.hasErrors()).thenReturn(false);
         when(equipoService.esIpUnica(anyString())).thenReturn(true);
         doNothing().when(equipoService).actualizarEquipo(any(Equipo.class));
-        Assert.assertEquals(appController.actualizarEquipo(equipos.get(0), result, model, ""), "exito");
+        Assert.assertEquals(appController.actualizarEquipo(equipos.get(0), result, model, ""), "redirect:/admin/");
         Assert.assertEquals(model.get("exito"), "Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null] actualizado exitosamente");
     }
 	

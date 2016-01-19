@@ -5,15 +5,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.sunnycake.aton.dto.Equipo;
-import org.sunnycake.aton.dto.Sesion;
 import org.sunnycake.aton.dto.UsuarioWeb;
+import org.sunnycake.aton.exec.ExitStatus;
 
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
@@ -25,7 +23,6 @@ public class Tarea implements Runnable {
 	private JSch jsch;
 	private Channel channel;
 	private Session sessionSSH;
-	private Sesion sesion;
 	private UsuarioWeb usuarioweb;
 	private Equipo equipo;
 	private boolean noDetenido;
@@ -61,7 +58,7 @@ public class Tarea implements Runnable {
 		this.interrumpir = false;
 		this.sudo = sudo;
 		this.jsch = new JSch();
-		if (sudo){
+		if (sudo) {
 			this.comando = sudo(comando);
 		} else {
 			this.comando = comando;
@@ -78,12 +75,12 @@ public class Tarea implements Runnable {
 		this.sudo = sudo;
 		this.interrumpir = interrumpir;
 		this.jsch = new JSch();
-		if (sudo){
+		if (sudo) {
 			this.comando = sudo(comando);
 		} else {
 			this.comando = comando;
 		}
-		
+
 		this.termino = false;
 		logger.debug("Tarea para " + equipo + ", con comando \"" + comando + "\" (sudo, interrumpir) creada.");
 	}
@@ -119,12 +116,12 @@ public class Tarea implements Runnable {
 	}
 
 	public void ejecutar() {
-//		logger.debug("Creando el hilo " + equipo + "+" + comando);
-//		if (hilo == null) {
-//			hilo = new Thread(this, equipo + comando);
-//			hilo.start();
-//		}
-		
+		// logger.debug("Creando el hilo " + equipo + "+" + comando);
+		// if (hilo == null) {
+		// hilo = new Thread(this, equipo + comando);
+		// hilo.start();
+		// }
+
 		noDetenido = true;
 		logger.info("Ejecutando: " + comando);
 		InputStream stream;
@@ -140,7 +137,6 @@ public class Tarea implements Runnable {
 			logger.error("Error obteniendo un canal de salida hacia " + equipo, e);
 			execQueue.push("Error");
 			setTermino(true);
-			
 
 			return;
 		}
@@ -151,7 +147,7 @@ public class Tarea implements Runnable {
 		} catch (JSchException e) {
 			logger.error("Error conectando a " + equipo, e);
 			setTermino(true);
-			
+
 			return;
 		}
 
@@ -170,7 +166,7 @@ public class Tarea implements Runnable {
 					logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
 				}
 				setTermino(true);
-				
+
 				return;
 			}
 		}
@@ -190,14 +186,14 @@ public class Tarea implements Runnable {
 				try {
 					disconnect();
 					setTermino(true);
-					
+
 					return;
 				} catch (Exception e1) {
 					logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
 					execQueue.push("Error");
 				}
 				setTermino(true);
-				
+
 				return;
 			}
 			logger.debug("Orden interrumpida");
@@ -206,11 +202,11 @@ public class Tarea implements Runnable {
 			try {
 				this.disconnect();
 				setTermino(true);
-				
+
 			} catch (Exception e) {
 				logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e);
 				setTermino(true);
-				
+
 				return;
 			}
 		} else {
@@ -240,13 +236,13 @@ public class Tarea implements Runnable {
 				try {
 					disconnect();
 					setTermino(true);
-					
+
 					return;
 				} catch (Exception e1) {
 					logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
 				}
 				setTermino(true);
-				
+
 				return;
 			}
 			logger.info("Terminó la ejecución de " + comando);
@@ -254,11 +250,11 @@ public class Tarea implements Runnable {
 			try {
 				this.disconnect();
 				setTermino(true);
-				
+
 			} catch (Exception e) {
 				logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e);
 				setTermino(true);
-				
+
 				return;
 			}
 		}
@@ -285,7 +281,6 @@ public class Tarea implements Runnable {
 			logger.error("Error obteniendo un canal de salida hacia " + equipo, e);
 			execQueue.push("Error");
 			setTermino(true);
-			
 
 			return;
 		}
@@ -296,7 +291,7 @@ public class Tarea implements Runnable {
 		} catch (JSchException e) {
 			logger.error("Error conectando a " + equipo, e);
 			setTermino(true);
-			
+
 			return;
 		}
 
@@ -315,7 +310,7 @@ public class Tarea implements Runnable {
 					logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
 				}
 				setTermino(true);
-				
+
 				return;
 			}
 		}
@@ -335,14 +330,14 @@ public class Tarea implements Runnable {
 				try {
 					disconnect();
 					setTermino(true);
-					
+
 					return;
 				} catch (Exception e1) {
 					logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
 					execQueue.push("Error");
 				}
 				setTermino(true);
-				
+
 				return;
 			}
 			logger.debug("Orden interrumpida");
@@ -351,11 +346,11 @@ public class Tarea implements Runnable {
 			try {
 				this.disconnect();
 				setTermino(true);
-				
+
 			} catch (Exception e) {
 				logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e);
 				setTermino(true);
-				
+
 				return;
 			}
 		} else {
@@ -385,13 +380,13 @@ public class Tarea implements Runnable {
 				try {
 					disconnect();
 					setTermino(true);
-					
+
 					return;
 				} catch (Exception e1) {
 					logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
 				}
 				setTermino(true);
-				
+
 				return;
 			}
 			logger.info("Terminó la ejecución de " + comando);
@@ -399,11 +394,11 @@ public class Tarea implements Runnable {
 			try {
 				this.disconnect();
 				setTermino(true);
-				
+
 			} catch (Exception e) {
 				logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e);
 				setTermino(true);
-				
+
 				return;
 			}
 		}
@@ -479,13 +474,6 @@ public class Tarea implements Runnable {
 	 */
 	public Date getFechaInicio() {
 		return fechaInicio;
-	}
-
-	/**
-	 * @return el sesion
-	 */
-	public Sesion getSesion() {
-		return sesion;
 	}
 
 	/**

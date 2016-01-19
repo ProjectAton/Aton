@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -31,31 +32,36 @@ public class Orden {
 	 * Clave primaria compuesta
 	 */
 	@Id
-	@ManyToOne
+	@ManyToOne(targetEntity=Equipo.class)
+	@JoinColumn(name = "eq_sesion")
 	private Equipo pkEquipo;
-	
+
 	@Id
 	@DateTimeFormat(pattern = "dd/MM/yyyy - KK:mm:ss")
 	@Type(type = "java.util.Date")
-	@Column(name = "FECHA")
+	@Column(name = "fe_sesion")
 	private Date pkFecha;
 
-	@NotNull
 	@ManyToOne
+	@JoinColumn(name = "usuarioweb")
 	private UsuarioWeb usuarioWeb;
 
-	@Column(name = "ORDEN")
-	private String orden;
+	@Column(name = "COMANDO")
+	private String comando;
 
 	@Column(name = "RESULTADO")
 	private String resultado;
 
 	@Column(name = "CODIGOSALIDA")
 	private int codigoSalida;
-
+	
 	@NotNull
-	@ManyToOne
-	private Sesion sesion;
+	@Column(name = "INTERRUMPIR")
+	private boolean interrumpir;
+	
+	@NotNull
+	@Column(name = "SUDO")
+	private boolean sudo;
 
 	/*
 	 * (non-Javadoc)
@@ -116,16 +122,16 @@ public class Orden {
 	/**
 	 * @return el orden
 	 */
-	public String getOrden() {
-		return orden;
+	public String getComando() {
+		return comando;
 	}
 
 	/**
-	 * @param orden
+	 * @param comando
 	 *            el/la orden a ser asignado
 	 */
-	public void setOrden(String orden) {
-		this.orden = orden;
+	public void setComando(String comando) {
+		this.comando = comando;
 	}
 
 	/**
@@ -159,21 +165,6 @@ public class Orden {
 	}
 
 	/**
-	 * @return el sesion
-	 */
-	public Sesion getSesion() {
-		return sesion;
-	}
-
-	/**
-	 * @param sesion
-	 *            el/la sesion a ser asignado
-	 */
-	public void setSesion(Sesion sesion) {
-		this.sesion = sesion;
-	}
-
-	/**
 	 * @return el pkEquipo
 	 */
 	public Equipo getPkEquipo() {
@@ -181,7 +172,8 @@ public class Orden {
 	}
 
 	/**
-	 * @param pkEquipo el/la pkEquipo a ser asignado
+	 * @param pkEquipo
+	 *            el/la pkEquipo a ser asignado
 	 */
 	public void setPkEquipo(Equipo pkEquipo) {
 		this.pkEquipo = pkEquipo;
@@ -195,11 +187,68 @@ public class Orden {
 	}
 
 	/**
-	 * @param usuarioWeb el/la usuarioWeb a ser asignado
+	 * @param usuarioWeb
+	 *            el/la usuarioWeb a ser asignado
 	 */
 	public void setUsuarioWeb(UsuarioWeb usuarioWeb) {
 		this.usuarioWeb = usuarioWeb;
 	}
+
+	/**
+	 * @return el interrumpir
+	 */
+	public boolean isInterrumpir() {
+		return interrumpir;
+	}
+
+	/**
+	 * @param interrumpir el/la interrumpir a ser asignado
+	 */
+	public void setInterrumpir(boolean interrumpir) {
+		this.interrumpir = interrumpir;
+	}
+
+	/**
+	 * @return el sudo
+	 */
+	public boolean isSudo() {
+		return sudo;
+	}
+
+	/**
+	 * @param sudo el/la sudo a ser asignado
+	 */
+	public void setSudo(boolean sudo) {
+		this.sudo = sudo;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Orden [pkEquipo=");
+		builder.append(pkEquipo);
+		builder.append(", pkFecha=");
+		builder.append(pkFecha);
+		builder.append(", usuarioWeb=");
+		builder.append(usuarioWeb);
+		builder.append(", comando=");
+		builder.append(comando);
+		builder.append(", resultado=");
+		builder.append(resultado);
+		builder.append(", codigoSalida=");
+		builder.append(codigoSalida);
+		builder.append(", interrumpir=");
+		builder.append(interrumpir);
+		builder.append(", sudo=");
+		builder.append(sudo);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
 	
 	
 

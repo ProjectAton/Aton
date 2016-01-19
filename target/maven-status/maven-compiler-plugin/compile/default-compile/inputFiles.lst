@@ -33,11 +33,13 @@
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/dao/impl/SesionDAOImpl.java
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/exec/ExecBuffer.java
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/dao/SesionDAO.java
+/home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/converter/ConvertidorEquipo.java
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/configuration/HibernateConfiguration.java
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/configuration/AppInitializer.java
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/dao/impl/RolDAOImpl.java
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/service/UsuarioWebService.java
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/dao/SalaDAO.java
+/home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/converter/ConvertidorUsuarioWeb.java
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/dto/Estado.java
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/dao/OrdenDAO.java
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/dto/OrdenPK.java

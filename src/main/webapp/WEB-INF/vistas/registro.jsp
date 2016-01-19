@@ -128,7 +128,7 @@
 					<c:choose>
 						<c:when test="${empty salas}">
 							<div class="col-xs-6">
-								<div class="panel panel-primary">
+								<div class="panel panel-warning">
 									<div class="panel-heading">Consejo</div>
 									<div class="panel-body">
 										<h1>Si no hay salas o laboratorios, no se podrán crear

@@ -58,9 +58,8 @@ public class OrdenServiceImpl implements OrdenService {
 			entidad = ordenDAO.obtenerOrdenPorClave(clave);
 			if (entidad != null) {
 				entidad.setCodigoSalida(orden.getCodigoSalida());
-				entidad.setOrden(orden.getOrden());
+				entidad.setComando(orden.getComando());
 				entidad.setResultado(orden.getResultado());
-				entidad.setSesion(orden.getSesion());
 				entidad.setUsuarioWeb(orden.getUsuarioWeb());
 			}
 		} catch (ExcepcionConsulta e) {

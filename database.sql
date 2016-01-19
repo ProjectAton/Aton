@@ -146,7 +146,9 @@ CREATE TABLE orden (
     fecha date NOT NULL,
     eq_sesion character(20),
     fe_sesion date,
-    orden text,
+    interrumpir boolean,
+    sudo boolean,
+    comando text,
     resultado text,
     codigosalida integer
 );
@@ -341,9 +343,6 @@ ALTER TABLE ONLY sala
 -- TOC entry 1974 (class 2606 OID 19600)
 -- Name: orden_eq_sesion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
-
-ALTER TABLE ONLY orden
-    ADD CONSTRAINT orden_eq_sesion_fkey FOREIGN KEY (eq_sesion, fe_sesion) REFERENCES sesion(equipo, fecha);
 
 ALTER TABLE ONLY orden
     ADD CONSTRAINT orden_equipo_fkey FOREIGN KEY (eq_sesion) REFERENCES equipo(ip);

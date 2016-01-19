@@ -1,5 +1,6 @@
 package org.sunnycake.aton.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -24,7 +25,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.sunnycake.aton.dto.Equipo;
 import org.sunnycake.aton.dto.Laboratorio;
 import org.sunnycake.aton.dto.Orden;
+import org.sunnycake.aton.dto.OrdenPK;
 import org.sunnycake.aton.dto.Sala;
+import org.sunnycake.aton.dto.UsuarioWeb;
 import org.sunnycake.aton.exec.Ejecucion;
 import org.sunnycake.aton.exec.ExecBuffer;
 import org.sunnycake.aton.exec.Tarea;
@@ -32,6 +35,8 @@ import org.sunnycake.aton.service.EquipoService;
 import org.sunnycake.aton.service.LaboratorioService;
 import org.sunnycake.aton.service.OrdenService;
 import org.sunnycake.aton.service.SalaService;
+import org.sunnycake.aton.service.UsuarioWebService;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -57,6 +62,12 @@ public class AppController {
 	 */
 	@Autowired
 	OrdenService ordenService;
+	
+	/**
+	 * Acceso a la base de datos con objetos Orden
+	 */
+	@Autowired
+	UsuarioWebService usuarioWebService;
 
 	/**
 	 * Acceso a la base de datos con objetos Laboratorio
@@ -309,7 +320,7 @@ public class AppController {
 		equipoService.actualizarEquipo(equipo);
 
 		model.addAttribute("exito", equipo + " actualizado exitosamente");
-		return "exito";
+		return "redirect:/admin/";
 	}
 
 	/**
@@ -318,10 +329,11 @@ public class AppController {
 	@RequestMapping(value = { "/admin/eliminar-equipo-{ip}" }, method = RequestMethod.GET)
 	public String deleteEmployee(@PathVariable String ip) {
 		logger.debug("Equipo :" + ip + " eliminado");
+		
 		equipoService.eliminarEquipoPorIp(ip);
 		return "redirect:/equipos";
 	}
-	
+
 	/**
 	 * Elimina una sala por su id
 	 */
@@ -341,10 +353,45 @@ public class AppController {
 	 * @return
 	 */
 	@RequestMapping(value = { "/admin/enviar-orden-{ip}" }, method = RequestMethod.GET)
-	public String enviarOrden(@PathVariable String ip, ModelMap model) {
+	public String centroOrdenes(@PathVariable String ip, ModelMap model) {
 		Equipo equipo = equipoService.buscarEquipoPorIp(ip);
 		model.addAttribute("equipo", equipo);
-		model.addAttribute("edit", true);
+		model.addAttribute("orden", new Orden());
+		return "centroordenes";
+	}
+	
+	@RequestMapping(value = { "/admin/enviar-orden-{ip}" }, method = RequestMethod.POST)
+	public String enviarOrden(@Valid Orden orden, BindingResult result, ModelMap model,
+			@PathVariable String ip) {
+
+		orden.setPkFecha(new Date());
+		
+		logger.debug("/admin/enviar-orden: Orden ingresada: " + orden);
+		if (result.hasErrors()) {
+			logger.debug(result.getAllErrors());
+			logger.debug("/admin/enviar-orden: La orden contiene errores: " + orden);
+			return "centroordenes";
+		}
+		
+		OrdenPK clave = new OrdenPK();
+		clave.setPkEquipo(orden.getPkEquipo());
+		clave.setPkFecha(orden.getPkFecha());
+		
+		if (!ordenService.esClaveUnica(clave)) {
+			FieldError errorDeClave = new FieldError("orden", "pkequipo", messageSource.getMessage("non.unique.pk",
+					new String[] { orden.getPkEquipo().toString() }, Locale.getDefault()));
+			result.addError(errorDeClave);
+			errorDeClave = new FieldError("orden", "pkfecha", messageSource.getMessage("non.unique.pk",
+					new String[] { orden.getPkEquipo().toString() }, Locale.getDefault()));
+			logger.error("Clave no única " + clave.toString());
+			return "centroordenes";
+		}
+
+		logger.debug("/admin/enviar-orden: Orden a guardar: " + orden);
+
+		ordenService.guardarOrden(orden);
+
+		model.addAttribute("exito", "Orden guardada éxitosamente");
 		return "centroordenes";
 	}
 
@@ -445,7 +492,6 @@ public class AppController {
 		if (buffer != null) {
 			orden.setResultado(buffer.retornarBuffer());
 		}
-		orden.setSesion(tarea.getSesion());
 		orden.setUsuarioWeb(tarea.getUsuarioweb());
 		return (orden);
 	}
