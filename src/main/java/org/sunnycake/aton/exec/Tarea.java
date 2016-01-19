@@ -11,7 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.sunnycake.aton.dto.Equipo;
 import org.sunnycake.aton.dto.UsuarioWeb;
-import org.sunnycake.aton.exec.ExitStatus;
+import org.sunnycake.aton.exec.CodigoSalida;
 
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
@@ -106,7 +106,7 @@ public class Tarea implements Runnable {
 
 	public Tarea disconnect() throws Exception {
 		codigoDeSalida = channel.getExitStatus();
-		logger.info(ExitStatus.getFor(codigoDeSalida).message() + ":" + codigoDeSalida);
+		logger.info(CodigoSalida.getFor(codigoDeSalida).message() + ":" + codigoDeSalida);
 		if (channel != null)
 			channel.disconnect();
 		if (sessionSSH != null)

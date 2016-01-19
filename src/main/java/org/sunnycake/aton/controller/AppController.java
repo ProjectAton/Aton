@@ -3,6 +3,7 @@ package org.sunnycake.aton.controller;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -345,10 +346,10 @@ public class AppController {
 	}
 
 	/**
-	 * Actualiza la información de un empleado
+	 * Envia una orden
 	 * 
 	 * @param ip
-	 *            Identificador del empleado
+	 *            Identificador del equipo
 	 * @param model
 	 * @return
 	 */
@@ -394,6 +395,8 @@ public class AppController {
 		model.addAttribute("exito", "Orden guardada éxitosamente");
 		return "centroordenes";
 	}
+	
+	
 
 	/**
 	 * Apaga un equipo
@@ -482,7 +485,23 @@ public class AppController {
 		}
 		return nombreDeUsuario;
 	}
-
+	
+	/*
+	 * Prueba
+	 */
+	@RequestMapping(value = { "/admin/enviar-multiples" }, method = RequestMethod.GET)
+	public String enviarMultiplesOrdenes(@Valid Set<Orden> ordenes){
+		return "";
+	}
+	/*
+	 * Fin prueba
+	 */
+	
+	/**
+	 * 
+	 * @param tarea
+	 * @return
+	 */
 	private Orden crearOrden(Tarea tarea) {
 		Orden orden = new Orden();
 		orden.setCodigoSalida(tarea.getCodigoDeSalida());
