@@ -142,6 +142,7 @@ ALTER TABLE laboratorio OWNER TO postgres;
 --
 
 CREATE TABLE orden (
+    id integer,
     usuarioweb character varying(32) NOT NULL,
     fecha date NOT NULL,
     eq_sesion character(20),
