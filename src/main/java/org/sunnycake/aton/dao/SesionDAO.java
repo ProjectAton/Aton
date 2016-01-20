@@ -1,6 +1,7 @@
 package org.sunnycake.aton.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import org.sunnycake.aton.dto.Sesion;
 import org.sunnycake.aton.dto.SesionPK;
@@ -19,7 +20,7 @@ public interface SesionDAO {
 	 * @author cvanessa.perez
 	 *
 	 */
-	public List<Sesion> obtenerTodos() throws ExcepcionConsulta;
+	public Set<Sesion> obtenerTodos() throws ExcepcionConsulta;
 
 	/**
 	 * Registra una sesion dentro de la base de datos

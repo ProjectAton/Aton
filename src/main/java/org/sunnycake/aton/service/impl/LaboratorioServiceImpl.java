@@ -1,6 +1,7 @@
 package org.sunnycake.aton.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -64,7 +65,7 @@ private Logger logger = LogManager.getLogger(LaboratorioService.class);
 
 	}
 
-	public List<Laboratorio> buscarTodosLosLaboratorios() {
+	public Set<Laboratorio> buscarTodosLosLaboratorios() {
 		try {
 			return dao.obtenerTodos();
 		} catch (ExcepcionConsulta e) {

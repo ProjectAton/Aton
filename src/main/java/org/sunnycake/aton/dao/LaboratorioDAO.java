@@ -4,6 +4,7 @@ import org.sunnycake.aton.dto.Laboratorio;
 import org.sunnycake.aton.exception.ExcepcionConsulta;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Interfaz para hacer consultas en la base de datos con la tabla Laboratorio.
@@ -19,7 +20,7 @@ public interface LaboratorioDAO {
 	 * @throws ExcepcionConsulta
 	 *             Error en la consulta
 	 */
-	public List<Laboratorio> obtenerTodos() throws ExcepcionConsulta;
+	public Set<Laboratorio> obtenerTodos() throws ExcepcionConsulta;
 
 	/**
 	 * Registra un laboratorio dentro de la base de datos.

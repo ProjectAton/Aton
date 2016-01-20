@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
 <title>Aton Web</title>
@@ -22,6 +23,18 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
 	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 	crossorigin="anonymous"></script>
+<!--Ventana para mensajes-->
+<script>
+	$(document).ready(function() {
+		$("#mensaje1").click(function() {
+			var mensaje = prompt("Ingrese el mensaje", "");
+			if (person != null) {
+				$("#mensaje").val(mensaje);
+				$("#mensaje1clic").click();
+			}
+		});
+	});
+</script>
 </head>
 
 
@@ -76,12 +89,14 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">Equipos</div>
 					<div class="panel-body">
-						<form>
+
+						<form:form method="POST" modelAttribute="equipos">
 							<c:choose>
 								<c:when test="${not empty equipos }">
 									<div class="row">
 
-										<c:forEach items="${equipos}" var="equipo">
+										<c:forEach items="${equipos.equipos}" var="equipo"
+											varStatus="status">
 											<div class="col-xs-2 panel-equipo">
 												<div class="panel panel-success">
 													<div class="panel-heading flaticon-robot28">
@@ -132,12 +147,15 @@
 																	<li><a
 																		href="<c:url value='/admin/editar-equipo-${equipo.ip}' />"
 																		class="flaticon-edit18"> Editar equipo</a></li>
+
 																</ul>
 															</div>
 															<div class="btn-group" role="group">
-																<label class="btn btn-default flaticon-login12"><input
-																	type="checkbox" name="check-${equipo.ip}"
-																	autocomplete="off" /> </label>
+																<label class="btn btn-default flaticon-login12"><form:checkbox
+																		path="equipos[${status.index}].seleccionado"
+																		id="equipos[${status.index}].seleccionado"
+																		autocomplete="off" /></label> <input type="hidden"
+																	name="equipos[${status.index}].ip" value="${equipo.ip}" />
 															</div>
 														</div>
 
@@ -146,6 +164,7 @@
 												</div>
 											</div>
 										</c:forEach>
+
 
 									</div>
 								</c:when>
@@ -160,14 +179,48 @@
 									</div>
 								</c:otherwise>
 							</c:choose>
+							<input type="hidden" name="mensaje" id="mensaje" value="" />
 							<div class="btn-agregar-tabla">
 								<a href="<c:url value='/admin/nuevo' />" class="btn btn-default"
 									role="button">Agregar equipos</a>
-								<button type="submit" class="btn btn-primary">Enviar órdenes</button>
+								<div class="btn-group" role="group">
+									<button type="button"
+										class="btn btn-default dropdown-toggle flaticon-console4"
+										data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="false">
+										Enviar órdenes <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li><button type="submit" name="enviar-mensajes"
+												id="mensaje1clic"
+												style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+												tabindex="-1"></button>
+											<button class="flaticon-console4" id="mensaje1">Enviar
+												un mensaje</button></li>
+										<li><button type="submit" name="apagar"
+												class="flaticon-power107">Apagar</button></li>
+										<li><a class="flaticon-update26"
+											href="<c:url value='/admin/reiniciar-${equipo.ip}' />">
+												Reiniciar</a></li>
+										<li><a
+											href="<c:url value='/admin/actualizar-${equipo.ip}' />"
+											class="flaticon-refresh57"> Actualizar software</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a
+											href="<c:url value='/admin/enviar-mensaje-${equipo.ip}' />"
+											class="flaticon-chat51"> Enviar mensaje</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a
+											href="<c:url value='/admin/eliminar-equipo-${equipo.ip}' />"
+											class="flaticon-delete96"> Eliminar equipo</a></li>
+										<li><a
+											href="<c:url value='/admin/editar-equipo-${equipo.ip}' />"
+											class="flaticon-edit18"> Editar equipo</a></li>
+									</ul>
+								</div>
 							</div>
 
-						</form>
-
+						</form:form>
 					</div>
 				</div>
 

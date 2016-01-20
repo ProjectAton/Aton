@@ -1,6 +1,7 @@
 package org.sunnycake.aton.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import org.sunnycake.aton.dto.Rol;
 import org.sunnycake.aton.exception.ExcepcionConsulta;
@@ -18,7 +19,7 @@ public interface RolDAO {
 	 * 
 	 *
 	 */
-	public List<Rol> obtenerTodos() throws ExcepcionConsulta;
+	public Set<Rol> obtenerTodos() throws ExcepcionConsulta;
 
 	/**
 	 * Registra un Tipo de usuario (Administrador, cliente, supervisor) dentro

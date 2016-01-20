@@ -1,11 +1,12 @@
 package org.sunnycake.aton.dao;
 
 import java.io.Serializable;
-
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -66,12 +67,12 @@ public abstract class DAOAbstracto<PK extends Serializable, E> {
 		return getSession().createCriteria(clasePersistente);
 	}
 
-	public List<E> getAll() {
+	public Set<E> getAll() {
 		return castList(clasePersistente, crearCriteria().list());
 	}
 
-	public static <T> List<T> castList(Class<? extends T> clazz, Collection<?> c) {
-		List<T> r = new ArrayList<T>(c.size());
+	public static <T> Set<T> castList(Class<? extends T> clazz, Collection<?> c) {
+		Set<T> r = new HashSet<T>(c.size());
 		for (Object o : c)
 			r.add(clazz.cast(o));
 		return r;

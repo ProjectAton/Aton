@@ -4,6 +4,7 @@
 package org.sunnycake.aton.dao.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -25,7 +26,7 @@ public class EquipoDAOImpl extends DAOAbstracto<String, Equipo> implements Equip
 	 * 
 	 * @see org.sunnycake.dao.EquipoDAO#obtenerTodos()
 	 */
-	public List<Equipo> obtenerTodos() throws ExcepcionConsulta {
+	public Set<Equipo> obtenerTodos() throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
 		return getAll();
 	}

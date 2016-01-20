@@ -1,6 +1,7 @@
 package org.sunnycake.aton.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import org.sunnycake.aton.dto.Estado;
 import org.sunnycake.aton.dto.EstadoPK;
@@ -20,7 +21,7 @@ public interface EstadoDAO {
 	 * @throws ExcepcionConsulta
 	 *             Error en la consulta
 	 */
-	public List<Estado> obtenerTodos() throws ExcepcionConsulta;
+	public Set<Estado> obtenerTodos() throws ExcepcionConsulta;
 
 	/**
 	 * Registra un Estado dentro de la base de datos.

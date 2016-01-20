@@ -4,6 +4,7 @@
 package org.sunnycake.aton.dao.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 import org.sunnycake.aton.dao.DAOAbstracto;
@@ -24,7 +25,7 @@ public class UsuarioWebDAOImpl extends DAOAbstracto<String, UsuarioWeb> implemen
 	 * @see org.sunnycake.aton.dao.UsuarioWebDAO#obtenerTodos()
 	 */
 	@Override
-	public List<UsuarioWeb> obtenerTodos() throws ExcepcionConsulta {
+	public Set<UsuarioWeb> obtenerTodos() throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
 		return getAll();
 	}

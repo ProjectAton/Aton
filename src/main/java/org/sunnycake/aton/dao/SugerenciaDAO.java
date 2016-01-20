@@ -1,6 +1,7 @@
 package org.sunnycake.aton.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import org.sunnycake.aton.dto.Sugerencia;
 import org.sunnycake.aton.exception.ExcepcionConsulta;
@@ -19,7 +20,7 @@ public interface SugerenciaDAO {
 	 * 
 	 *
 	 */
-	public List<Sugerencia> obtenerTodos() throws ExcepcionConsulta;
+	public Set<Sugerencia> obtenerTodos() throws ExcepcionConsulta;
 
 	/**
 	 * Registra una sugerencia dentro de la base de datos

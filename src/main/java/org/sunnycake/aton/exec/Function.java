@@ -11,8 +11,10 @@ public final class Function {
 
 	public static final String IP_ORDER = "ifconfig eth0 2>/dev/null|awk '/Direc. inet:/ {print $2}'|sed 's/inet://'";
 	public static final String ALT_IP_ORDER = "ifconfig eth0 |awk '/inet addr:/ {print $2}'|sed 's/addr://'";
-	public static final String MAC_ORDER = "ifconfig eth0 2>/dev/null|awk '/direcciónHW/ {print $5}'";
-	public static final String ALT_MAC_ORDER = "ifconfig eth0 2>/dev/null|awk '/HWaddr/ {print $5}'";
+	public static final String ES_MAC_ORDER = "ifconfig eth0 2>/dev/null|awk '/direcciónHW/ {print $5}'";
+	public static final String EN_MAC_ORDER = "ifconfig eth0 2>/dev/null|awk '/HWaddr/ {print $5}'";
+	public static final String ES_MAC_ORDER2 = "ifconfig enp3s0 2>/dev/null|awk '/direcciónHW/ {print $5}'";
+	public static final String EN_MAC_ORDER2 = "ifconfig enp3s0 2>/dev/null|awk '/HWaddr/ {print $5}'";
 	public static final String HOST_ORDER = "cat /etc/hostname";
 	public static final String ROOT_VERIFICATION_ORDER = "id -u";
 	public static final String USER_IDENTIFIER_ORDER = "whoamai";

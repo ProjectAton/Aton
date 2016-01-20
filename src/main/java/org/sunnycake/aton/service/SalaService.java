@@ -1,6 +1,7 @@
 package org.sunnycake.aton.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.sunnycake.aton.dto.Sala;
 
@@ -21,7 +22,7 @@ public interface SalaService {
 
 	void eliminarSalaPorId(int id);
 
-	List<Sala> buscarTodasLasSalas();
+	Set<Sala> buscarTodasLasSalas();
 
 	boolean esIdUnico(int id);
 

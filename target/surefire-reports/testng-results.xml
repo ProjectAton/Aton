@@ -2,52 +2,52 @@
 <testng-results skipped="0" failed="0" total="10" passed="10">
   <reporter-output>
   </reporter-output>
-  <suite name="Surefire suite" duration-ms="1033" started-at="2016-01-19T17:09:00Z" finished-at="2016-01-19T17:09:01Z">
+  <suite name="Surefire suite" duration-ms="1519" started-at="2016-01-20T03:50:14Z" finished-at="2016-01-20T03:50:15Z">
     <groups>
     </groups>
-    <test name="Surefire test" duration-ms="1033" started-at="2016-01-19T17:09:00Z" finished-at="2016-01-19T17:09:01Z">
+    <test name="Surefire test" duration-ms="1519" started-at="2016-01-20T03:50:14Z" finished-at="2016-01-20T03:50:15Z">
       <class name="org.sunnycake.aton.controller.AppControllerTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="setUp" is-config="true" duration-ms="714" started-at="2016-01-19T12:09:00Z" finished-at="2016-01-19T12:09:01Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="setUp" is-config="true" duration-ms="712" started-at="2016-01-19T22:50:14Z" finished-at="2016-01-19T22:50:14Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="actualizarEquipoConExito()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="actualizarEquipoConExito" duration-ms="21" started-at="2016-01-19T12:09:01Z" finished-at="2016-01-19T12:09:01Z">
+        <test-method status="PASS" signature="actualizarEquipoConExito()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="actualizarEquipoConExito" duration-ms="21" started-at="2016-01-19T22:50:14Z" finished-at="2016-01-19T22:50:14Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- actualizarEquipoConExito -->
-        <test-method status="PASS" signature="actualizarEquipoConValidacionDeError()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="actualizarEquipoConValidacionDeError" duration-ms="0" started-at="2016-01-19T12:09:01Z" finished-at="2016-01-19T12:09:01Z">
+        <test-method status="PASS" signature="actualizarEquipoConValidacionDeError()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="actualizarEquipoConValidacionDeError" duration-ms="1" started-at="2016-01-19T22:50:14Z" finished-at="2016-01-19T22:50:14Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- actualizarEquipoConValidacionDeError -->
-        <test-method status="PASS" signature="editarEquipo()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="editarEquipo" duration-ms="1" started-at="2016-01-19T12:09:01Z" finished-at="2016-01-19T12:09:01Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- editarEquipo -->
-        <test-method status="PASS" signature="actualizarEquipoConValidacionDeErrorMacNoUnica()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="actualizarEquipoConValidacionDeErrorMacNoUnica" duration-ms="0" started-at="2016-01-19T12:09:01Z" finished-at="2016-01-19T12:09:01Z">
+        <test-method status="PASS" signature="actualizarEquipoConValidacionDeErrorMacNoUnica()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="actualizarEquipoConValidacionDeErrorMacNoUnica" duration-ms="0" started-at="2016-01-19T22:50:14Z" finished-at="2016-01-19T22:50:14Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- actualizarEquipoConValidacionDeErrorMacNoUnica -->
-        <test-method status="PASS" signature="eliminarEquipo()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="eliminarEquipo" duration-ms="3" started-at="2016-01-19T12:09:01Z" finished-at="2016-01-19T12:09:01Z">
+        <test-method status="PASS" signature="editarEquipo()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="editarEquipo" duration-ms="1" started-at="2016-01-19T22:50:14Z" finished-at="2016-01-19T22:50:15Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- editarEquipo -->
+        <test-method status="PASS" signature="eliminarEquipo()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="eliminarEquipo" duration-ms="4" started-at="2016-01-19T22:50:15Z" finished-at="2016-01-19T22:50:15Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- eliminarEquipo -->
-        <test-method status="PASS" signature="guardarEmpleadoConExito()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="guardarEmpleadoConExito" duration-ms="270" started-at="2016-01-19T12:09:01Z" finished-at="2016-01-19T12:09:01Z">
+        <test-method status="PASS" signature="guardarEquipoConExito()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="guardarEquipoConExito" duration-ms="760" started-at="2016-01-19T22:50:15Z" finished-at="2016-01-19T22:50:15Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- guardarEmpleadoConExito -->
-        <test-method status="PASS" signature="guardarEquipoConValidacionDeErrorMacNoUnica()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="guardarEquipoConValidacionDeErrorMacNoUnica" duration-ms="2" started-at="2016-01-19T12:09:01Z" finished-at="2016-01-19T12:09:01Z">
+        </test-method> <!-- guardarEquipoConExito -->
+        <test-method status="PASS" signature="guardarEquipoConValidacionDeErrorMacNoUnica()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="guardarEquipoConValidacionDeErrorMacNoUnica" duration-ms="2" started-at="2016-01-19T22:50:15Z" finished-at="2016-01-19T22:50:15Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- guardarEquipoConValidacionDeErrorMacNoUnica -->
-        <test-method status="PASS" signature="guardarEquipoConValidacionDeErrores()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="guardarEquipoConValidacionDeErrores" duration-ms="1" started-at="2016-01-19T12:09:01Z" finished-at="2016-01-19T12:09:01Z">
+        <test-method status="PASS" signature="guardarEquipoConValidacionDeErrores()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="guardarEquipoConValidacionDeErrores" duration-ms="4" started-at="2016-01-19T22:50:15Z" finished-at="2016-01-19T22:50:15Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- guardarEquipoConValidacionDeErrores -->
-        <test-method status="PASS" signature="listarEquipos()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="listarEquipos" duration-ms="6" started-at="2016-01-19T12:09:01Z" finished-at="2016-01-19T12:09:01Z">
+        <test-method status="PASS" signature="listarEquipos()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="listarEquipos" duration-ms="6" started-at="2016-01-19T22:50:15Z" finished-at="2016-01-19T22:50:15Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- listarEquipos -->
-        <test-method status="PASS" signature="nuevoEquipo()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="nuevoEquipo" duration-ms="1" started-at="2016-01-19T12:09:01Z" finished-at="2016-01-19T12:09:01Z">
+        <test-method status="PASS" signature="nuevoEquipo()[pri:0, instance:org.sunnycake.aton.controller.AppControllerTest@43a25848]" name="nuevoEquipo" duration-ms="0" started-at="2016-01-19T22:50:15Z" finished-at="2016-01-19T22:50:15Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- nuevoEquipo -->

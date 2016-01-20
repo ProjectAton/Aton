@@ -1,6 +1,8 @@
 package org.sunnycake.aton.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -23,6 +25,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.sunnycake.aton.dto.Equipo;
 import org.sunnycake.aton.dto.Laboratorio;
 import org.sunnycake.aton.dto.Orden;
@@ -32,6 +36,7 @@ import org.sunnycake.aton.dto.UsuarioWeb;
 import org.sunnycake.aton.exec.Ejecucion;
 import org.sunnycake.aton.exec.ExecBuffer;
 import org.sunnycake.aton.exec.Tarea;
+import org.sunnycake.aton.form.SeleccionEquipos;
 import org.sunnycake.aton.service.EquipoService;
 import org.sunnycake.aton.service.LaboratorioService;
 import org.sunnycake.aton.service.OrdenService;
@@ -63,7 +68,7 @@ public class AppController {
 	 */
 	@Autowired
 	OrdenService ordenService;
-	
+
 	/**
 	 * Acceso a la base de datos con objetos Orden
 	 */
@@ -93,19 +98,45 @@ public class AppController {
 	@RequestMapping(value = { "/", "/equipos" }, method = RequestMethod.GET)
 	public String listarEquipos(ModelMap model) {
 		logger.debug("Obteniendo raíz o /equipos");
-		List<Equipo> equipos = equipoService.buscarTodosLosEquipos();
+		Set<Equipo> equipos = equipoService.buscarTodosLosEquipos();
 		model.addAttribute("equipos", equipos);
 		model.addAttribute("user", obtenerUsuario());
 		return "todoslosequipos";
 	}
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String adminPage(ModelMap model) {
-		model.addAttribute("user", obtenerUsuario());
-		List<Equipo> equipos = equipoService.buscarTodosLosEquipos();
-		model.addAttribute("equipos", equipos);
-		return "adminprincipal";
+	public ModelAndView adminPage() {
+		List<Equipo> equipos = new ArrayList<Equipo>();
+		equipos.addAll(equipoService.buscarTodosLosEquipos());
+		SeleccionEquipos seleccion = new SeleccionEquipos();
+		seleccion.setEquipos(equipos);
+		ModelAndView model = new ModelAndView("adminprincipal", "equipos", seleccion);
+		model.addObject("user", obtenerUsuario());
+		return model;
 	}
+	
+	@RequestMapping(params = "enviar-mensajes", value = { "/admin" }, method = RequestMethod.POST)
+	public ModelAndView enviarMensajeMultiples(@RequestParam("mensaje") String mensaje,
+			@ModelAttribute("seleccionEquipos") SeleccionEquipos seleccion) {
+		logger.debug("Llegó la solicitud de enviar mensaje : \"" + mensaje + "\"");
+		for (Equipo equipo1 : seleccion.getEquipos()) {
+			Equipo equipo = equipoService.buscarEquipoPorIp(equipo1.getIp());
+			Ejecucion.enviarMensaje(equipo, mensaje);
+		}
+		return new ModelAndView("redirect:/admin");
+	}
+
+	@RequestMapping(params = "apagar", value = { "/admin" }, method = RequestMethod.POST)
+	public ModelAndView apagarMultiples(@ModelAttribute("seleccionEquipos") SeleccionEquipos seleccion) {
+		logger.debug(seleccion);
+		for (Equipo equipo1 : seleccion.getEquipos()) {
+			Equipo equipo = equipoService.buscarEquipoPorIp(equipo1.getIp());
+			Ejecucion.apagar(equipo);
+		}
+		return new ModelAndView("redirect:/admin");
+	}
+
+	
 
 	@RequestMapping(value = "/db", method = RequestMethod.GET)
 	public String dbaPage(ModelMap model) {
@@ -120,7 +151,7 @@ public class AppController {
 	@RequestMapping(value = { "/admin/salas" }, method = RequestMethod.GET)
 	public String listarSalas(ModelMap model) {
 
-		List<Sala> salas = salaService.buscarTodasLasSalas();
+		Set<Sala> salas = salaService.buscarTodasLasSalas();
 		model.addAttribute("salas", salas);
 		return "todaslassalas";
 	}
@@ -132,7 +163,7 @@ public class AppController {
 	@RequestMapping(value = { "/admin/laboratorios" }, method = RequestMethod.GET)
 	public String listarLaboratorios(ModelMap model) {
 
-		List<Laboratorio> laboratorios = laboratorioService.buscarTodosLosLaboratorios();
+		Set<Laboratorio> laboratorios = laboratorioService.buscarTodosLosLaboratorios();
 		model.addAttribute("laboratorios", laboratorios);
 		return "todosloslaboratorios";
 	}
@@ -203,7 +234,6 @@ public class AppController {
 		 * Below mentioned peace of code [if block] is to demonstrate that you
 		 * can fill custom errors outside the validation framework as well while
 		 * still using internationalized messages.
-		 * 
 		 */
 		// Cómo verificar que es único el empleado de forma personalizada
 
@@ -330,7 +360,7 @@ public class AppController {
 	@RequestMapping(value = { "/admin/eliminar-equipo-{ip}" }, method = RequestMethod.GET)
 	public String deleteEmployee(@PathVariable String ip) {
 		logger.debug("Equipo :" + ip + " eliminado");
-		
+
 		equipoService.eliminarEquipoPorIp(ip);
 		return "redirect:/equipos";
 	}
@@ -360,24 +390,23 @@ public class AppController {
 		model.addAttribute("orden", new Orden());
 		return "centroordenes";
 	}
-	
+
 	@RequestMapping(value = { "/admin/enviar-orden-{ip}" }, method = RequestMethod.POST)
-	public String enviarOrden(@Valid Orden orden, BindingResult result, ModelMap model,
-			@PathVariable String ip) {
+	public String enviarOrden(@Valid Orden orden, BindingResult result, ModelMap model, @PathVariable String ip) {
 
 		orden.setPkFecha(new Date());
-		
+
 		logger.debug("/admin/enviar-orden: Orden ingresada: " + orden);
 		if (result.hasErrors()) {
 			logger.debug(result.getAllErrors());
 			logger.debug("/admin/enviar-orden: La orden contiene errores: " + orden);
 			return "centroordenes";
 		}
-		
+
 		OrdenPK clave = new OrdenPK();
 		clave.setPkEquipo(orden.getPkEquipo());
 		clave.setPkFecha(orden.getPkFecha());
-		
+
 		if (!ordenService.esClaveUnica(clave)) {
 			FieldError errorDeClave = new FieldError("orden", "pkequipo", messageSource.getMessage("non.unique.pk",
 					new String[] { orden.getPkEquipo().toString() }, Locale.getDefault()));
@@ -395,8 +424,6 @@ public class AppController {
 		model.addAttribute("exito", "Orden guardada éxitosamente");
 		return "centroordenes";
 	}
-	
-	
 
 	/**
 	 * Apaga un equipo
@@ -411,6 +438,7 @@ public class AppController {
 		Equipo equipo = equipoService.buscarEquipoPorIp(ip);
 		Ejecucion.apagar(equipo);
 		model.addAttribute("equipo", equipo);
+		model.addAttribute("orden", new Orden());
 		model.addAttribute("edit", true);
 		return "centroordenes";
 	}
@@ -456,8 +484,10 @@ public class AppController {
 	 * 
 	 */
 	@ModelAttribute("salas")
-	public List<Sala> inicializarSalas() {
-		List<Sala> salas = salaService.buscarTodasLasSalas();
+	public Set<Sala> inicializarSalas() {
+		Set<Sala> salas = new HashSet<Sala>();
+		salas.addAll(salaService.buscarTodasLasSalas());
+
 		logger.debug("Se han buscado todas las salas(" + salas.size() + "), enviando a \"salas\"");
 		return salas;
 	}
@@ -466,9 +496,11 @@ public class AppController {
 	 * 
 	 */
 	@ModelAttribute("laboratorios")
-	public List<Laboratorio> inicializarLaboratorios() {
+	public Set<Laboratorio> inicializarLaboratorios() {
 		logger.debug("Se han buscado todos los laboratorios, enviando a \"laboratorios\"");
-		return laboratorioService.buscarTodosLosLaboratorios();
+		Set<Laboratorio> laboratorios = new HashSet<Laboratorio>();
+		laboratorios.addAll(laboratorioService.buscarTodosLosLaboratorios());
+		return laboratorios;
 	}
 
 	private String obtenerUsuario() {
@@ -485,18 +517,7 @@ public class AppController {
 		}
 		return nombreDeUsuario;
 	}
-	
-	/*
-	 * Prueba
-	 */
-	@RequestMapping(value = { "/admin/enviar-multiples" }, method = RequestMethod.GET)
-	public String enviarMultiplesOrdenes(@Valid Set<Orden> ordenes){
-		return "";
-	}
-	/*
-	 * Fin prueba
-	 */
-	
+
 	/**
 	 * 
 	 * @param tarea

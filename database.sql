@@ -19,7 +19,7 @@ DROP DATABASE atondb;
 -- Name: atondb; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-CREATE DATABASE atondb WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8';
+CREATE DATABASE atondb WITH TEMPLATE = template0;
 
 
 ALTER DATABASE atondb OWNER TO postgres;
@@ -91,7 +91,9 @@ CREATE TABLE equipo (
     password text,
     ip character varying(20),
     sala integer,
-    descripcion text
+    descripcion text,
+    mensaje text,
+    seleccionado boolean
 );
 
 

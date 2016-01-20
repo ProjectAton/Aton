@@ -4,6 +4,7 @@
 package org.sunnycake.aton.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.sunnycake.aton.dto.Equipo;
 
@@ -23,7 +24,7 @@ public interface EquipoService {
 
 	void eliminarEquipoPorIp(String ip);
 
-	List<Equipo> buscarTodosLosEquipos();
+	Set<Equipo> buscarTodosLosEquipos();
 
 	Equipo buscarEquipoPorNombre(String nombre);
 

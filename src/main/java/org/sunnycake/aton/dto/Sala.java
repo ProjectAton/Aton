@@ -54,7 +54,7 @@ public class Sala {
 	private String enseres;
 
 	@OneToMany(fetch = FetchType.EAGER, targetEntity = Equipo.class, mappedBy = "sala", cascade = {
-			CascadeType.ALL }, orphanRemoval = true)
+			CascadeType.REMOVE }, orphanRemoval = true)
 	private Set<Equipo> equipos = new HashSet<Equipo>();
 
 	/*

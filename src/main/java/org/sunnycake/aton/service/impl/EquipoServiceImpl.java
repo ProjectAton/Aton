@@ -4,6 +4,7 @@
 package org.sunnycake.aton.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -74,7 +75,7 @@ public class EquipoServiceImpl implements EquipoService {
 
 	}
 
-	public List<Equipo> buscarTodosLosEquipos() {
+	public Set<Equipo> buscarTodosLosEquipos() {
 		try {
 			return dao.obtenerTodos();
 		} catch (ExcepcionConsulta e) {

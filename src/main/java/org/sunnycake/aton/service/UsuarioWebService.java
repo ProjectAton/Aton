@@ -4,6 +4,7 @@
 package org.sunnycake.aton.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.sunnycake.aton.dto.UsuarioWeb;
 
@@ -24,7 +25,7 @@ public interface UsuarioWebService {
 
 	void eliminarUsuarioWebPorUsuario(String usuario);
 
-	List<UsuarioWeb> buscarTodosLosUsuariosWeb();
+	Set<UsuarioWeb> buscarTodosLosUsuariosWeb();
 
 	boolean esUsuarioUnico(String usuario);
 

@@ -2,6 +2,9 @@ package org.sunnycake.aton.exec;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.apache.logging.log4j.LogManager;
@@ -64,8 +67,30 @@ public class Ejecucion {
 		return tarea;
 	}
 
+	/**
+	 * Obtener mac del equipo correspondiente.
+	 * 
+	 * @param equipo
+	 *            Equipo, con información de usuario, contraseña y dirección IP
+	 *            (Para conectar por SSH)
+	 * @return Tarea con la información de la ejecución
+	 */
 	public static Tarea obtenerMac(Equipo equipo) {
-		return ejecutarComando(equipo, Function.ALT_MAC_ORDER);
+		logger.debug("Intentando obtener mac con orden en español 1");
+		Tarea tarea = ejecutarComando(equipo, Function.ES_MAC_ORDER, true);
+		if ("Error".equals(tarea.getExecQueue().retornarBuffer())) {
+			logger.debug("No se pudo obtener usando la orden en español. Intentando obtener mac con orden en inglés");
+			tarea = ejecutarComando(equipo, Function.EN_MAC_ORDER, true);
+			if ("Error".equals(tarea.getExecQueue().retornarBuffer())) {
+				logger.debug("Reintentando en español con nombre de interfaz enp3s0");
+				tarea = ejecutarComando(equipo, Function.ES_MAC_ORDER2, true);
+				if ("Error".equals(tarea.getExecQueue().retornarBuffer())) {
+					logger.debug("Reintentando en inglés con nombre de interfaz enp3s0");
+					tarea = ejecutarComando(equipo, Function.EN_MAC_ORDER2, true);
+				}
+			}
+		}
+		return tarea;
 
 	}
 
@@ -75,6 +100,31 @@ public class Ejecucion {
 
 	public static Tarea reiniciar(Equipo equipo) {
 		return ejecutarComando(equipo, Function.REBOOT_ORDER, true, true);
+	}
+
+	public static void enviarMensaje(Equipo equipo, String mensaje) {
+		logger.debug("Enviando mensaje \"" + mensaje + "\", a " + equipo);
+		Set<String> usuarios = obtenerUsuarios(equipo);		
+		for (String usuario: usuarios){
+			ejecutarComando(equipo, Function.NOTIFICACION_ORDER(usuario, mensaje),true,true);
+		}
+	}
+
+	public static Set<String> obtenerUsuarios(Equipo equipo) {
+		logger.debug("Buscando los usuarios de " + equipo);
+		Tarea tarea = ejecutarComando(equipo, Function.USER_LIST_ORDER);
+		String salida = tarea.getExecQueue().retornarBuffer();
+		if ("Error".equals(salida)) {
+			logger.error("No se pudieron obtener los usuarios");
+			return null;
+		} else {
+			logger.debug("Usuarios obtenidos: " + salida);
+			Set<String> usuarios= new HashSet<String>();
+			for (String usuario : salida.split("\\r?\\n")){
+				usuarios.add(usuario);
+			}
+			return usuarios;
+		}
 	}
 
 	public static boolean ping(Equipo equipo) {

@@ -56,16 +56,21 @@ public class Equipo {
 	@Column(name = "IP", unique = true)
 	private String ip;
 
-	@ManyToOne
+	@ManyToOne(cascade = { CascadeType.REMOVE })
 	@JoinColumn(name = "SALA")
 	private Sala sala;
 
 	@Column(name = "DESCRIPCION")
 	private String descripcion;
 	
-	@OneToMany(fetch = FetchType.EAGER, targetEntity = Orden.class, mappedBy = "pkEquipo", cascade = {
-			CascadeType.ALL }, orphanRemoval = true)
+	@Column(name = "MENSAJE")
+	private String mensaje;
+
+	@OneToMany(fetch = FetchType.EAGER, targetEntity = Orden.class, mappedBy = "pkEquipo", cascade = { CascadeType.ALL }, orphanRemoval = true)
 	private Set<Orden> ordenes = new HashSet<Orden>();
+	
+	@Column(name = "SELECCIONADO")
+	private boolean seleccionado;
 
 	/*
 	 * (non-Javadoc)
@@ -235,10 +240,33 @@ public class Equipo {
 	}
 
 	/**
-	 * @param ordenes el/la ordenes a ser asignado
+	 * @param ordenes
+	 *            el/la ordenes a ser asignado
 	 */
 	public void setOrdenes(Set<Orden> ordenes) {
 		this.ordenes = ordenes;
+	}
+
+	public boolean isSeleccionado() {
+		return seleccionado;
+	}
+
+	public void setSeleccionado(boolean seleccionado) {
+		this.seleccionado = seleccionado;
+	}
+
+	/**
+	 * @return el mensaje
+	 */
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	/**
+	 * @param mensaje el/la mensaje a ser asignado
+	 */
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
 	}
 	
 	

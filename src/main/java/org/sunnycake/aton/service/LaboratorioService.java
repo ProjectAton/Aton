@@ -1,6 +1,6 @@
 package org.sunnycake.aton.service;
 
-import java.util.List;
+import java.util.Set;
 
 import org.sunnycake.aton.dto.Laboratorio;
 
@@ -13,7 +13,7 @@ public interface LaboratorioService {
 
 	void eliminarLaboratorioPorId(int id);
 
-	List<Laboratorio> buscarTodosLosLaboratorios();
+	Set<Laboratorio> buscarTodosLosLaboratorios();
 
 	boolean esIdUnico(long id);
 }

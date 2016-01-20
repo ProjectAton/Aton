@@ -36,6 +36,7 @@
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/exec/ExecBuffer.java
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/dao/SesionDAO.java
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/converter/ConvertidorEquipo.java
+/home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/form/SeleccionEquipos.java
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/configuration/HibernateConfiguration.java
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/configuration/AppInitializer.java
 /home/camilo/workspace/Aton/src/main/java/org/sunnycake/aton/dao/impl/RolDAOImpl.java

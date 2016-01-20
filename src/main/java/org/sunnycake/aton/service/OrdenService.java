@@ -4,6 +4,7 @@
 package org.sunnycake.aton.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.sunnycake.aton.dto.Orden;
 import org.sunnycake.aton.dto.OrdenPK;
@@ -24,7 +25,7 @@ public interface OrdenService {
 
 	void eliminarOrdenPorClave(OrdenPK ip);
 
-	List<Orden> buscarTodasLasOrdenes();
+	Set<Orden> buscarTodasLasOrdenes();
 
 	boolean esClaveUnica(OrdenPK ip);
 

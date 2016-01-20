@@ -4,6 +4,7 @@
 package org.sunnycake.aton.dao.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 import org.sunnycake.aton.dao.DAOAbstracto;
@@ -24,7 +25,7 @@ public class RolDAOImpl extends DAOAbstracto<Integer, Rol> implements RolDAO {
 	 * @see org.sunnycake.aton.dao.TipoUsuarioDAO#obtenerTodos()
 	 */
 	@Override
-	public List<Rol> obtenerTodos() throws ExcepcionConsulta {
+	public Set<Rol> obtenerTodos() throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
 		return getAll();
 	}

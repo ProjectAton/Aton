@@ -245,7 +245,7 @@ public class Tarea implements Runnable {
 
 				return;
 			}
-			logger.info("Terminó la ejecución de " + comando);
+			logger.info("Terminó la ejecución de \"" + comando + "\"");
 
 			try {
 				this.disconnect();

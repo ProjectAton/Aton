@@ -1,6 +1,7 @@
 package org.sunnycake.aton.dao.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 import org.sunnycake.aton.dao.DAOAbstracto;
@@ -11,7 +12,7 @@ import org.sunnycake.aton.exception.ExcepcionConsulta;
 @Repository("laboratorioDAO")
 public class LaboratorioDAOImpl extends DAOAbstracto<Long, Laboratorio> implements LaboratorioDAO {
 
-	public List<Laboratorio> obtenerTodos() throws ExcepcionConsulta {
+	public Set<Laboratorio> obtenerTodos() throws ExcepcionConsulta {
 		return getAll();
 	}
 

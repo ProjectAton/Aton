@@ -1,6 +1,7 @@
 package org.sunnycake.aton.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import org.sunnycake.aton.dto.UsuarioWeb;
 import org.sunnycake.aton.exception.ExcepcionConsulta;
@@ -19,7 +20,7 @@ public interface UsuarioWebDAO {
 	 * 
 	 *
 	 */
-	public List<UsuarioWeb> obtenerTodos() throws ExcepcionConsulta;
+	public Set<UsuarioWeb> obtenerTodos() throws ExcepcionConsulta;
 
 	/**
 	 * Registra un Usuario web dentro de la base de datos

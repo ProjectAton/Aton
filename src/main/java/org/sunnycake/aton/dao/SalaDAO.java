@@ -1,6 +1,7 @@
 package org.sunnycake.aton.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import org.sunnycake.aton.dto.Sala;
 import org.sunnycake.aton.exception.ExcepcionConsulta;
@@ -19,7 +20,7 @@ public interface SalaDAO {
 	 * @author cvanessa.perez
 	 *
 	 */
-	public List<Sala> obtenerTodos() throws ExcepcionConsulta;
+	public Set<Sala> obtenerTodos() throws ExcepcionConsulta;
 
 	/**
 	 * Registra una sala dentro de la base de datos

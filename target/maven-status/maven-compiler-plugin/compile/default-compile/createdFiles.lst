@@ -45,6 +45,7 @@ org/sunnycake/aton/dao/SalaDAO.class
 org/sunnycake/aton/exec/InformacionSSH.class
 org/sunnycake/aton/configuration/SecurityConfig.class
 org/sunnycake/aton/service/OrdenService.class
+org/sunnycake/aton/form/SeleccionEquipos.class
 org/sunnycake/aton/service/LaboratorioService.class
 org/sunnycake/aton/dao/impl/RolDAOImpl.class
 org/sunnycake/aton/dto/Laboratorio.class

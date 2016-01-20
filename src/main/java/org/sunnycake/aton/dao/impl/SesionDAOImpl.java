@@ -4,6 +4,7 @@
 package org.sunnycake.aton.dao.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 import org.sunnycake.aton.dao.DAOAbstracto;
@@ -25,7 +26,7 @@ public class SesionDAOImpl extends DAOAbstracto<SesionPK, Sesion> implements Ses
 	 * @see org.sunnycake.aton.dao.SesionDAO#obtenerTodos()
 	 */
 	@Override
-	public List<Sesion> obtenerTodos() throws ExcepcionConsulta {
+	public Set<Sesion> obtenerTodos() throws ExcepcionConsulta {
 		return getAll();
 	}
 

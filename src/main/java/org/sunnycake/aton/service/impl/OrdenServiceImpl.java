@@ -4,6 +4,7 @@
 package org.sunnycake.aton.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -76,7 +77,7 @@ public class OrdenServiceImpl implements OrdenService {
 
 	}
 
-	public List<Orden> buscarTodasLasOrdenes() {
+	public Set<Orden> buscarTodasLasOrdenes() {
 		try {
 			return ordenDAO.obtenerTodos();
 		} catch (ExcepcionConsulta e) {

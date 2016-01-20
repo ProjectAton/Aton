@@ -1,6 +1,7 @@
 package org.sunnycake.aton.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import org.sunnycake.aton.dto.Orden;
 import org.sunnycake.aton.dto.OrdenPK;
@@ -20,7 +21,7 @@ public interface OrdenDAO {
 	 * @throws ExcepcionConsulta
 	 *             Error en la consulta
 	 */
-	public List<Orden> obtenerTodos() throws ExcepcionConsulta;
+	public Set<Orden> obtenerTodos() throws ExcepcionConsulta;
 
 	/**
 	 * Registra una orden dentro de la base de datos.

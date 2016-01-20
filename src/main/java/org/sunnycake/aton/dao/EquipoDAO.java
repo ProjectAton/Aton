@@ -1,6 +1,7 @@
 package org.sunnycake.aton.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import org.sunnycake.aton.dto.Equipo;
 import org.sunnycake.aton.exception.ExcepcionConsulta;
@@ -18,7 +19,7 @@ public interface EquipoDAO {
 	 * @throws ExcepcionConsulta
 	 *             Error en la consulta
 	 */
-	public List<Equipo> obtenerTodos() throws ExcepcionConsulta;
+	public Set<Equipo> obtenerTodos() throws ExcepcionConsulta;
 
 	/**
 	 * Registra un equipo dentro de la base de datos.

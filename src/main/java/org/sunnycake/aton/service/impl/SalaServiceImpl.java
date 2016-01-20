@@ -4,6 +4,7 @@
 package org.sunnycake.aton.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -73,7 +74,7 @@ public class SalaServiceImpl implements SalaService {
 
 	}
 
-	public List<Sala> buscarTodasLasSalas() {
+	public Set<Sala> buscarTodasLasSalas() {
 		try {
 			return dao.obtenerTodos();
 		} catch (ExcepcionConsulta e) {

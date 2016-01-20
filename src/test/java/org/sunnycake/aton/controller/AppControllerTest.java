@@ -9,7 +9,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.atLeastOnce;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -44,7 +47,7 @@ public class AppControllerTest {
 	AppController appController;
 
 	@Spy
-	List<Equipo> equipos = new ArrayList<Equipo>();
+	Set<Equipo> equipos = new HashSet<Equipo>();
 
 	@Spy
 	ModelMap model;
@@ -78,47 +81,58 @@ public class AppControllerTest {
 	public void guardarEquipoConValidacionDeErrores() {
 		when(result.hasErrors()).thenReturn(true);
 		doNothing().when(equipoService).guardarEquipo(any(Equipo.class));
-		Assert.assertEquals(appController.guardarEquipo(equipos.get(0), result, model), "registro");
+		Iterator<Equipo> iter = equipos.iterator();
+		Equipo equipo = iter.next();
+		Assert.assertEquals(appController.guardarEquipo(equipo, result, model), "registro");
 	}
 
 	@Test
 	public void guardarEquipoConValidacionDeErrorMacNoUnica() {
 		when(result.hasErrors()).thenReturn(false);
 		when(equipoService.esIpUnica(anyString())).thenReturn(false);
-		Assert.assertEquals(appController.guardarEquipo(equipos.get(0), result, model), "registro");
+		Iterator<Equipo> iter = equipos.iterator();
+		Equipo equipo = iter.next();
+		Assert.assertEquals(appController.guardarEquipo(equipo, result, model), "registro");
 	}
 
 	@Test
-	public void guardarEmpleadoConExito() {
+	public void guardarEquipoConExito() {
 		when(result.hasErrors()).thenReturn(false);
 		when(equipoService.esIpUnica(anyString())).thenReturn(true);
 		doNothing().when(equipoService).guardarEquipo(any(Equipo.class));
-		Assert.assertEquals(appController.guardarEquipo(equipos.get(0), result, model), "redirect:/admin/editar-equipo-10.0.3.31");
-		Assert.assertEquals(model.get("equipo"), equipos.get(0));
+		Iterator<Equipo> iter = equipos.iterator();
+		Equipo equipo = iter.next();
+		Assert.assertEquals(appController.guardarEquipo(equipo, result, model), "redirect:/admin/editar-equipo-localhost");
+		Assert.assertEquals(model.get("equipo"), equipo);
 	}
 
 	@Test
 	public void editarEquipo() {
-		Equipo equipo = equipos.get(0);
+		Iterator<Equipo> iter = equipos.iterator();
+		Equipo equipo = iter.next();
 		when(equipoService.buscarEquipoPorIp(anyString())).thenReturn(equipo);
 		Assert.assertEquals(appController.editarEquipo(anyString(), model), "edicion");
 		Assert.assertNotNull(model.get("equipo"));
 		Assert.assertTrue((Boolean) model.get("edit"));
-		Assert.assertEquals(((Equipo) model.get("equipo")).getIp(), "10.0.3.31");
+		Assert.assertEquals(((Equipo) model.get("equipo")).getIp(), "localhost");
 	}
 
 	@Test
 	public void actualizarEquipoConValidacionDeError() {
 		when(result.hasErrors()).thenReturn(true);
 		doNothing().when(equipoService).actualizarEquipo(any(Equipo.class));
-		Assert.assertEquals(appController.actualizarEquipo(equipos.get(0), result, model, ""), "edicion");
+		Iterator<Equipo> iter = equipos.iterator();
+		Equipo equipo = iter.next();
+		Assert.assertEquals(appController.actualizarEquipo(equipo, result, model, ""), "edicion");
 	}
 	
 	@Test
     public void actualizarEquipoConValidacionDeErrorMacNoUnica(){
         when(result.hasErrors()).thenReturn(false);
         when(equipoService.esIpUnica(anyString())).thenReturn(false);
-        Assert.assertEquals(appController.actualizarEquipo(equipos.get(0), result, model,""), "redirect:/admin/");
+        Iterator<Equipo> iter = equipos.iterator();
+		Equipo equipo = iter.next();
+        Assert.assertEquals(appController.actualizarEquipo(equipo, result, model,""), "redirect:/admin/");
     }
 	
 	@Test
@@ -126,8 +140,10 @@ public class AppControllerTest {
         when(result.hasErrors()).thenReturn(false);
         when(equipoService.esIpUnica(anyString())).thenReturn(true);
         doNothing().when(equipoService).actualizarEquipo(any(Equipo.class));
-        Assert.assertEquals(appController.actualizarEquipo(equipos.get(0), result, model, ""), "redirect:/admin/");
-        Assert.assertEquals(model.get("exito"), "Equipo [mac=null, ip=10.0.3.31, sala=Sala null, Laboratorio null, descripcion=null] actualizado exitosamente");
+        Iterator<Equipo> iter = equipos.iterator();
+		Equipo equipo = iter.next();
+        Assert.assertEquals(appController.actualizarEquipo(equipo, result, model, ""), "redirect:/admin/");
+        Assert.assertEquals(model.get("exito"), "Equipo [mac=null, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null] actualizado exitosamente");
     }
 	
 	@Test
@@ -136,7 +152,7 @@ public class AppControllerTest {
         Assert.assertEquals(appController.deleteEmployee("123"), "redirect:/equipos");
     }
 	
-	public List<Equipo> buscarTodosLosEquipos(){
+	public Set<Equipo> buscarTodosLosEquipos(){
 		Laboratorio l1 = new Laboratorio();
 		l1.setId(1);
 		l1.setAdministracion("AdminLIS");
@@ -149,13 +165,13 @@ public class AppControllerTest {
 		s1.setLaboratorio(l1);
 		
 		Equipo e1 = new Equipo();
-        e1.setIp("10.0.3.31");
+        e1.setIp("localhost");
         e1.setUsuario("camilo");
         e1.setPassword("00000");
         e1.setSala(s1);
          
         Equipo e2 = new Equipo();
-        e2.setIp("10.0.3.219");
+        e2.setIp("10.0.3.31");
         e2.setUsuario("camilo");
         e2.setPassword("00000");
         e2.setSala(s1);
