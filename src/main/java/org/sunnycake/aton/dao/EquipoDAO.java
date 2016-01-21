@@ -1,6 +1,5 @@
 package org.sunnycake.aton.dao;
 
-import java.util.List;
 import java.util.Set;
 
 import org.sunnycake.aton.dto.Equipo;

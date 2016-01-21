@@ -19,28 +19,24 @@ import org.sunnycake.aton.exception.ExcepcionConsulta;
 @Repository("sugerenciaDAO")
 public class SugerenciaDAOImpl extends DAOAbstracto<Long, Sugerencia> implements SugerenciaDAO {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sunnycake.aton.dao.SugerenciaDAO#obtenerTodos()
+	/**
+	 * Método que hace uso del DAOAbstracto para que se obtengan todos los elementos de la entidad
+	 * @see org.sunnycake.aton.dao.SugerenciaDAO.obtenerTodos()
 	 */
 	@Override
 	public Set<Sugerencia> obtenerTodos() throws ExcepcionConsulta {
-		// TODO Auto-generated method stub
-		return getAll();
+		return getTodos();
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método que utiliza el DAOAbstracto para almacenar nuevas Sugerencias, no
+	 * permite que el id ya exista.
 	 * 
-	 * @see
-	 * org.sunnycake.aton.dao.SugerenciaDAO#guardarSugerencia(org.sunnycake.aton
-	 * .dto.Sugerencia)
+	 * @see org.sunnycake.aton.dao.SalaDAO#guardarSala(Sala)
 	 */
 	@Override
 	public void guardarSugerencia(Sugerencia sugerencia) throws ExcepcionConsulta {
-		// TODO Auto-generated method stub
-		persist(sugerencia);
+		guardarEntidad(sugerencia);
 	}
 
 	/*
@@ -51,7 +47,7 @@ public class SugerenciaDAOImpl extends DAOAbstracto<Long, Sugerencia> implements
 	@Override
 	public Sugerencia obtenerSugerenciaPorClave(long id) throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
-		return getByKey(id);
+		return getEntidadPorClave(id);
 	}
 
 	/*
@@ -63,7 +59,7 @@ public class SugerenciaDAOImpl extends DAOAbstracto<Long, Sugerencia> implements
 	@Override
 	public void eliminarSugerenciaPorClave(long id) throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
-		delete(obtenerSugerenciaPorClave(id));
+		eliminarEntidad(obtenerSugerenciaPorClave(id));
 	}
 
 	/*
@@ -76,7 +72,7 @@ public class SugerenciaDAOImpl extends DAOAbstracto<Long, Sugerencia> implements
 	@Override
 	public void actualizarSugerencia(Sugerencia sugerencia) throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
-		update(sugerencia);
+		actualizarEntidad(sugerencia);
 	}
 
 }

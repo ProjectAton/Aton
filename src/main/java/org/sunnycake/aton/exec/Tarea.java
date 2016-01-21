@@ -59,7 +59,7 @@ public class Tarea implements Runnable {
 		this.sudo = sudo;
 		this.jsch = new JSch();
 		if (sudo) {
-			this.comando = sudo(comando);
+			this.comando = Function.SUDO(comando);
 		} else {
 			this.comando = comando;
 		}
@@ -76,7 +76,7 @@ public class Tarea implements Runnable {
 		this.interrumpir = interrumpir;
 		this.jsch = new JSch();
 		if (sudo) {
-			this.comando = sudo(comando);
+			this.comando = Function.SUDO(comando);
 		} else {
 			this.comando = comando;
 		}
@@ -116,12 +116,6 @@ public class Tarea implements Runnable {
 	}
 
 	public void ejecutar() {
-		// logger.debug("Creando el hilo " + equipo + "+" + comando);
-		// if (hilo == null) {
-		// hilo = new Thread(this, equipo + comando);
-		// hilo.start();
-		// }
-
 		noDetenido = true;
 		logger.info("Ejecutando: " + comando);
 		InputStream stream;
@@ -260,9 +254,6 @@ public class Tarea implements Runnable {
 		}
 	}
 
-	public static String sudo(String comando) {
-		return "sudo -S -p '' " + comando;
-	}
 
 	@Override
 	public void run() {

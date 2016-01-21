@@ -39,16 +39,18 @@ import org.sunnycake.aton.converter.ConvertidorUsuarioWeb;
 @ComponentScan(basePackages = "org.sunnycake.aton")
 public class AppConfig extends WebMvcConfigurerAdapter {
 
-	private Logger logger = LogManager.getLogger(HibernateConfiguration.class);
+	private Logger logger = LogManager.getLogger(AppConfig.class);
 
 	/**
-	 * Objeto utilizado para obtener a través del id de una sala (Por ejemplo en un formulario), el enlace a una sala.
+	 * Objeto utilizado para obtener a través del id de una sala (Por ejemplo en
+	 * un formulario), el enlace a una sala.
 	 */
 	@Autowired
 	ConvertidorSala convertidorSala;
-	
+
 	/**
-	 * Objeto utilizado para obtener a través del id de un laboratorio (Por ejemplo en un formulario), el enlace a un laboratorio.
+	 * Objeto utilizado para obtener a través del id de un laboratorio (Por
+	 * ejemplo en un formulario), el enlace a un laboratorio.
 	 */
 	@Autowired
 	ConvertidorLaboratorio convertidorLaboratorio;

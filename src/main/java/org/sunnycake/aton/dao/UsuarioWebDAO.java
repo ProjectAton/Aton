@@ -16,9 +16,6 @@ public interface UsuarioWebDAO {
 	/**
 	 * Obtiene una lista con todos los Usuarios registrados en el portal web,
 	 * que se encuentran en la base de datos
-	 * 
-	 * 
-	 *
 	 */
 	public Set<UsuarioWeb> obtenerTodos() throws ExcepcionConsulta;
 

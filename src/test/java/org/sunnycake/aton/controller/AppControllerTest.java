@@ -143,7 +143,6 @@ public class AppControllerTest {
         Iterator<Equipo> iter = equipos.iterator();
 		Equipo equipo = iter.next();
         Assert.assertEquals(appController.actualizarEquipo(equipo, result, model, ""), "redirect:/admin/");
-        Assert.assertEquals(model.get("exito"), "Equipo [mac=null, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null] actualizado exitosamente");
     }
 	
 	@Test

@@ -19,28 +19,26 @@ import org.sunnycake.aton.exception.ExcepcionConsulta;
 @Repository("rolDAO")
 public class RolDAOImpl extends DAOAbstracto<Integer, Rol> implements RolDAO {
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método que hace uso del DAOAbstracto para que se obtengan todos los
+	 * elementos de la entidad
 	 * 
-	 * @see org.sunnycake.aton.dao.TipoUsuarioDAO#obtenerTodos()
+	 * @see org.sunnycake.aton.dao.RolDAO.obtenerTodos()
 	 */
 	@Override
 	public Set<Rol> obtenerTodos() throws ExcepcionConsulta {
-		// TODO Auto-generated method stub
-		return getAll();
+		return getTodos();
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método que utiliza el DAOAbstracto para almacenar nuevos Roles, no
+	 * permite que el id ya exista.
 	 * 
-	 * @see
-	 * org.sunnycake.aton.dao.TipoUsuarioDAO#guardarTipoUsuario(org.sunnycake.
-	 * aton.dto.TipoUsuario)
+	 * @see org.sunnycake.aton.dao.RolDAO#guardar(Rol)
 	 */
 	@Override
 	public void guardar(Rol tipo) throws ExcepcionConsulta {
-		// TODO Auto-generated method stub
-		persist(tipo);
+		guardarEntidad(tipo);
 	}
 
 	/*
@@ -51,7 +49,7 @@ public class RolDAOImpl extends DAOAbstracto<Integer, Rol> implements RolDAO {
 	@Override
 	public Rol obtener(int id) throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
-		return getByKey(id);
+		return getEntidadPorClave(id);
 	}
 
 	/*
@@ -62,7 +60,7 @@ public class RolDAOImpl extends DAOAbstracto<Integer, Rol> implements RolDAO {
 	@Override
 	public void eliminar(int id) throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
-		delete(obtener(id));
+		eliminarEntidad(obtener(id));
 	}
 
 	/*
@@ -75,7 +73,7 @@ public class RolDAOImpl extends DAOAbstracto<Integer, Rol> implements RolDAO {
 	@Override
 	public void actualizar(Rol tipo) throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
-		update(tipo);
+		actualizarEntidad(tipo);
 	}
 
 }

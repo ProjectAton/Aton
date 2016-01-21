@@ -12,23 +12,35 @@ import org.sunnycake.aton.exception.ExcepcionConsulta;
 @Repository("laboratorioDAO")
 public class LaboratorioDAOImpl extends DAOAbstracto<Long, Laboratorio> implements LaboratorioDAO {
 
+	/**
+	 * Método que hace uso del DAOAbstracto para que se obtengan todos los
+	 * elementos de la entidad
+	 * 
+	 * @see org.sunnycake.aton.dao.LaboratorioDAO.obtenerTodos()
+	 */
 	public Set<Laboratorio> obtenerTodos() throws ExcepcionConsulta {
-		return getAll();
+		return getTodos();
 	}
 
+	/**
+	 * Método que utiliza el DAOAbstracto para almacenar nuevos Laboratorios, no
+	 * permite que el id ya exista.
+	 * 
+	 * @see org.sunnycake.aton.dao.LaboratorioDAO#guardarLaboratorio(Laboratorio)
+	 */
 	public void guardarLaboratorio(Laboratorio laboratorio) throws ExcepcionConsulta {
-		persist(laboratorio);
+		guardarEntidad(laboratorio);
 	}
 
 	public Laboratorio buscarLaboratorioPorId(long idLaboratorio) throws ExcepcionConsulta {
-		return getByKey(idLaboratorio);
+		return getEntidadPorClave(idLaboratorio);
 	}
 
 	public void eliminarLaboratorioPorId(long id) throws ExcepcionConsulta {
-		delete(buscarLaboratorioPorId(id));
+		eliminarEntidad(buscarLaboratorioPorId(id));
 	}
 
 	public void actualizarLaboratorio(Laboratorio laboratorio) throws ExcepcionConsulta {
-		update(laboratorio);
+		actualizarEntidad(laboratorio);
 	}
 }

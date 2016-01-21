@@ -2,10 +2,8 @@ package org.sunnycake.aton.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -42,39 +40,50 @@ public abstract class DAOAbstracto<PK extends Serializable, E> {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	protected Session getSession() {
+	protected Session getSesion() {
 		return sessionFactory.getCurrentSession();
 	}
 
 	@SuppressWarnings("unchecked")
-	public E getByKey(PK clave) {
-		return (E) getSession().get(clasePersistente, clave);
+	public E getEntidadPorClave(PK clave) {
+		return (E) getSesion().get(clasePersistente, clave);
 	}
 
-	public void persist(E entidad) {
-		getSession().persist(entidad);
+	public void guardarEntidad(E entidad) {
+		getSesion().persist(entidad);
 	}
 
-	public void update(E entidad) {
-		getSession().update(entidad);
+	public void actualizarEntidad(E entidad) {
+		getSesion().update(entidad);
 	}
 
-	public void delete(E entidad) {
-		getSession().delete(entidad);
+	public void eliminarEntidad(E entidad) {
+		getSesion().delete(entidad);
 	}
 
 	protected Criteria crearCriteria() {
-		return getSession().createCriteria(clasePersistente);
+		return getSesion().createCriteria(clasePersistente);
 	}
 
-	public Set<E> getAll() {
-		return castList(clasePersistente, crearCriteria().list());
+	public Set<E> getTodos() {
+		return castLista(clasePersistente, crearCriteria().list());
 	}
 
-	public static <T> Set<T> castList(Class<? extends T> clazz, Collection<?> c) {
-		Set<T> r = new HashSet<T>(c.size());
-		for (Object o : c)
-			r.add(clazz.cast(o));
+	/**
+	 * Realiza una conversión de todos los elementos de la colección hacia una
+	 * nueva lista, esto para evitar el warning que indica que puede que algunos
+	 * elementos no sean de la misma clase.
+	 * 
+	 * @param clase
+	 *            Clase a la que se desea convertir
+	 * @param coleccion
+	 *            Conjunto de elementos que se desean convertir
+	 * @return List con elementos de la clase "clase"
+	 */
+	public static <T> Set<T> castLista(Class<? extends T> clase, Collection<?> coleccion) {
+		Set<T> r = new HashSet<T>(coleccion.size());
+		for (Object o : coleccion)
+			r.add(clase.cast(o));
 		return r;
 	}
 }

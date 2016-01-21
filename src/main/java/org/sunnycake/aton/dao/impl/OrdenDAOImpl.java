@@ -14,33 +14,30 @@ import org.sunnycake.aton.dto.OrdenPK;
 import org.sunnycake.aton.exception.ExcepcionConsulta;
 
 /**
- * @author camilo
+ * @author Camilo Sampedro
  *
  */
 @Repository("ordenDAO")
 public class OrdenDAOImpl extends DAOAbstracto<OrdenPK, Orden> implements OrdenDAO {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sunnycake.aton.dao.OrdenDAO#obtenerTodos()
+	/**
+	 * Método que hace uso del DAOAbstracto para que se obtengan todos los elementos de la entidad
+	 * @see org.sunnycake.aton.dao.OrdenDAO.obtenerTodos()
 	 */
 	@Override
 	public Set<Orden> obtenerTodos() throws ExcepcionConsulta {
-		// TODO Auto-generated method stub
-		return getAll();
+		return getTodos();
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método que utiliza el DAOAbstracto para almacenar nuevas Ordenes, no
+	 * permite que la clave ya exista.
 	 * 
-	 * @see org.sunnycake.aton.dao.OrdenDAO#guardarOrden(org.sunnycake.aton.dto.
-	 * Orden)
+	 * @see org.sunnycake.aton.dao.OrdenDAO#guardarOrden(Orden)
 	 */
 	@Override
 	public void guardarOrden(Orden orden) throws ExcepcionConsulta {
-		// TODO Auto-generated method stub
-		persist(orden);
+		guardarEntidad(orden);
 	}
 
 	/*
@@ -53,7 +50,7 @@ public class OrdenDAOImpl extends DAOAbstracto<OrdenPK, Orden> implements OrdenD
 	@Override
 	public void actualizarOrden(Orden orden) throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
-		update(orden);
+		actualizarEntidad(orden);
 	}
 
 	/*
@@ -66,7 +63,7 @@ public class OrdenDAOImpl extends DAOAbstracto<OrdenPK, Orden> implements OrdenD
 	@Override
 	public Orden obtenerOrdenPorClave(OrdenPK clave) throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
-		return getByKey(clave);
+		return getEntidadPorClave(clave);
 	}
 
 	/*
@@ -79,7 +76,7 @@ public class OrdenDAOImpl extends DAOAbstracto<OrdenPK, Orden> implements OrdenD
 	@Override
 	public void eliminarOrdenPorClave(OrdenPK ordenpk) throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
-		delete(obtenerOrdenPorClave(ordenpk));
+		eliminarEntidad(obtenerOrdenPorClave(ordenpk));
 	}
 
 }

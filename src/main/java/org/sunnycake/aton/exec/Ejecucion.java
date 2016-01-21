@@ -145,7 +145,7 @@ public class Ejecucion {
 		}
 	}
 
-	private synchronized void guardar(Orden orden) {
-		ordenService.guardarOrden(orden);
+	public static Tarea actualizar(Equipo equipo) {
+		return ejecutarComando(equipo, Function.UPDATE_ORDER,true,false);
 	}
 }

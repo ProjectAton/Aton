@@ -28,10 +28,18 @@
 	$(document).ready(function() {
 		$("#mensaje1").click(function() {
 			var mensaje = prompt("Ingrese el mensaje", "");
-			if (person != null) {
+			if (mensaje != null) {
 				$("#mensaje").val(mensaje);
 				$("#mensaje1clic").click();
 			}
+		});
+		$(".enviar-mensaje").click(function(event) {
+			var id = event.target.id;
+			var mensaje = prompt("Ingrese el mensaje", "");
+			if (mensaje != null) {
+				window.location.href = "/aton/admin/enviar-mensaje-" + id + "-" + mensaje;
+			}
+			
 		});
 	});
 </script>
@@ -138,8 +146,9 @@
 																		class="flaticon-refresh57"> Actualizar software</a></li>
 																	<li role="separator" class="divider"></li>
 																	<li><a
-																		href="<c:url value='/admin/enviar-mensaje-${equipo.ip}' />"
-																		class="flaticon-chat51"> Enviar mensaje</a></li>
+																		href="#"
+																		class="flaticon-chat51 enviar-mensaje" id='${equipo.ip}'> Enviar
+																			mensaje</a></li>
 																	<li role="separator" class="divider"></li>
 																	<li><a
 																		href="<c:url value='/admin/eliminar-equipo-${equipo.ip}' />"

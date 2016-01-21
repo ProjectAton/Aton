@@ -20,27 +20,26 @@ import org.sunnycake.aton.exception.ExcepcionConsulta;
 @Repository("sesionDAO")
 public class SesionDAOImpl extends DAOAbstracto<SesionPK, Sesion> implements SesionDAO {
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método que hace uso del DAOAbstracto para que se obtengan todos los
+	 * elementos de la entidad
 	 * 
-	 * @see org.sunnycake.aton.dao.SesionDAO#obtenerTodos()
+	 * @see org.sunnycake.aton.dao.SesionDAO.obtenerTodos()
 	 */
 	@Override
 	public Set<Sesion> obtenerTodos() throws ExcepcionConsulta {
-		return getAll();
+		return getTodos();
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método que utiliza el DAOAbstracto para almacenar nuevas Sesiones, no
+	 * permite que la clave ya exista.
 	 * 
-	 * @see
-	 * org.sunnycake.aton.dao.SesionDAO#guardarSesion(org.sunnycake.aton.dto.
-	 * Sesion)
+	 * @see org.sunnycake.aton.dao.SesionDAO#guardarSesion(Sesion)
 	 */
 	@Override
 	public void guardarSesion(Sesion sesion) throws ExcepcionConsulta {
-		// TODO Auto-generated method stub
-		persist(sesion);
+		guardarEntidad(sesion);
 
 	}
 
@@ -53,7 +52,7 @@ public class SesionDAOImpl extends DAOAbstracto<SesionPK, Sesion> implements Ses
 	 */
 	@Override
 	public Sesion obtenerSesionPorClave(SesionPK claveP) throws ExcepcionConsulta {
-		return getByKey(claveP);
+		return getEntidadPorClave(claveP);
 	}
 
 	/*
@@ -65,7 +64,7 @@ public class SesionDAOImpl extends DAOAbstracto<SesionPK, Sesion> implements Ses
 	 */
 	@Override
 	public void eliminarSesionPorClave(SesionPK sesion) throws ExcepcionConsulta {
-		delete(obtenerSesionPorClave(sesion));
+		eliminarEntidad(obtenerSesionPorClave(sesion));
 	}
 
 	/*

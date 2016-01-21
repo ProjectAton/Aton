@@ -32,7 +32,6 @@ import org.sunnycake.aton.dto.Laboratorio;
 import org.sunnycake.aton.dto.Orden;
 import org.sunnycake.aton.dto.OrdenPK;
 import org.sunnycake.aton.dto.Sala;
-import org.sunnycake.aton.dto.UsuarioWeb;
 import org.sunnycake.aton.exec.Ejecucion;
 import org.sunnycake.aton.exec.ExecBuffer;
 import org.sunnycake.aton.exec.Tarea;
@@ -46,6 +45,12 @@ import org.sunnycake.aton.service.UsuarioWebService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Controlador principal de la aplicación
+ * 
+ * @author Camilo Sampedro
+ *
+ */
 @Controller
 // Controlador por defecto (Con el url raíz "/")
 @RequestMapping("/")
@@ -125,6 +130,8 @@ public class AppController {
 		}
 		return new ModelAndView("redirect:/admin");
 	}
+	
+	
 
 	@RequestMapping(params = "apagar", value = { "/admin" }, method = RequestMethod.POST)
 	public ModelAndView apagarMultiples(@ModelAttribute("seleccionEquipos") SeleccionEquipos seleccion) {
@@ -135,6 +142,8 @@ public class AppController {
 		}
 		return new ModelAndView("redirect:/admin");
 	}
+	
+	
 
 	
 
@@ -336,21 +345,33 @@ public class AppController {
 		return "edicion";
 	}
 
-	/*
-	 * This method will be called on form submission, handling POST request for
-	 * updating employee in database. It also validates the user input
+	/**
+	 * Escucha lo enviado por el usuario desde el formulario de edición.
+	 * 
+	 * @param equipo
+	 *            Equipo construido desde el formulario.
+	 * @param resultado
+	 *            Información de la validación
+	 * @param model
+	 *            Modelo con los atributos de la vista a retornar
+	 * @param ip
+	 *            Ip del equipo a editar en la base de datos.
+	 * @return Nombre de la vista (JSP) a desplegar
 	 */
 	@RequestMapping(value = { "/admin/editar-equipo-{ip}" }, method = RequestMethod.POST)
-	public String actualizarEquipo(@Valid Equipo equipo, BindingResult result, ModelMap model,
+	public String actualizarEquipo(@Valid Equipo equipo, BindingResult resultado, ModelMap model,
 			@PathVariable String ip) {
 
-		if (result.hasErrors()) {
+		// Si hubo errores de validación detectados previamente, devolver la
+		// misma vista.
+		if (resultado.hasErrors()) {
 			return "edicion";
 		}
 
+		// Ejecutar la actualización si no hubo errores
 		equipoService.actualizarEquipo(equipo);
 
-		model.addAttribute("exito", equipo + " actualizado exitosamente");
+		// Retornar la vista principal si no hubo errores
 		return "redirect:/admin/";
 	}
 
@@ -442,6 +463,44 @@ public class AppController {
 		model.addAttribute("edit", true);
 		return "centroordenes";
 	}
+	
+	/**
+	 * Actualiza el software de un equipo
+	 * 
+	 * @param ip
+	 *            Ip del equipo
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = { "/admin/actualizar-{ip}" }, method = RequestMethod.GET)
+	public String actualizar(@PathVariable String ip, ModelMap model) {
+		Equipo equipo = equipoService.buscarEquipoPorIp(ip);
+		Tarea tarea = Ejecucion.actualizar(equipo);
+		String salida = tarea.getExecQueue().retornarBuffer();
+		model.addAttribute("equipo", equipo);
+		model.addAttribute("salida", salida);
+		model.addAttribute("orden", new Orden());
+		model.addAttribute("edit", true);
+		return "centroordenes";
+	}
+	
+	/**
+	 * Apaga un equipo
+	 * 
+	 * @param ip
+	 *            Ip del equipo
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = { "/admin/enviar-mensaje-{ip}-{mensaje}" }, method = RequestMethod.GET)
+	public String enviarMensaje(@PathVariable String ip, @PathVariable String mensaje, ModelMap model) {
+		Equipo equipo = equipoService.buscarEquipoPorIp(ip);
+		Ejecucion.enviarMensaje(equipo, mensaje);
+		model.addAttribute("equipo", equipo);
+		model.addAttribute("orden", new Orden());
+		model.addAttribute("edit", true);
+		return "centroordenes";
+	}
 
 	/**
 	 * Reinicia un equipo
@@ -474,6 +533,14 @@ public class AppController {
 		return "redirect:/login?logout";
 	}
 
+	/**
+	 * Acceso denegado a la página solicitada. Se produce por la clase
+	 * SecurityConf al usuario no tener permisos para acceder.
+	 * 
+	 * @param model
+	 *            Modelo con los atributos de la vista a retornar
+	 * @return Nombre de la vista (JSP) a desplegar
+	 */
 	@RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
 	public String accessDeniedPage(ModelMap model) {
 		model.addAttribute("user", obtenerUsuario());

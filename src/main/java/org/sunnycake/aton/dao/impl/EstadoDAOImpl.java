@@ -20,28 +20,26 @@ import org.sunnycake.aton.exception.ExcepcionConsulta;
 @Repository("estadoDAO")
 public class EstadoDAOImpl extends DAOAbstracto<EstadoPK, Estado> implements EstadoDAO {
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método que hace uso del DAOAbstracto para que se obtengan todos los
+	 * elementos de la entidad
 	 * 
 	 * @see org.sunnycake.aton.dao.EstadoDAO#obtenerTodos()
 	 */
 	@Override
 	public Set<Estado> obtenerTodos() throws ExcepcionConsulta {
-		// TODO Auto-generated method stub
-		return getAll();
+		return getTodos();
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método que utiliza el DAOAbstracto para almacenar nuevos Estados, no
+	 * permite que la clave primaria ya exista.
 	 * 
-	 * @see
-	 * org.sunnycake.aton.dao.EstadoDAO#guardarEstado(org.sunnycake.aton.dto.
-	 * Estado)
+	 * @see org.sunnycake.aton.dao.EstadoDAO#guardarEstado(Estado)
 	 */
 	@Override
 	public void guardarEstado(Estado estado) throws ExcepcionConsulta {
-		// TODO Auto-generated method stub
-		persist(estado);
+		guardarEntidad(estado);
 	}
 
 	/*
@@ -54,7 +52,7 @@ public class EstadoDAOImpl extends DAOAbstracto<EstadoPK, Estado> implements Est
 	@Override
 	public void actualizarEstado(Estado estado) throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
-		update(estado);
+		actualizarEntidad(estado);
 	}
 
 	/*
@@ -67,7 +65,7 @@ public class EstadoDAOImpl extends DAOAbstracto<EstadoPK, Estado> implements Est
 	@Override
 	public Estado obtenerEstadoPorClave(EstadoPK clave) throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
-		return getByKey(clave);
+		return getEntidadPorClave(clave);
 	}
 
 	/*
@@ -80,7 +78,7 @@ public class EstadoDAOImpl extends DAOAbstracto<EstadoPK, Estado> implements Est
 	@Override
 	public void eliminarEstadoPorClave(EstadoPK estado) throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
-		delete(obtenerEstadoPorClave(estado));
+		eliminarEntidad(obtenerEstadoPorClave(estado));
 	}
 
 }

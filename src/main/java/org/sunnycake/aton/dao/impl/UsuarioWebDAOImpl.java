@@ -19,28 +19,26 @@ import org.sunnycake.aton.exception.ExcepcionConsulta;
 @Repository("usuarioWebDAO")
 public class UsuarioWebDAOImpl extends DAOAbstracto<String, UsuarioWeb> implements UsuarioWebDAO {
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método que hace uso del DAOAbstracto para que se obtengan todos los
+	 * elementos de la entidad
 	 * 
-	 * @see org.sunnycake.aton.dao.UsuarioWebDAO#obtenerTodos()
+	 * @see org.sunnycake.aton.dao.UsuarioWebDAO.obtenerTodos()
 	 */
 	@Override
 	public Set<UsuarioWeb> obtenerTodos() throws ExcepcionConsulta {
-		// TODO Auto-generated method stub
-		return getAll();
+		return getTodos();
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método que utiliza el DAOAbstracto para almacenar nuevos Usuarios Web, no
+	 * permite que el nombre de usuario ya exista.
 	 * 
-	 * @see
-	 * org.sunnycake.aton.dao.UsuarioWebDAO#guardarUsuarioWeb(org.sunnycake.aton
-	 * .dto.UsuarioWeb)
+	 * @see org.sunnycake.aton.dao.UsuarioWebDAO#guardarUsuarioWeb(UsuarioWeb)
 	 */
 	@Override
 	public void guardarUsuarioWeb(UsuarioWeb usuario) throws ExcepcionConsulta {
-		// TODO Auto-generated method stub
-		persist(usuario);
+		guardarEntidad(usuario);
 	}
 
 	/*
@@ -53,7 +51,7 @@ public class UsuarioWebDAOImpl extends DAOAbstracto<String, UsuarioWeb> implemen
 	@Override
 	public UsuarioWeb obtenerUsuarioWebPorUsuario(String usuario) throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
-		return getByKey(usuario);
+		return getEntidadPorClave(usuario);
 	}
 
 	/*
@@ -66,7 +64,7 @@ public class UsuarioWebDAOImpl extends DAOAbstracto<String, UsuarioWeb> implemen
 	@Override
 	public void eliminarUsuarioWebPorUsuario(String usuario) throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
-		delete(obtenerUsuarioWebPorUsuario(usuario));
+		eliminarEntidad(obtenerUsuarioWebPorUsuario(usuario));
 	}
 
 	/*
@@ -79,7 +77,7 @@ public class UsuarioWebDAOImpl extends DAOAbstracto<String, UsuarioWeb> implemen
 	@Override
 	public void actualizarUsuarioWeb(UsuarioWeb usuario) throws ExcepcionConsulta {
 		// TODO Auto-generated method stub
-		update(usuario);
+		actualizarEntidad(usuario);
 	}
 
 }

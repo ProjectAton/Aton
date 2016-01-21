@@ -3,7 +3,6 @@
  */
 package org.sunnycake.aton.dao.impl;
 
-import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Criteria;
@@ -21,23 +20,24 @@ import org.sunnycake.aton.exception.ExcepcionConsulta;
 @Repository("equipoDAO")
 public class EquipoDAOImpl extends DAOAbstracto<String, Equipo> implements EquipoDAO {
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método que hace uso del DAOAbstracto para que se obtengan todos los
+	 * elementos de la entidad
 	 * 
-	 * @see org.sunnycake.dao.EquipoDAO#obtenerTodos()
+	 * @see org.sunnycake.aton.dao.EquipoDAO#obtenerTodos()
 	 */
 	public Set<Equipo> obtenerTodos() throws ExcepcionConsulta {
-		// TODO Auto-generated method stub
-		return getAll();
+		return getTodos();
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método que utiliza el DAOAbstracto para almacenar nuevos Equipos, no
+	 * permite que la ip ya exista.
 	 * 
-	 * @see org.sunnycake.dao.EquipoDAO#guardar(org.sunnycake.dto.Equipo)
+	 * @see org.sunnycake.aton.dao.EquipoDAO#guardarEquipo(Equipo)
 	 */
 	public void guardarEquipo(Equipo equipo) throws ExcepcionConsulta {
-		persist(equipo);
+		guardarEntidad(equipo);
 	}
 
 	/*
@@ -46,7 +46,7 @@ public class EquipoDAOImpl extends DAOAbstracto<String, Equipo> implements Equip
 	 * @see org.sunnycake.dao.EquipoDAO#actualizar(org.sunnycake.dto.Equipo)
 	 */
 	public void actualizarEquipo(Equipo equipo) throws ExcepcionConsulta {
-		update(equipo);
+		actualizarEntidad(equipo);
 	}
 
 	/*
@@ -55,7 +55,7 @@ public class EquipoDAOImpl extends DAOAbstracto<String, Equipo> implements Equip
 	 * @see org.sunnycake.dao.EquipoDAO#obtener(java.lang.String)
 	 */
 	public Equipo buscarEquipoPorIp(String ip) throws ExcepcionConsulta {
-		return getByKey(ip);
+		return getEntidadPorClave(ip);
 	}
 
 	/*
@@ -64,9 +64,7 @@ public class EquipoDAOImpl extends DAOAbstracto<String, Equipo> implements Equip
 	 * @see org.sunnycake.dao.EquipoDAO#eliminar(org.sunnycake.dto.Equipo)
 	 */
 	public void eliminarEquipoPorIp(String ip) throws ExcepcionConsulta {
-		Equipo equipo = buscarEquipoPorIp(ip);
-		equipo.getSala().getEquipos().remove(equipo);
-		delete(equipo);
+		eliminarEntidad(buscarEquipoPorIp(ip));
 	}
 
 	public Equipo buscarEquipoPorNombre(String nombre) throws ExcepcionConsulta {
