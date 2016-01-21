@@ -104,8 +104,8 @@
 							<c:otherwise>
 								<div id="no-encontrado">
 									<i class="flaticon-boxes27"></i>
-									<h1>Aquí no hay salas</h1>
-									<p>Parece que no se han encontrado salas. Si deseas puedes
+									<h1>Aquí no hay laboratorios</h1>
+									<p>Parece que no se han encontrado laboratorios. Si deseas puedes
 										agregar salas desde el siguiente botón:</p>
 								</div>
 							</c:otherwise>

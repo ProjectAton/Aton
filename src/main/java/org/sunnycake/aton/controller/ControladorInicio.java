@@ -113,8 +113,9 @@ public class ControladorInicio {
     }
 
     /**
+     * Desplega la página de administración.
      *
-     * @return
+     * @return Página de administradores.
      */
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public ModelAndView adminPage() {
@@ -144,19 +145,28 @@ public class ControladorInicio {
     }
 
     /**
+     * Ejecuta la orden de apagar en todos los equipos seleccionados.
      *
-     * @param seleccion
-     * @return
+     * @param seleccionDeEquipos Lista con los equipos que han sido
+     * seleccionados en la vista anterior.
+     * @return JSP Nombre de la vista (JSP) a desplega
      */
     @RequestMapping(params = "apagar", value = {"/admin"}, method = RequestMethod.POST)
-    public ModelAndView apagarMultiples(@ModelAttribute("seleccionEquipos") SeleccionEquipos seleccion) {
-        logger.debug(seleccion);
-        seleccion.getEquipos().stream().map((equipo1) -> equipoService.buscarEquipoPorIp(equipo1.getIp())).forEach((equipo) -> {
+    public ModelAndView apagarMultiples(@ModelAttribute("seleccionEquipos") SeleccionEquipos seleccionDeEquipos) {
+        logger.debug(seleccionDeEquipos);
+        seleccionDeEquipos.getEquipos().stream().map((equipo1) -> equipoService.buscarEquipoPorIp(equipo1.getIp())).forEach((equipo) -> {
             Ejecucion.apagar(equipo);
         });
         return new ModelAndView("redirect:/admin");
     }
 
+    /**
+     *
+     * Crea una página para los administradores de la base de datos.
+     *
+     * @param model Modelo con los atributos de la vista a retornar
+     * @return JSP Nombre de la vista (JSP) a desplega
+     */
     @RequestMapping(value = "/db", method = RequestMethod.GET)
     public String dbaPage(ModelMap model) {
         model.addAttribute("user", obtenerUsuario());
@@ -174,31 +184,38 @@ public class ControladorInicio {
     public String listarSalas(ModelMap model) {
 
         Set<Sala> salas = salaService.buscarTodasLasSalas();
+        model.addAttribute("user", obtenerUsuario());
         model.addAttribute("salas", salas);
         return "todaslassalas";
     }
 
-    /*
-	 * TODO: Cambiar para ATON: Generar todos los mapping para los dto Bajo los
-	 * url "/" y "/list" se traerán todos los empleados
+    /**
+     *
+     * Retorna una lista con todos los laboratorios.
+     *
+     * @param model Modelo con los atributos de la vista a retornar
+     * @return JSP Nombre de la vista (JSP) a desplega
      */
     @RequestMapping(value = {"/admin/laboratorios"}, method = RequestMethod.GET)
     public String listarLaboratorios(ModelMap model) {
 
         Set<Laboratorio> laboratorios = laboratorioService.buscarTodosLosLaboratorios();
+        model.addAttribute("user", obtenerUsuario());
         model.addAttribute("laboratorios", laboratorios);
         return "todosloslaboratorios";
     }
 
     /**
      * Este es un método GET para nuevos equipos (Obtiene el formulario)
-     * @param model
-     * @return 
+     *
+     * @param model Modelo con los atributos de la vista a retornar
+     * @return JSP Nombre de la vista (JSP) a desplega
      */
     @RequestMapping(value = {"/admin/nuevo"}, method = RequestMethod.GET)
     public String nuevoEquipo(ModelMap model) {
         Equipo equipo = new Equipo();
         model.addAttribute("equipo", equipo);
+        model.addAttribute("user", obtenerUsuario());
         model.addAttribute("edit", false);
         return "registro";
     }
@@ -230,13 +247,12 @@ public class ControladorInicio {
             return "registro";
         }
 
+        
         logger.debug("Buscando la dirección MAC de " + equipo.getIp());
         Tarea tarea = Ejecucion.obtenerMac(equipo);
-        // logger.debug(ordenService == null);
-        // ordenService.guardarOrden(crearOrden(tarea));
         logger.debug(tarea.getExecQueue().retornarBuffer());
 
-        if (tarea == null || tarea.getExecQueue() == null || "Error".equals(tarea.getExecQueue().retornarBuffer())
+        if (tarea.getExecQueue() == null || "Error".equals(tarea.getExecQueue().retornarBuffer())
                 || "".equals(tarea.getExecQueue().retornarBuffer())) {
             FieldError errorDeIp = new FieldError("equipo", "ip",
                     messageSource.getMessage("ip.not.found", new String[]{equipo.getIp()}, Locale.getDefault()));
@@ -244,18 +260,19 @@ public class ControladorInicio {
             resultado.addError(errorDeIp);
             return "registro";
         }
+        
         String mac = tarea.getExecQueue().retornarBuffer().trim();
         logger.debug("Mac encontrada: " + mac);
         equipo.setMac(mac);
 
         /*
-		 * Preferred way to achieve uniqueness of field [ssn] should be
-		 * implementing custom @Unique annotation and applying it on field [ssn]
-		 * of Model class [Employee].
-		 * 
-		 * Below mentioned peace of code [if block] is to demonstrate that you
-		 * can fill custom errors outside the validation framework as well while
-		 * still using internationalized messages.
+         * Preferred way to achieve uniqueness of field [ssn] should be
+         * implementing custom @Unique annotation and applying it on field [ssn]
+         * of Model class [Employee].
+         * 
+         * Below mentioned peace of code [if block] is to demonstrate that you
+         * can fill custom errors outside the validation framework as well while
+         * still using internationalized messages.
          */
         // Cómo verificar que es único el empleado de forma personalizada
         // equipo.setMac(equipo.getMac().replaceAll(",", ""));
@@ -269,6 +286,9 @@ public class ControladorInicio {
 
     /**
      * Este es un método GET para nuevas salas (Obtiene el formulario)
+     *
+     * @param model Modelo con los atributos de la vista a retornar
+     * @return JSP Nombre de la vista (JSP) a desplegar
      */
     @RequestMapping(value = {"/admin/agregar-sala"}, method = RequestMethod.GET)
     public String nuevaSala(ModelMap model) {
@@ -278,6 +298,15 @@ public class ControladorInicio {
         return "registrosala";
     }
 
+    /**
+     *
+     * Despliega el formulario para agregar nuevas salas.
+     *
+     * @param sala Sala recibida desde la vista.
+     * @param resultado Información con validaciones.
+     * @param model Modelo con los atributos de la vista a retornar
+     * @return JSP Nombre de la vista (JSP) a desplegar
+     */
     @RequestMapping(value = {"/admin/agregar-sala"}, method = RequestMethod.POST)
     public String guardarSala(@Valid Sala sala, BindingResult resultado, ModelMap model) {
         logger.debug("Ha entrado a guardarse la sala: " + sala);
@@ -304,6 +333,8 @@ public class ControladorInicio {
 
     /**
      * Este es un método GET para nuevas salas (Obtiene el formulario)
+     * @param model Modelo con los atributos de la vista a retornar
+     * @return JSP Nombre de la vista (JSP) a desplegar
      */
     @RequestMapping(value = {"/admin/agregar-laboratorio"}, method = RequestMethod.GET)
     public String nuevoLaboratorio(ModelMap model) {
@@ -313,6 +344,13 @@ public class ControladorInicio {
         return "registrolaboratorio";
     }
 
+    /**
+     * Retorna el formulario para agregar un nuevo laboratorio.
+     * @param laboratorio Laboratorio insertado
+     * @param resultado Información con validaciones
+     * @param model Modelo con los atributos de la vista a retornar
+     * @return JSP Nombre de la vista (JSP) a desplegar
+     */
     @RequestMapping(value = {"/admin/agregar-laboratorio"}, method = RequestMethod.POST)
     public String guardarLaboratorio(@Valid Laboratorio laboratorio, BindingResult resultado, ModelMap model) {
         logger.debug("Ha entrado a guardarse el laboratorio: " + laboratorio);
@@ -338,7 +376,7 @@ public class ControladorInicio {
     }
 
     /*
-	 * This method will provide the medium to update an existing employee.
+     * This method will provide the medium to update an existing employee.
      */
     /**
      * Actualiza la información de un equipo
@@ -383,6 +421,8 @@ public class ControladorInicio {
 
     /**
      * Elimina un equipo por su ip
+     * @param ip
+     * @return 
      */
     @RequestMapping(value = {"/admin/eliminar-equipo-{ip}"}, method = RequestMethod.GET)
     public String deleteEmployee(@PathVariable String ip) {
@@ -394,6 +434,8 @@ public class ControladorInicio {
 
     /**
      * Elimina una sala por su id
+     * @param id
+     * @return 
      */
     @RequestMapping(value = {"/admin/eliminar-sala-{id}"}, method = RequestMethod.GET)
     public String eliminarSala(@PathVariable Integer id) {
@@ -439,6 +481,7 @@ public class ControladorInicio {
             result.addError(errorDeClave);
             errorDeClave = new FieldError("orden", "pkfecha", messageSource.getMessage("non.unique.pk",
                     new String[]{orden.getPkEquipo().toString()}, Locale.getDefault()));
+            result.addError(errorDeClave);
             logger.error("Clave no única " + clave.toString());
             return "centroordenes";
         }
@@ -491,6 +534,7 @@ public class ControladorInicio {
      * Apaga un equipo
      *
      * @param ip Ip del equipo
+     * @param mensaje
      * @param model
      * @return
      */
@@ -549,10 +593,11 @@ public class ControladorInicio {
 
     /**
      *
+     * @return 
      */
     @ModelAttribute("salas")
     public Set<Sala> inicializarSalas() {
-        Set<Sala> salas = new HashSet<Sala>();
+        Set<Sala> salas = new HashSet<>();
         salas.addAll(salaService.buscarTodasLasSalas());
 
         logger.debug("Se han buscado todas las salas(" + salas.size() + "), enviando a \"salas\"");
@@ -561,17 +606,18 @@ public class ControladorInicio {
 
     /**
      *
+     * @return 
      */
     @ModelAttribute("laboratorios")
     public Set<Laboratorio> inicializarLaboratorios() {
         logger.debug("Se han buscado todos los laboratorios, enviando a \"laboratorios\"");
-        Set<Laboratorio> laboratorios = new HashSet<Laboratorio>();
+        Set<Laboratorio> laboratorios = new HashSet<>();
         laboratorios.addAll(laboratorioService.buscarTodosLosLaboratorios());
         return laboratorios;
     }
 
     private String obtenerUsuario() {
-        String nombreDeUsuario = null;
+        String nombreDeUsuario;
         if (SecurityContextHolder.getContext().getAuthentication() == null) {
             return null;
         }

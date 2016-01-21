@@ -37,7 +37,7 @@
                     var id = event.target.id;
                     var mensaje = prompt("Ingrese el mensaje", "");
                     if (mensaje !== null) {
-                        window.location.href = "/aton/admin/enviar-mensaje-" + id + "-" + mensaje;
+                        window.location.href = "/Aton/admin/enviar-mensaje-" + id + "-" + mensaje;
                     }
 
                 });
@@ -208,9 +208,7 @@
                                                     un mensaje</button></li>
                                             <li><button type="submit" name="apagar"
                                                         class="flaticon-power107">Apagar</button></li>
-                                            <li><a class="flaticon-update26"
-                                                   href="<c:url value='/admin/reiniciar-${equipo.ip}' />">
-                                                    Reiniciar</a></li>
+                                                        <li><button type="submit" name="reiniciar" class="flaticon-update26">Reiniciar</button></li>
                                             <li><a
                                                     href="<c:url value='/admin/actualizar-${equipo.ip}' />"
                                                     class="flaticon-refresh57"> Actualizar software</a></li>

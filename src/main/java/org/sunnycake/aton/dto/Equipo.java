@@ -68,7 +68,7 @@ public class Equipo implements Serializable {
 	private String mensaje;
 
 	@OneToMany(fetch = FetchType.EAGER, targetEntity = Orden.class, mappedBy = "pkEquipo", cascade = { CascadeType.ALL }, orphanRemoval = true)
-	private Set<Orden> ordenes = new HashSet<Orden>();
+	private Set<Orden> ordenes = new HashSet<>();
 	
 	@Column(name = "SELECCIONADO")
 	private boolean seleccionado;
