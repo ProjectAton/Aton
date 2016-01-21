@@ -3,6 +3,7 @@
  */
 package org.sunnycake.aton.dto;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "EQUIPO")
-public class Equipo {
+public class Equipo implements Serializable {
 	/**
 	 * Clave primaria.
 	 */

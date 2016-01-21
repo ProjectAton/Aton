@@ -20,469 +20,469 @@ import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 
 public class Tarea implements Runnable {
-	private JSch jsch;
-	private Channel channel;
-	private Session sessionSSH;
-	private UsuarioWeb usuarioweb;
-	private Equipo equipo;
-	private boolean noDetenido;
-	private String comando;
-	private ExecBuffer execQueue = new ExecBuffer(30);
-	private boolean sudo;
-	private boolean interrumpir;
-	private Thread hilo;
-	private int codigoDeSalida;
-	private Date fechaInicio;
-	private boolean termino;
 
-	private Logger logger = LogManager.getLogger(Tarea.class);
+    private JSch jsch;
+    private Channel channel;
+    private Session sessionSSH;
+    private UsuarioWeb usuarioweb;
+    private Equipo equipo;
+    private boolean noDetenido;
+    private String comando;
+    private ExecBuffer execQueue = new ExecBuffer(30);
+    private boolean sudo;
+    private boolean interrumpir;
+    private Thread hilo;
+    private int codigoDeSalida;
+    private Date fechaInicio;
+    private boolean termino;
 
-	public Tarea(Equipo equipo, String comando) {
-		this.fechaInicio = new Date();
-		this.codigoDeSalida = 1;
-		this.noDetenido = true;
-		this.sudo = false;
-		this.interrumpir = false;
-		this.equipo = equipo;
-		this.jsch = new JSch();
-		this.comando = comando;
-		this.termino = false;
-		logger.debug("Tarea para " + equipo + ", con comando \"" + comando + "\" creada.");
-	}
+    private Logger logger = LogManager.getLogger(Tarea.class);
 
-	public Tarea(Equipo equipo, String comando, boolean sudo) {
-		this.fechaInicio = new Date();
-		this.codigoDeSalida = 1;
-		this.noDetenido = true;
-		this.equipo = equipo;
-		this.interrumpir = false;
-		this.sudo = sudo;
-		this.jsch = new JSch();
-		if (sudo) {
-			this.comando = Function.SUDO(comando);
-		} else {
-			this.comando = comando;
-		}
-		this.termino = false;
-		logger.debug("Tarea para " + equipo + ", con comando \"" + comando + "\" (sudo) creada.");
-	}
+    public Tarea(Equipo equipo, String comando) {
+        this.fechaInicio = new Date();
+        this.codigoDeSalida = 1;
+        this.noDetenido = true;
+        this.sudo = false;
+        this.interrumpir = false;
+        this.equipo = equipo;
+        this.jsch = new JSch();
+        this.comando = comando;
+        this.termino = false;
+        logger.debug("Tarea para " + equipo + ", con comando \"" + comando + "\" creada.");
+    }
 
-	public Tarea(Equipo equipo, String comando, boolean sudo, boolean interrumpir) {
-		this.fechaInicio = new Date();
-		this.codigoDeSalida = 1;
-		this.noDetenido = true;
-		this.equipo = equipo;
-		this.sudo = sudo;
-		this.interrumpir = interrumpir;
-		this.jsch = new JSch();
-		if (sudo) {
-			this.comando = Function.SUDO(comando);
-		} else {
-			this.comando = comando;
-		}
+    public Tarea(Equipo equipo, String comando, boolean sudo) {
+        this.fechaInicio = new Date();
+        this.codigoDeSalida = 1;
+        this.noDetenido = true;
+        this.equipo = equipo;
+        this.interrumpir = false;
+        this.sudo = sudo;
+        this.jsch = new JSch();
+        if (sudo) {
+            this.comando = Function.SUDO(comando);
+        } else {
+            this.comando = comando;
+        }
+        this.termino = false;
+        logger.debug("Tarea para " + equipo + ", con comando \"" + comando + "\" (sudo) creada.");
+    }
 
-		this.termino = false;
-		logger.debug("Tarea para " + equipo + ", con comando \"" + comando + "\" (sudo, interrumpir) creada.");
-	}
+    public Tarea(Equipo equipo, String comando, boolean sudo, boolean interrumpir) {
+        this.fechaInicio = new Date();
+        this.codigoDeSalida = 1;
+        this.noDetenido = true;
+        this.equipo = equipo;
+        this.sudo = sudo;
+        this.interrumpir = interrumpir;
+        this.jsch = new JSch();
+        if (sudo) {
+            this.comando = Function.SUDO(comando);
+        } else {
+            this.comando = comando;
+        }
 
-	public Tarea connect() throws Exception {
-		logger.info("Conectando a " + equipo);
-		sessionSSH = jsch.getSession(equipo.getUsuario(), equipo.getIp(), 22);
-		sessionSSH.setConfig("StrictHostKeyChecking", "no");
-		sessionSSH.setPassword(equipo.getPassword());
-		sessionSSH.connect();
+        this.termino = false;
+        logger.debug("Tarea para " + equipo + ", con comando \"" + comando + "\" (sudo, interrumpir) creada.");
+    }
 
-		channel = sessionSSH.openChannel("exec");
+    public Tarea connect() throws Exception {
+        logger.info("Conectando a " + equipo);
+        sessionSSH = jsch.getSession(equipo.getUsuario(), equipo.getIp(), 22);
+        sessionSSH.setConfig("StrictHostKeyChecking", "no");
+        sessionSSH.setPassword(equipo.getPassword());
+        sessionSSH.connect();
 
-		logger.info("Conectado a " + equipo);
-		return this;
-	}
+        channel = sessionSSH.openChannel("exec");
 
-	public Tarea stop() {
-		this.noDetenido = false;
-		logger.info("Ejecución detenida");
-		return this;
-	}
+        logger.info("Conectado a " + equipo);
+        return this;
+    }
 
-	public Tarea disconnect() throws Exception {
-		codigoDeSalida = channel.getExitStatus();
-		logger.info(CodigoSalida.getFor(codigoDeSalida).message() + ":" + codigoDeSalida);
-		if (channel != null)
-			channel.disconnect();
-		if (sessionSSH != null)
-			sessionSSH.disconnect();
-		logger.info("Desconectado de " + equipo);
-		return this;
-	}
+    public Tarea stop() {
+        this.noDetenido = false;
+        logger.info("Ejecución detenida");
+        return this;
+    }
 
-	public void ejecutar() {
-		noDetenido = true;
-		logger.info("Ejecutando: " + comando);
-		InputStream stream;
-		OutputStream out = null;
-		try {
-			stream = channel.getInputStream();
-			logger.debug("Canal de entrada creado");
-			if (sudo) {
-				out = channel.getOutputStream();
-				logger.debug("Canal de salida creado");
-			}
-		} catch (IOException e) {
-			logger.error("Error obteniendo un canal de salida hacia " + equipo, e);
-			execQueue.push("Error");
-			setTermino(true);
+    public Tarea disconnect() throws Exception {
+        codigoDeSalida = channel.getExitStatus();
+        logger.info(CodigoSalida.getFor(codigoDeSalida).message() + ":" + codigoDeSalida);
+        if (channel != null) {
+            channel.disconnect();
+        }
+        if (sessionSSH != null) {
+            sessionSSH.disconnect();
+        }
+        logger.info("Desconectado de " + equipo);
+        return this;
+    }
 
-			return;
-		}
-		((ChannelExec) channel).setCommand(comando);
-		try {
-			channel.connect();
-			logger.debug("Conectado");
-		} catch (JSchException e) {
-			logger.error("Error conectando a " + equipo, e);
-			setTermino(true);
+    public void ejecutar() {
+        noDetenido = true;
+        logger.info("Ejecutando: " + comando);
+        InputStream stream;
+        OutputStream out = null;
+        try {
+            stream = channel.getInputStream();
+            logger.debug("Canal de entrada creado");
+            if (sudo) {
+                out = channel.getOutputStream();
+                logger.debug("Canal de salida creado");
+            }
+        } catch (IOException e) {
+            logger.error("Error obteniendo un canal de salida hacia " + equipo, e);
+            execQueue.push("Error");
+            setTermino(true);
 
-			return;
-		}
+            return;
+        }
+        ((ChannelExec) channel).setCommand(comando);
+        try {
+            channel.connect();
+            logger.debug("Conectado");
+        } catch (JSchException e) {
+            logger.error("Error conectando a " + equipo, e);
+            setTermino(true);
 
-		if (sudo) {
-			try {
-				logger.debug("Escribiendo el password");
-				out.write((equipo.getPassword() + "\n").getBytes());
-				out.flush();
+            return;
+        }
 
-			} catch (IOException e) {
-				logger.error("Error escribiendo la contraseña en " + equipo, e);
-				execQueue.push("Error");
-				try {
-					disconnect();
-				} catch (Exception e1) {
-					logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
-				}
-				setTermino(true);
+        if (sudo) {
+            try {
+                logger.debug("Escribiendo el password");
+                out.write((equipo.getPassword() + "\n").getBytes());
+                out.flush();
 
-				return;
-			}
-		}
+            } catch (IOException e) {
+                logger.error("Error escribiendo la contraseña en " + equipo, e);
+                execQueue.push("Error");
+                try {
+                    disconnect();
+                } catch (Exception e1) {
+                    logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
+                }
+                setTermino(true);
 
-		if (interrumpir) {
-			try {
-				Thread.sleep(1000);
-			} catch (Exception ee) {
-				logger.error(ee);
-			}
-			logger.debug("Interrumpiendo la orden");
-			try {
-				out.write("~.\n".getBytes());
-				out.flush();
-			} catch (IOException e) {
-				logger.error("Error interrumpiendo en " + equipo, e);
-				try {
-					disconnect();
-					setTermino(true);
+                return;
+            }
+        }
 
-					return;
-				} catch (Exception e1) {
-					logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
-					execQueue.push("Error");
-				}
-				setTermino(true);
+        if (interrumpir) {
+            try {
+                Thread.sleep(1000);
+            } catch (Exception ee) {
+                logger.error(ee);
+            }
+            logger.debug("Interrumpiendo la orden");
+            try {
+                out.write("~.\n".getBytes());
+                out.flush();
+            } catch (IOException e) {
+                logger.error("Error interrumpiendo en " + equipo, e);
+                try {
+                    disconnect();
+                    setTermino(true);
 
-				return;
-			}
-			logger.debug("Orden interrumpida");
-			logger.info("Terminó la ejecución de " + comando);
+                    return;
+                } catch (Exception e1) {
+                    logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
+                    execQueue.push("Error");
+                }
+                setTermino(true);
 
-			try {
-				this.disconnect();
-				setTermino(true);
+                return;
+            }
+            logger.debug("Orden interrumpida");
+            logger.info("Terminó la ejecución de " + comando);
 
-			} catch (Exception e) {
-				logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e);
-				setTermino(true);
+            try {
+                this.disconnect();
+                setTermino(true);
 
-				return;
-			}
-		} else {
+            } catch (Exception e) {
+                logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e);
+                setTermino(true);
 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-			String line;
-			try {
-				line = reader.readLine();
-				logger.debug("Linea leída");
-				while (line != null && noDetenido) {
-					String salida = line;
-					logger.debug(salida);
-					logger.debug("Agregando a buffer");
-					execQueue.push(salida);
-					logger.debug("Agregado a buffer");
-					if (channel.isClosed()) {
-						logger.debug("Canal cerrado");
-						break;
-					}
-					logger.debug("Leyendo línea");
-					line = reader.readLine();
-					logger.debug("Linea leída");
-				}
-				logger.debug("Se leyó toda la salida");
-			} catch (IOException ex) {
-				logger.error("Error obteniendo la salida de " + equipo, ex);
-				try {
-					disconnect();
-					setTermino(true);
+            }
+        } else {
 
-					return;
-				} catch (Exception e1) {
-					logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
-				}
-				setTermino(true);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+            String line;
+            try {
+                line = reader.readLine();
+                logger.debug("Linea leída");
+                while (line != null && noDetenido) {
+                    String salida = line;
+                    logger.info("Salida: " + salida);
+                    logger.debug("Agregando a buffer");
+                    execQueue.push(salida);
+                    logger.debug("Agregado a buffer");
+                    if (channel.isClosed()) {
+                        logger.debug("Canal cerrado");
+                        break;
+                    }
+                    logger.debug("Leyendo línea");
+                    line = reader.readLine();
+                    logger.debug("Linea leída");
+                }
+                logger.debug("Se leyó toda la salida");
+            } catch (IOException ex) {
+                logger.error("Error obteniendo la salida de " + equipo, ex);
+                try {
+                    disconnect();
+                    setTermino(true);
 
-				return;
-			}
-			logger.info("Terminó la ejecución de \"" + comando + "\"");
+                    return;
+                } catch (Exception e1) {
+                    logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
+                }
+                setTermino(true);
 
-			try {
-				this.disconnect();
-				setTermino(true);
+                return;
+            }
+            logger.info("Terminó la ejecución de \"" + comando + "\"");
 
-			} catch (Exception e) {
-				logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e);
-				setTermino(true);
+            try {
+                this.disconnect();
+                setTermino(true);
 
-				return;
-			}
-		}
-	}
+            } catch (Exception e) {
+                logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e);
+                setTermino(true);
 
+                return;
+            }
+        }
+    }
 
-	@Override
-	public void run() {
-		noDetenido = true;
-		logger.info("Ejecutando: " + comando);
-		InputStream stream;
-		OutputStream out = null;
-		try {
-			stream = channel.getInputStream();
-			logger.debug("Canal de entrada creado");
-			if (sudo) {
-				out = channel.getOutputStream();
-				logger.debug("Canal de salida creado");
-			}
-		} catch (IOException e) {
-			logger.error("Error obteniendo un canal de salida hacia " + equipo, e);
-			execQueue.push("Error");
-			setTermino(true);
+    @Override
+    public void run() {
+        noDetenido = true;
+        logger.info("Ejecutando: " + comando);
+        InputStream stream;
+        OutputStream out = null;
+        try {
+            stream = channel.getInputStream();
+            logger.debug("Canal de entrada creado");
+            if (sudo) {
+                out = channel.getOutputStream();
+                logger.debug("Canal de salida creado");
+            }
+        } catch (IOException e) {
+            logger.error("Error obteniendo un canal de salida hacia " + equipo, e);
+            execQueue.push("Error");
+            setTermino(true);
 
-			return;
-		}
-		((ChannelExec) channel).setCommand(comando);
-		try {
-			channel.connect();
-			logger.debug("Conectado");
-		} catch (JSchException e) {
-			logger.error("Error conectando a " + equipo, e);
-			setTermino(true);
+            return;
+        }
+        ((ChannelExec) channel).setCommand(comando);
+        try {
+            channel.connect();
+            logger.debug("Conectado");
+        } catch (JSchException e) {
+            logger.error("Error conectando a " + equipo, e);
+            setTermino(true);
 
-			return;
-		}
+            return;
+        }
 
-		if (sudo) {
-			try {
-				logger.debug("Escribiendo el password");
-				out.write((equipo.getPassword() + "\n").getBytes());
-				out.flush();
+        if (sudo) {
+            try {
+                logger.debug("Escribiendo el password");
+                out.write((equipo.getPassword() + "\n").getBytes());
+                out.flush();
 
-			} catch (IOException e) {
-				logger.error("Error escribiendo la contraseña en " + equipo, e);
-				execQueue.push("Error");
-				try {
-					disconnect();
-				} catch (Exception e1) {
-					logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
-				}
-				setTermino(true);
+            } catch (IOException e) {
+                logger.error("Error escribiendo la contraseña en " + equipo, e);
+                execQueue.push("Error");
+                try {
+                    disconnect();
+                } catch (Exception e1) {
+                    logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
+                }
+                setTermino(true);
 
-				return;
-			}
-		}
+                return;
+            }
+        }
 
-		if (interrumpir) {
-			try {
-				Thread.sleep(5000);
-			} catch (Exception ee) {
-				logger.error(ee);
-			}
-			logger.debug("Interrumpiendo la orden");
-			try {
-				out.write("~.\n".getBytes());
-				out.flush();
-			} catch (IOException e) {
-				logger.error("Error interrumpiendo en " + equipo, e);
-				try {
-					disconnect();
-					setTermino(true);
+        if (interrumpir) {
+            try {
+                Thread.sleep(5000);
+            } catch (Exception ee) {
+                logger.error(ee);
+            }
+            logger.debug("Interrumpiendo la orden");
+            try {
+                out.write("~.\n".getBytes());
+                out.flush();
+            } catch (IOException e) {
+                logger.error("Error interrumpiendo en " + equipo, e);
+                try {
+                    disconnect();
+                    setTermino(true);
 
-					return;
-				} catch (Exception e1) {
-					logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
-					execQueue.push("Error");
-				}
-				setTermino(true);
+                    return;
+                } catch (Exception e1) {
+                    logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
+                    execQueue.push("Error");
+                }
+                setTermino(true);
 
-				return;
-			}
-			logger.debug("Orden interrumpida");
-			logger.info("Terminó la ejecución de " + comando);
+                return;
+            }
+            logger.debug("Orden interrumpida");
+            logger.info("Terminó la ejecución de " + comando);
 
-			try {
-				this.disconnect();
-				setTermino(true);
+            try {
+                this.disconnect();
+                setTermino(true);
 
-			} catch (Exception e) {
-				logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e);
-				setTermino(true);
+            } catch (Exception e) {
+                logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e);
+                setTermino(true);
 
-				return;
-			}
-		} else {
+                return;
+            }
+        } else {
 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-			String line;
-			try {
-				line = reader.readLine();
-				logger.debug("Linea leída");
-				while (line != null && noDetenido) {
-					String salida = line;
-					logger.debug(salida);
-					logger.debug("Agregando a buffer");
-					execQueue.push(salida);
-					logger.debug("Agregado a buffer");
-					if (channel.isClosed()) {
-						logger.debug("Canal cerrado");
-						break;
-					}
-					logger.debug("Leyendo línea");
-					line = reader.readLine();
-					logger.debug("Linea leída");
-				}
-				logger.debug("Se leyó toda la salida");
-			} catch (IOException ex) {
-				logger.error("Error obteniendo la salida de " + equipo, ex);
-				try {
-					disconnect();
-					setTermino(true);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+            String line;
+            try {
+                line = reader.readLine();
+                logger.debug("Linea leída");
+                while (line != null && noDetenido) {
+                    String salida = line;
+                    logger.debug(salida);
+                    logger.debug("Agregando a buffer");
+                    execQueue.push(salida);
+                    logger.debug("Agregado a buffer");
+                    if (channel.isClosed()) {
+                        logger.debug("Canal cerrado");
+                        break;
+                    }
+                    logger.debug("Leyendo línea");
+                    line = reader.readLine();
+                    logger.debug("Linea leída");
+                }
+                logger.debug("Se leyó toda la salida");
+            } catch (IOException ex) {
+                logger.error("Error obteniendo la salida de " + equipo, ex);
+                try {
+                    disconnect();
+                    setTermino(true);
 
-					return;
-				} catch (Exception e1) {
-					logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
-				}
-				setTermino(true);
+                    return;
+                } catch (Exception e1) {
+                    logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e1);
+                }
+                setTermino(true);
 
-				return;
-			}
-			logger.info("Terminó la ejecución de " + comando);
+                return;
+            }
+            logger.info("Terminó la ejecución de " + comando);
 
-			try {
-				this.disconnect();
-				setTermino(true);
+            try {
+                this.disconnect();
+                setTermino(true);
 
-			} catch (Exception e) {
-				logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e);
-				setTermino(true);
+            } catch (Exception e) {
+                logger.error("No se pudo desconectar de " + equipo + " \"" + comando + "\"", e);
+                setTermino(true);
 
-				return;
-			}
-		}
+                return;
+            }
+        }
 
-	}
+    }
 
-	/**
-	 * @return el channel
-	 */
-	public Channel getChannel() {
-		return channel;
-	}
+    /**
+     * @return el channel
+     */
+    public Channel getChannel() {
+        return channel;
+    }
 
-	/**
-	 * @return el equipo
-	 */
-	public Equipo getEquipo() {
-		return equipo;
-	}
+    /**
+     * @return el equipo
+     */
+    public Equipo getEquipo() {
+        return equipo;
+    }
 
-	/**
-	 * @return el detenido
-	 */
-	public boolean isDetenido() {
-		return noDetenido;
-	}
+    /**
+     * @return el detenido
+     */
+    public boolean isDetenido() {
+        return noDetenido;
+    }
 
-	/**
-	 * @return el comando
-	 */
-	public String getComando() {
-		return comando;
-	}
+    /**
+     * @return el comando
+     */
+    public String getComando() {
+        return comando;
+    }
 
-	/**
-	 * @return el execQueue
-	 */
-	public ExecBuffer getExecQueue() {
-		return execQueue;
-	}
+    /**
+     * @return el execQueue
+     */
+    public ExecBuffer getExecQueue() {
+        return execQueue;
+    }
 
-	/**
-	 * @return el sudo
-	 */
-	public boolean isSudo() {
-		return sudo;
-	}
+    /**
+     * @return el sudo
+     */
+    public boolean isSudo() {
+        return sudo;
+    }
 
-	/**
-	 * @return el interrumpir
-	 */
-	public boolean isInterrumpir() {
-		return interrumpir;
-	}
+    /**
+     * @return el interrumpir
+     */
+    public boolean isInterrumpir() {
+        return interrumpir;
+    }
 
-	/**
-	 * @return el hilo
-	 */
-	public Thread getHilo() {
-		return hilo;
-	}
+    /**
+     * @return el hilo
+     */
+    public Thread getHilo() {
+        return hilo;
+    }
 
-	/**
-	 * @return el codigoDeSalida
-	 */
-	public int getCodigoDeSalida() {
-		return codigoDeSalida;
-	}
+    /**
+     * @return el codigoDeSalida
+     */
+    public int getCodigoDeSalida() {
+        return codigoDeSalida;
+    }
 
-	/**
-	 * @param fechaInicio
-	 *            el/la fechaInicio a ser asignado
-	 */
-	public Date getFechaInicio() {
-		return fechaInicio;
-	}
+    /**
+     * @param fechaInicio el/la fechaInicio a ser asignado
+     */
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
 
-	/**
-	 * @return el usuarioweb
-	 */
-	public UsuarioWeb getUsuarioweb() {
-		return usuarioweb;
-	}
+    /**
+     * @return el usuarioweb
+     */
+    public UsuarioWeb getUsuarioweb() {
+        return usuarioweb;
+    }
 
-	/**
-	 * @return el termino
-	 */
-	public synchronized boolean isTermino() {
-		return termino;
-	}
+    /**
+     * @return el termino
+     */
+    public synchronized boolean isTermino() {
+        return termino;
+    }
 
-	public synchronized void setTermino(boolean termino) {
-		this.termino = termino;
-	}
+    public synchronized void setTermino(boolean termino) {
+        this.termino = termino;
+    }
 
 }

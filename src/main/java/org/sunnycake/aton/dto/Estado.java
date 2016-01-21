@@ -3,10 +3,12 @@
  */
 package org.sunnycake.aton.dto;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -23,12 +25,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "ESTADO")
 @IdClass(value=EstadoPK.class)
-public class Estado {
+public class Estado implements Serializable {
 	/**
 	 * Clave primaria compuesta
 	 */
 	@Id
 	@ManyToOne
+        @JoinColumn(insertable = false, updatable = false)
 	private Equipo pkEquipo;
 	@Id
 	@DateTimeFormat(pattern = "dd/MM/yyyy")

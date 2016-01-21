@@ -31,7 +31,7 @@ import org.testng.annotations.Test;
 import junit.framework.Assert;
 
 /**
- * Test de la clase {@link org.sunnycake.aton.controller.AppController}
+ * Test de la clase {@link org.sunnycake.aton.controller.ControladorInicio}
  * 
  * @author Camilo Sampedro
  *
@@ -44,7 +44,7 @@ public class AppControllerTest {
 	MessageSource message;
 
 	@InjectMocks
-	AppController appController;
+	ControladorInicio appController;
 
 	@Spy
 	Set<Equipo> equipos = new HashSet<Equipo>();

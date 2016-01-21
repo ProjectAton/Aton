@@ -104,9 +104,12 @@ public class Ejecucion {
 
 	public static void enviarMensaje(Equipo equipo, String mensaje) {
 		logger.debug("Enviando mensaje \"" + mensaje + "\", a " + equipo);
-		Set<String> usuarios = obtenerUsuarios(equipo);		
-		for (String usuario: usuarios){
-			ejecutarComando(equipo, Function.NOTIFICACION_ORDER(usuario, mensaje),true,true);
+		Set<String> usuarios = obtenerUsuarios(equipo);
+		// No hay usuarios conectados
+		if (usuarios != null) {
+			for (String usuario : usuarios) {
+				ejecutarComando(equipo, Function.NOTIFICACION_ORDER(usuario, mensaje), true, true);
+			}
 		}
 	}
 
@@ -119,8 +122,8 @@ public class Ejecucion {
 			return null;
 		} else {
 			logger.debug("Usuarios obtenidos: " + salida);
-			Set<String> usuarios= new HashSet<String>();
-			for (String usuario : salida.split("\\r?\\n")){
+			Set<String> usuarios = new HashSet<String>();
+			for (String usuario : salida.split("\\r?\\n")) {
 				usuarios.add(usuario);
 			}
 			return usuarios;
@@ -146,6 +149,6 @@ public class Ejecucion {
 	}
 
 	public static Tarea actualizar(Equipo equipo) {
-		return ejecutarComando(equipo, Function.UPDATE_ORDER,true,false);
+		return ejecutarComando(equipo, Function.UPDATE_ORDER, true, false);
 	}
 }

@@ -3,6 +3,7 @@
  */
 package org.sunnycake.aton.dto;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "LABORATORIO")
-public class Laboratorio {
+public class Laboratorio implements Serializable {
 	/**
 	 * Clave primaria.
 	 */
