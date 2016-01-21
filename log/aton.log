@@ -21233,3 +21233,50 @@ com.jcraft.jsch.JSchException: Auth fail
 2016-01-21 11:44:03 ERROR ControladorInicio:246 - Ip no única localhost
 2016-01-21 11:44:03 DEBUG ControladorInicio:236 - Ha entrado a guardarse el equipo: Equipo [mac=44:8a:5b:56:5b:b0, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null]
 2016-01-21 11:44:03 DEBUG ControladorInicio:108 - Obteniendo raíz o /equipos
+2016-01-21 17:15:45 DEBUG ControladorInicio:429 - Equipo :123 eliminado
+2016-01-21 17:15:45 DEBUG ControladorInicio:236 - Ha entrado a guardarse el equipo: Equipo [mac=null, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-21 17:15:45 DEBUG ControladorInicio:251 - Buscando la dirección MAC de localhost
+2016-01-21 17:15:45 DEBUG Ejecucion:79 - Intentando obtener mac con orden en español 1
+2016-01-21 17:15:45 DEBUG Function:46 - Comando sudo: ifconfig eth0 2>/dev/null|awk '/direcciónHW/ {print $5}'
+2016-01-21 17:15:45 DEBUG Function:48 - Comando nuevo: ifconfig eth0 2>/dev/null|awk "/direcciónHW/ {print \$5}"
+2016-01-21 17:15:45 DEBUG Tarea:68 - Tarea para Equipo [mac=null, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null], con comando "ifconfig eth0 2>/dev/null|awk '/direcciónHW/ {print $5}'" (sudo) creada.
+2016-01-21 17:15:45 INFO  Tarea:90 - Conectando a Equipo [mac=null, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-21 17:15:46 INFO  Tarea:98 - Conectado a Equipo [mac=null, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-21 17:15:46 INFO  Tarea:123 - Ejecutando: sudo -S -p '' -- sh -c 'ifconfig eth0 2>/dev/null|awk "/direcciónHW/ {print \$5}"'
+2016-01-21 17:15:46 DEBUG Tarea:128 - Canal de entrada creado
+2016-01-21 17:15:46 DEBUG Tarea:131 - Canal de salida creado
+2016-01-21 17:15:46 DEBUG Tarea:143 - Conectado
+2016-01-21 17:15:46 DEBUG Tarea:153 - Escribiendo el password
+2016-01-21 17:15:46 DEBUG Tarea:214 - Linea leída
+2016-01-21 17:15:46 DEBUG Tarea:229 - Se leyó toda la salida
+2016-01-21 17:15:46 INFO  Tarea:244 - Terminó la ejecución de "sudo -S -p '' -- sh -c 'ifconfig eth0 2>/dev/null|awk "/direcciónHW/ {print \$5}"'"
+2016-01-21 17:15:46 INFO  Tarea:110 - Hecho:0
+2016-01-21 17:15:46 INFO  Tarea:117 - Desconectado de Equipo [mac=null, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-21 17:15:46 DEBUG Ejecucion:82 - No se pudo obtener usando la orden en español. Intentando obtener mac con orden en inglés
+2016-01-21 17:15:46 DEBUG Function:46 - Comando sudo: ifconfig eth0 2>/dev/null|awk '/HWaddr/ {print $5}'
+2016-01-21 17:15:46 DEBUG Function:48 - Comando nuevo: ifconfig eth0 2>/dev/null|awk "/HWaddr/ {print \$5}"
+2016-01-21 17:15:46 DEBUG Tarea:68 - Tarea para Equipo [mac=null, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null], con comando "ifconfig eth0 2>/dev/null|awk '/HWaddr/ {print $5}'" (sudo) creada.
+2016-01-21 17:15:46 INFO  Tarea:90 - Conectando a Equipo [mac=null, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-21 17:15:46 INFO  Tarea:98 - Conectado a Equipo [mac=null, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-21 17:15:46 INFO  Tarea:123 - Ejecutando: sudo -S -p '' -- sh -c 'ifconfig eth0 2>/dev/null|awk "/HWaddr/ {print \$5}"'
+2016-01-21 17:15:46 DEBUG Tarea:128 - Canal de entrada creado
+2016-01-21 17:15:46 DEBUG Tarea:131 - Canal de salida creado
+2016-01-21 17:15:46 DEBUG Tarea:143 - Conectado
+2016-01-21 17:15:46 DEBUG Tarea:153 - Escribiendo el password
+2016-01-21 17:15:46 DEBUG Tarea:214 - Linea leída
+2016-01-21 17:15:46 INFO  Tarea:217 - Salida: 74:27:ea:c1:c8:c0
+2016-01-21 17:15:46 DEBUG Tarea:218 - Agregando a buffer
+2016-01-21 17:15:46 DEBUG Tarea:220 - Agregado a buffer
+2016-01-21 17:15:46 DEBUG Tarea:222 - Canal cerrado
+2016-01-21 17:15:46 DEBUG Tarea:229 - Se leyó toda la salida
+2016-01-21 17:15:46 INFO  Tarea:244 - Terminó la ejecución de "sudo -S -p '' -- sh -c 'ifconfig eth0 2>/dev/null|awk "/HWaddr/ {print \$5}"'"
+2016-01-21 17:15:46 INFO  Tarea:110 - Hecho:0
+2016-01-21 17:15:46 INFO  Tarea:117 - Desconectado de Equipo [mac=null, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-21 17:15:46 DEBUG ControladorInicio:253 - 74:27:ea:c1:c8:c0
+2016-01-21 17:15:46 DEBUG ControladorInicio:265 - Mac encontrada: 74:27:ea:c1:c8:c0
+2016-01-21 17:15:46 DEBUG ControladorInicio:279 - /admin/nuevo: Equipo a guardar: Equipo [mac=74:27:ea:c1:c8:c0, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-21 17:15:46 DEBUG ControladorInicio:283 - Enviando al equipo Equipo [mac=74:27:ea:c1:c8:c0, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null] a edición adicional
+2016-01-21 17:15:46 DEBUG ControladorInicio:236 - Ha entrado a guardarse el equipo: Equipo [mac=74:27:ea:c1:c8:c0, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-21 17:15:46 ERROR ControladorInicio:246 - Ip no única localhost
+2016-01-21 17:15:46 DEBUG ControladorInicio:236 - Ha entrado a guardarse el equipo: Equipo [mac=74:27:ea:c1:c8:c0, ip=localhost, sala=Sala null, Laboratorio null, descripcion=null]
+2016-01-21 17:15:46 DEBUG ControladorInicio:108 - Obteniendo raíz o /equipos
