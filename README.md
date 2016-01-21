@@ -20,7 +20,7 @@ Instalar la base de datos PostgreSQL, usando el gestor de paquetes por defecto o
 sudo apt-get install postgresql
 ```
 
-**CentOS**
+**Instalación en RHEL**
 
 ```bash
 sudo yum install postgresql-server
@@ -40,14 +40,40 @@ sudo -u postgres psql
 \password postgres
 ```
 
-### 3. Importar la base de datos de database.sql
+### 4. Importar la base de datos de database.sql
 ```bash
 sudo -u postgres psql < database.sql
 ```
 
-### 4. Modificar los archivos de configuración
+### 5. Modificar los archivos de configuración
 
-#### 4.1. src/main/resources/aplicacion.properties
- 
+#### `src/main/resources/aplicacion.properties`
+En este archivo se encuentran todas las configuraciones de la base de datos. Las propiedades importantes son las siguientes:
 
-#### 4.2. src/main/resources/hibernate.properties
+**jdbc.url**
+En este campo se inserta el URL de la base de datos. El formato es *jdbc:postgresql://host:puerto/basededatos*
+
+**jdbc.username**
+Nombre de usuario para acceder a la base de datos.
+
+**jdbc.password**
+Contraseña para acceder a la base de datos.
+
+### 6. Compilar
+Si no se tiene instalado maven instalar antes de este paso.
+
+**Instalación en Ubuntu - Debian**
+```bash
+sudo apt-get install maven
+```
+
+**Instalación en RHEL**
+```bash
+sudo yum install maven
+```
+
+Ejecutar la compilación con Maven
+
+```bash
+mvn clean install
+```
