@@ -44,6 +44,7 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter {
     /**
      * Permisos en los diferentes path.
      *
+     * @param http
      * @throws java.lang.Exception
      */
     @Override

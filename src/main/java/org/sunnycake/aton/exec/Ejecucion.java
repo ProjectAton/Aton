@@ -2,8 +2,8 @@ package org.sunnycake.aton.exec;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -107,9 +107,9 @@ public class Ejecucion {
 		Set<String> usuarios = obtenerUsuarios(equipo);
 		// No hay usuarios conectados
 		if (usuarios != null) {
-			for (String usuario : usuarios) {
-				ejecutarComando(equipo, Function.NOTIFICACION_ORDER(usuario, mensaje), true, true);
-			}
+                    usuarios.stream().forEach((usuario) -> {
+                        ejecutarComando(equipo, Function.NOTIFICACION_ORDER(usuario, mensaje), true, true);
+                    });
 		}
 	}
 
@@ -122,10 +122,8 @@ public class Ejecucion {
 			return null;
 		} else {
 			logger.debug("Usuarios obtenidos: " + salida);
-			Set<String> usuarios = new HashSet<String>();
-			for (String usuario : salida.split("\\r?\\n")) {
-				usuarios.add(usuario);
-			}
+			Set<String> usuarios = new HashSet<>();
+                        usuarios.addAll(Arrays.asList(salida.split("\\r?\\n")));
 			return usuarios;
 		}
 	}
