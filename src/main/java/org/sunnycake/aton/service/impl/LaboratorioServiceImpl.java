@@ -23,7 +23,7 @@ private Logger logger = LogManager.getLogger(LaboratorioService.class);
 	@Autowired
 	private LaboratorioDAO dao;
 
-	public Laboratorio buscarLaboratorioPorId(int id) {
+	public Laboratorio buscarLaboratorioPorId(long id) {
 		try {
 			return dao.buscarLaboratorioPorId(id);
 		} catch (ExcepcionConsulta e) {
@@ -56,7 +56,7 @@ private Logger logger = LogManager.getLogger(LaboratorioService.class);
 
 	}
 
-	public void eliminarLaboratorioPorId(int id) {
+	public void eliminarLaboratorioPorId(long id) {
 		try {
 			dao.eliminarLaboratorioPorId(id);
 		} catch (ExcepcionConsulta e) {

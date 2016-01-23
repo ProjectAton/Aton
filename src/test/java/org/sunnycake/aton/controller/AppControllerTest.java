@@ -163,12 +163,12 @@ public class AppControllerTest {
 
         Equipo e1 = new Equipo();
         e1.setIp("localhost");
-        e1.setUsuario("camilo.sampedro");
+        e1.setUsuario("camilo");
         e1.setPassword("00000");
         e1.setSala(s1);
 
         Equipo e2 = new Equipo();
-        e2.setIp("192.168.194.18");
+        e2.setIp("10.0.3.219");
         e2.setUsuario("camilo");
         e2.setPassword("00000");
         e2.setSala(s1);

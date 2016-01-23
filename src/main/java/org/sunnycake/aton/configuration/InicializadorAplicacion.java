@@ -10,7 +10,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  */
 public class InicializadorAplicacion extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-    @Override
+	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class[] { ConfiguracionAplicacion.class };
 	}
