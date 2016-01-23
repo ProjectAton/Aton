@@ -5,6 +5,8 @@ package org.sunnycake.aton.service;
 
 import java.util.List;
 import java.util.Set;
+import org.joda.time.LocalDate;
+import org.sunnycake.aton.dto.Equipo;
 
 import org.sunnycake.aton.dto.Estado;
 
@@ -19,6 +21,8 @@ public interface EstadoService {
 	Estado buscarEstadoPorIp(String ip);
 
 	void guardarEstado(Estado estado);
+        
+        void guardarEstado(Equipo pkEquipo, LocalDate pkFecha, String descripcion);
 
 	void actualizarEstado(Estado estado);
 

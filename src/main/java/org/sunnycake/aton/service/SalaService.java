@@ -2,6 +2,7 @@ package org.sunnycake.aton.service;
 
 import java.util.List;
 import java.util.Set;
+import org.sunnycake.aton.dto.Laboratorio;
 
 import org.sunnycake.aton.dto.Sala;
 
@@ -17,6 +18,8 @@ public interface SalaService {
 	Sala buscarSalaPorId(int id);
 
 	void guardarSala(Sala sala);
+        
+        void guardarSala(int id, String nombre, Laboratorio laboratorio, String mediosAudiovisuales, String enseres);
 
 	void actualizarSala(Sala sala);
 

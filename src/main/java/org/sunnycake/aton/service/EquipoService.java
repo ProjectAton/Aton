@@ -24,7 +24,7 @@ public interface EquipoService {
 
     void guardarEquipo(String mac, String nombre, String usuario, String password, String ip, Sala sala, String descripcion, String mensaje, boolean seleccionado);
     
-    void guardarEqupo(String usuario, String password, String ip);
+    void guardarEquipo(String usuario, String password, String ip);
 
     void actualizarEquipo(Equipo equipo);
 

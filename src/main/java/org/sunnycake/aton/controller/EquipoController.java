@@ -36,7 +36,7 @@ public class EquipoController {
     @Produces(MediaType.TEXT_HTML)
     public String crear(@QueryParam("ip") String ip, @QueryParam("usuario") String usuario, @QueryParam("password") String password) {
         logger.debug("Guardando el equipo: ip{" + ip + "} usuario{" + usuario + "} contraseña{" + password + "} ");
-        equipoService.guardarEqupo(usuario, password, ip);
+        equipoService.guardarEquipo(usuario, password, ip);
         return "Equipo creado";
     }
 

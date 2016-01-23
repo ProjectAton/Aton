@@ -135,6 +135,18 @@ public class Laboratorio implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+    public Laboratorio(long id, String ubicacion, String administracion, String nombre) {
+        this.id = id;
+        this.ubicacion = ubicacion;
+        this.administracion = administracion;
+        this.nombre = nombre;
+    }
+
+    public Laboratorio() {
+    }
+    
+    
 	
 	
 	

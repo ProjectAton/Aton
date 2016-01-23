@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.sunnycake.aton.service.impl;
 
@@ -17,7 +17,7 @@ import org.sunnycake.aton.exception.ExcepcionConsulta;
 import org.sunnycake.aton.service.UsuarioWebService;
 
 /**
- * 
+ *
  * @author Camilo Sampedro
  *
  */
@@ -27,71 +27,77 @@ import org.sunnycake.aton.service.UsuarioWebService;
 @Transactional
 public class UsuarioWebServiceImpl implements UsuarioWebService {
 
-	private Logger logger = LogManager.getLogger(UsuarioWebService.class);
+    private Logger logger = LogManager.getLogger(UsuarioWebService.class);
 
-	@Autowired
-	private UsuarioWebDAO dao;
+    @Autowired
+    private UsuarioWebDAO dao;
 
-	public void guardarUsuarioWeb(UsuarioWeb usuario) {
-		try {
-			dao.guardarUsuarioWeb(usuario);
-		} catch (ExcepcionConsulta e) {
-			logger.error("Ocurrió un error al guardar el usuario: " + usuario, e);
-		}
-	}
+    public void guardarUsuarioWeb(UsuarioWeb usuario) {
+        try {
+            dao.guardarUsuarioWeb(usuario);
+        } catch (ExcepcionConsulta e) {
+            logger.error("Ocurrió un error al guardar el usuario: " + usuario, e);
+        }
+    }
 
-	public void actualizarUsuarioWeb(UsuarioWeb usuarioWeb) {
-		UsuarioWeb entidad;
-		try {
-			entidad = dao.obtenerUsuarioWebPorUsuario(usuarioWeb.getUsuario());
-			if (entidad != null) {
-				entidad.setRolesDeUsuario(usuarioWeb.getRolesDeUsuario());
-				entidad.setPassword(usuarioWeb.getPassword());
-				entidad.setEnabled(usuarioWeb.isEnabled());
-			}
-		} catch (ExcepcionConsulta e) {
-			logger.error("Ocurrió un error al actualizar el usuario: " + usuarioWeb, e);
-		}
-	}
+    public void actualizarUsuarioWeb(UsuarioWeb usuarioWeb) {
+        UsuarioWeb entidad;
+        try {
+            entidad = dao.obtenerUsuarioWebPorUsuario(usuarioWeb.getUsuario());
+            if (entidad != null) {
+                entidad.setRolesDeUsuario(usuarioWeb.getRolesDeUsuario());
+                entidad.setPassword(usuarioWeb.getPassword());
+                entidad.setEnabled(usuarioWeb.isEnabled());
+            }
+        } catch (ExcepcionConsulta e) {
+            logger.error("Ocurrió un error al actualizar el usuario: " + usuarioWeb, e);
+        }
+    }
 
-	public void eliminarUsuarioWebPorUsuario(String usuario) {
-		try {
-			dao.eliminarUsuarioWebPorUsuario(usuario);
-		} catch (ExcepcionConsulta e) {
-			logger.error("Ocurrió un error al actualizar el usuario: " + usuario, e);
-		}
+    public void eliminarUsuarioWebPorUsuario(String usuario) {
+        try {
+            dao.eliminarUsuarioWebPorUsuario(usuario);
+        } catch (ExcepcionConsulta e) {
+            logger.error("Ocurrió un error al actualizar el usuario: " + usuario, e);
+        }
 
-	}
+    }
 
-	public Set<UsuarioWeb> buscarTodosLosUsuariosWeb() {
-		try {
-			return dao.obtenerTodos();
-		} catch (ExcepcionConsulta e) {
-			logger.error("Ocurrió un error al obtener todos los usuarios", e);
-			return null;
-		}
-	}
+    public Set<UsuarioWeb> buscarTodosLosUsuariosWeb() {
+        try {
+            return dao.obtenerTodos();
+        } catch (ExcepcionConsulta e) {
+            logger.error("Ocurrió un error al obtener todos los usuarios", e);
+            return null;
+        }
+    }
 
-	public boolean esUsuarioUnico(String usuario) {
-		UsuarioWeb usuarioWeb = null;
-		try {
-			usuarioWeb = dao.obtenerUsuarioWebPorUsuario(usuario);
-		} catch (ExcepcionConsulta e) {
-			logger.error("Ocurrió un error al buscar el usuario a través del usuario: " + usuario, e);
-			e.printStackTrace();
-		}
-		return (usuarioWeb == null || usuario == null);
-	}
+    public boolean esUsuarioUnico(String usuario) {
+        UsuarioWeb usuarioWeb = null;
+        try {
+            usuarioWeb = dao.obtenerUsuarioWebPorUsuario(usuario);
+        } catch (ExcepcionConsulta e) {
+            logger.error("Ocurrió un error al buscar el usuario a través del usuario: " + usuario, e);
+            e.printStackTrace();
+        }
+        return (usuarioWeb == null || usuario == null);
+    }
 
-	@Override
-	public UsuarioWeb obtenerUsuarioWebPorUsuario(String usuario) {
-		try {
-			return dao.obtenerUsuarioWebPorUsuario(usuario);
-		} catch (ExcepcionConsulta e) {
-			// TODO Auto-generated catch block
-			logger.error("Error buscando al usuario " + usuario, e);
-			return null;
-		}
-	}
+    @Override
+    public UsuarioWeb obtenerUsuarioWebPorUsuario(String usuario) {
+        try {
+            return dao.obtenerUsuarioWebPorUsuario(usuario);
+        } catch (ExcepcionConsulta e) {
+            // TODO Auto-generated catch block
+            logger.error("Error buscando al usuario " + usuario, e);
+            return null;
+        }
+    }
+
+    @Override
+    public void guardarUsuarioWeb(String usuario, String password, boolean enabled) {
+        UsuarioWeb usuarioWeb = new UsuarioWeb(usuario, password, enabled);
+        guardarUsuarioWeb(usuarioWeb);
+    }
 
 }

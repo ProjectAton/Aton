@@ -5,15 +5,18 @@ import java.util.Set;
 import org.sunnycake.aton.dto.Laboratorio;
 
 public interface LaboratorioService {
-	Laboratorio buscarLaboratorioPorId(long id);
 
-	void guardarLaboratorio(Laboratorio laboratorio);
+    Laboratorio buscarLaboratorioPorId(long id);
 
-	void actualizarLaboratorio(Laboratorio laboratorio);
+    void guardarLaboratorio(Laboratorio laboratorio);
 
-	void eliminarLaboratorioPorId(long id);
+    void guardarLaboratorio(long id, String ubicacion, String administracion, String nombre);
 
-	Set<Laboratorio> buscarTodosLosLaboratorios();
+    void actualizarLaboratorio(Laboratorio laboratorio);
 
-	boolean esIdUnico(long id);
+    void eliminarLaboratorioPorId(long id);
+
+    Set<Laboratorio> buscarTodosLosLaboratorios();
+
+    boolean esIdUnico(long id);
 }

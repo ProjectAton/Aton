@@ -1,6 +1,5 @@
 package org.sunnycake.aton.service.impl;
 
-import java.util.List;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -84,4 +83,10 @@ private Logger logger = LogManager.getLogger(LaboratorioService.class);
 		}
 		return (laboratorio == null);
 	}
+
+    @Override
+    public void guardarLaboratorio(long id, String ubicacion, String administracion, String nombre) {
+        Laboratorio laboratorio = new Laboratorio(id, ubicacion, administracion, nombre);
+        guardarLaboratorio(laboratorio);
+    }
 }

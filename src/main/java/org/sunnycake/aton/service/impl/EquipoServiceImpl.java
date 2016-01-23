@@ -4,6 +4,7 @@
 package org.sunnycake.aton.service.impl;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,10 +12,13 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.FieldError;
 import org.sunnycake.aton.dao.EquipoDAO;
 import org.sunnycake.aton.dto.Equipo;
 import org.sunnycake.aton.dto.Sala;
 import org.sunnycake.aton.exception.ExcepcionConsulta;
+import org.sunnycake.aton.exec.Ejecucion;
+import org.sunnycake.aton.exec.Tarea;
 import org.sunnycake.aton.service.EquipoService;
 
 /**
@@ -112,11 +116,23 @@ public class EquipoServiceImpl implements EquipoService {
     }
 
     @Override
-    public void guardarEqupo(String usuario, String password, String ip) {
+    public void guardarEquipo(String usuario, String password, String ip) {
+
         Equipo equipo = new Equipo(usuario, password, ip);
+        logger.debug("Buscando la dirección MAC de " + equipo.getIp());
+        Tarea tarea = Ejecucion.obtenerMac(equipo);
+        logger.debug(tarea.getExecQueue().retornarBuffer());
+
+        if (tarea.getExecQueue() == null || "Error".equals(tarea.getExecQueue().retornarBuffer())
+                || "".equals(tarea.getExecQueue().retornarBuffer())) {
+            logger.error("IP no encontrada " + equipo.getIp());
+            return;
+        }
+
+        String mac = tarea.getExecQueue().retornarBuffer().trim();
+        logger.debug("Mac encontrada: " + mac);
+        equipo.setMac(mac);
         guardarEquipo(equipo);
     }
-    
-    
 
 }

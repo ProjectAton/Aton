@@ -182,4 +182,17 @@ public class Sala {
 		this.equipos = equipos;
 	}
 
+    public Sala(int id, String nombre, Laboratorio laboratorio, String mediosAudiovisuales, String enseres) {
+        this.id = id;
+        this.nombre = nombre;
+        this.laboratorio = laboratorio;
+        this.mediosAudiovisuales = mediosAudiovisuales;
+        this.enseres = enseres;
+    }
+
+    public Sala() {
+    }
+        
+        
+
 }
