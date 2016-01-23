@@ -5,14 +5,15 @@
  */
 package org.sunnycake.aton.configuration;
 
-import com.sun.jersey.spi.container.servlet.ServletContainer;
 import java.util.Set;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
+import org.glassfish.jersey.servlet.ServletContainer;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
 
 /**
  *
@@ -23,8 +24,10 @@ public class WebAppInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         final AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.setConfigLocation("org.sunnycake.aton.configuration");
         context.register(ConfiguracionAplicacion.class);
+        context.register(ConfiguracionHibernate.class);
+        context.refresh();
+        
 
 //        final FilterRegistration.Dynamic characterEncodingFilter = servletContext.addFilter("characterEncodingFilter", new CharacterEncodingFilter());
 //        characterEncodingFilter.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
@@ -43,8 +46,10 @@ public class WebAppInitializer implements WebApplicationInitializer {
         //  		<param-value>org.sunnycake.aton.ws</param-value>
         //  	</init-param>
         //  	<load-on-startup>1</load-on-startup>
-        final ServletContainer servlet = new ServletContainer();
-        final ServletRegistration.Dynamic appServlet = servletContext.addServlet("SpringWSAton", servlet);
+        final AnnotationConfigWebApplicationContext dispatcherContext = new AnnotationConfigWebApplicationContext();
+        dispatcherContext.register(ConfiguracionAplicacion.class);
+        dispatcherContext.refresh();
+        final ServletRegistration.Dynamic appServlet = servletContext.addServlet("SpringWSAton", new DispatcherServlet(dispatcherContext));
         appServlet.setInitParameter("com.sun.jersey.config.property.packages", "org.sunnycake.aton.ws");
         appServlet.setLoadOnStartup(1);
         appServlet.addMapping("/");

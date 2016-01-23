@@ -1,6 +1,5 @@
 org/sunnycake/aton/service/impl/UsuarioWebServiceImpl.class
 org/sunnycake/aton/dao/UsuarioWebDAO.class
-org/sunnycake/aton/service/impl/UserDetailsServiceAton.class
 org/sunnycake/aton/service/UsuarioWebService.class
 org/sunnycake/aton/exec/CodigoSalida$2.class
 org/sunnycake/aton/exec/Function.class
@@ -8,6 +7,8 @@ org/sunnycake/aton/dto/MultiplesEquipos.class
 org/sunnycake/aton/dao/DAOAbstracto.class
 org/sunnycake/aton/dto/Sala.class
 org/sunnycake/aton/dao/EquipoDAO.class
+org/sunnycake/aton/configuration/ConfiguracionHibernate.class
+org/sunnycake/aton/configuration/DispatcherConfig.class
 org/sunnycake/aton/converter/ConvertidorEquipo.class
 org/sunnycake/aton/converter/ConvertidorSala.class
 org/sunnycake/aton/exec/ExecBuffer.class

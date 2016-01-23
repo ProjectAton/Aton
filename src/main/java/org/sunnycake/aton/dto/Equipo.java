@@ -269,7 +269,25 @@ public class Equipo implements Serializable {
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
-	
-	
 
+    public Equipo(String mac, String nombre, String usuario, String password, String ip, Sala sala, String descripcion, String mensaje, boolean seleccionado) {
+        this.mac = mac;
+        this.nombre = nombre;
+        this.usuario = usuario;
+        this.password = password;
+        this.ip = ip;
+        this.sala = sala;
+        this.descripcion = descripcion;
+        this.mensaje = mensaje;
+        this.seleccionado = seleccionado;
+    }
+
+    public Equipo(String usuario, String password, String ip) {
+        this.usuario = usuario;
+        this.password = password;
+        this.ip = ip;
+    }   
+
+    public Equipo() {
+    } 
 }

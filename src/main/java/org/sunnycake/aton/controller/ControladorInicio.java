@@ -13,10 +13,6 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -108,7 +104,7 @@ public class ControladorInicio {
         logger.debug("Obteniendo raíz o /equipos");
         Set<Equipo> equipos = equipoService.buscarTodosLosEquipos();
         model.addAttribute("equipos", equipos);
-        model.addAttribute("user", obtenerUsuario());
+        
         return "todoslosequipos";
     }
 
@@ -124,7 +120,6 @@ public class ControladorInicio {
         SeleccionEquipos seleccion = new SeleccionEquipos();
         seleccion.setEquipos(equipos);
         ModelAndView model = new ModelAndView("adminprincipal", "equipos", seleccion);
-        model.addObject("user", obtenerUsuario());
         return model;
     }
 
@@ -138,9 +133,9 @@ public class ControladorInicio {
     public ModelAndView enviarMensajeMultiples(@RequestParam("mensaje") String mensaje,
             @ModelAttribute("seleccionEquipos") SeleccionEquipos seleccion) {
         logger.debug("Llegó la solicitud de enviar mensaje : \"" + mensaje + "\"");
-        seleccion.getEquipos().stream().map((equipo1) -> equipoService.buscarEquipoPorIp(equipo1.getIp())).forEach((equipo) -> {
+        for(Equipo equipo: seleccion.getEquipos()){
             Ejecucion.enviarMensaje(equipo, mensaje);
-        });
+        }
         return new ModelAndView("redirect:/admin");
     }
 
@@ -154,9 +149,9 @@ public class ControladorInicio {
     @RequestMapping(params = "apagar", value = {"/admin"}, method = RequestMethod.POST)
     public ModelAndView apagarMultiples(@ModelAttribute("seleccionEquipos") SeleccionEquipos seleccionDeEquipos) {
         logger.debug(seleccionDeEquipos);
-        seleccionDeEquipos.getEquipos().stream().map((equipo1) -> equipoService.buscarEquipoPorIp(equipo1.getIp())).forEach((equipo) -> {
+        for(Equipo equipo: seleccionDeEquipos.getEquipos()){
             Ejecucion.apagar(equipo);
-        });
+        }
         return new ModelAndView("redirect:/admin");
     }
 
@@ -169,7 +164,7 @@ public class ControladorInicio {
      */
     @RequestMapping(value = "/db", method = RequestMethod.GET)
     public String dbaPage(ModelMap model) {
-        model.addAttribute("user", obtenerUsuario());
+        
         return "dba";
     }
 
@@ -184,7 +179,7 @@ public class ControladorInicio {
     public String listarSalas(ModelMap model) {
 
         Set<Sala> salas = salaService.buscarTodasLasSalas();
-        model.addAttribute("user", obtenerUsuario());
+        
         model.addAttribute("salas", salas);
         return "todaslassalas";
     }
@@ -200,7 +195,7 @@ public class ControladorInicio {
     public String listarLaboratorios(ModelMap model) {
 
         Set<Laboratorio> laboratorios = laboratorioService.buscarTodosLosLaboratorios();
-        model.addAttribute("user", obtenerUsuario());
+        
         model.addAttribute("laboratorios", laboratorios);
         return "todosloslaboratorios";
     }
@@ -215,7 +210,7 @@ public class ControladorInicio {
     public String nuevoEquipo(ModelMap model) {
         Equipo equipo = new Equipo();
         model.addAttribute("equipo", equipo);
-        model.addAttribute("user", obtenerUsuario());
+        
         model.addAttribute("edit", false);
         return "registro";
     }
@@ -569,14 +564,7 @@ public class ControladorInicio {
         return "login";
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        return "redirect:/login?logout";
-    }
+    
 
     /**
      * Acceso denegado a la página solicitada. Se produce por la clase
@@ -587,7 +575,7 @@ public class ControladorInicio {
      */
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
-        model.addAttribute("user", obtenerUsuario());
+        
         return "accessDenied";
     }
 
@@ -614,21 +602,6 @@ public class ControladorInicio {
         Set<Laboratorio> laboratorios = new HashSet<>();
         laboratorios.addAll(laboratorioService.buscarTodosLosLaboratorios());
         return laboratorios;
-    }
-
-    private String obtenerUsuario() {
-        String nombreDeUsuario;
-        if (SecurityContextHolder.getContext().getAuthentication() == null) {
-            return null;
-        }
-        Object actual = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (actual instanceof UserDetails) {
-            nombreDeUsuario = ((UserDetails) actual).getUsername();
-        } else {
-            nombreDeUsuario = null;
-        }
-        return nombreDeUsuario;
     }
 
     /**

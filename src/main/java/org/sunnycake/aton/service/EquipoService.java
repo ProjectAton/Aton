@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.sunnycake.aton.service;
 
@@ -7,27 +7,33 @@ import java.util.List;
 import java.util.Set;
 
 import org.sunnycake.aton.dto.Equipo;
+import org.sunnycake.aton.dto.Sala;
 
 /**
- * 
+ *
  * Servicio para los objetos de tipo Equipo
- * 
+ *
  * @author Camilo Sampedro
  *
  */
 public interface EquipoService {
-	Equipo buscarEquipoPorIp(String ip);
 
-	void guardarEquipo(Equipo equipo);
+    Equipo buscarEquipoPorIp(String ip);
 
-	void actualizarEquipo(Equipo equipo);
+    void guardarEquipo(Equipo equipo);
 
-	void eliminarEquipoPorIp(String ip);
+    void guardarEquipo(String mac, String nombre, String usuario, String password, String ip, Sala sala, String descripcion, String mensaje, boolean seleccionado);
+    
+    void guardarEqupo(String usuario, String password, String ip);
 
-	Set<Equipo> buscarTodosLosEquipos();
+    void actualizarEquipo(Equipo equipo);
 
-	Equipo buscarEquipoPorNombre(String nombre);
+    void eliminarEquipoPorIp(String ip);
 
-	boolean esIpUnica(String ip);
+    Set<Equipo> buscarTodosLosEquipos();
+
+    Equipo buscarEquipoPorNombre(String nombre);
+
+    boolean esIpUnica(String ip);
 
 }

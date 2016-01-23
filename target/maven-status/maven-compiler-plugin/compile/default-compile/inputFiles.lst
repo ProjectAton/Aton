@@ -22,7 +22,6 @@
 /home/camilo/NetBeansProjects/Aton/src/main/java/org/sunnycake/aton/dto/Estado.java
 /home/camilo/NetBeansProjects/Aton/src/main/java/org/sunnycake/aton/dto/Sugerencia.java
 /home/camilo/NetBeansProjects/Aton/src/main/java/org/sunnycake/aton/dao/EstadoDAO.java
-/home/camilo/NetBeansProjects/Aton/src/main/java/org/sunnycake/aton/service/impl/UserDetailsServiceAton.java
 /home/camilo/NetBeansProjects/Aton/src/main/java/org/sunnycake/aton/service/SalaService.java
 /home/camilo/NetBeansProjects/Aton/src/main/java/org/sunnycake/aton/configuration/ConfiguracionAplicacion.java
 /home/camilo/NetBeansProjects/Aton/src/main/java/org/sunnycake/aton/configuration/WebAppInitializer.java
@@ -36,6 +35,8 @@
 /home/camilo/NetBeansProjects/Aton/src/main/java/org/sunnycake/aton/dao/impl/OrdenDAOImpl.java
 /home/camilo/NetBeansProjects/Aton/src/main/java/org/sunnycake/aton/dto/OrdenPK.java
 /home/camilo/NetBeansProjects/Aton/src/main/java/org/sunnycake/aton/dao/UsuarioWebDAO.java
+/home/camilo/NetBeansProjects/Aton/src/main/java/org/sunnycake/aton/configuration/DispatcherConfig.java
+/home/camilo/NetBeansProjects/Aton/src/main/java/org/sunnycake/aton/configuration/ConfiguracionHibernate.java
 /home/camilo/NetBeansProjects/Aton/src/main/java/org/sunnycake/aton/dao/DAOAbstracto.java
 /home/camilo/NetBeansProjects/Aton/src/main/java/org/sunnycake/aton/configuration/InicializadorAplicacion.java
 /home/camilo/NetBeansProjects/Aton/src/main/java/org/sunnycake/aton/service/impl/UsuarioWebServiceImpl.java

@@ -107,9 +107,9 @@ public class Ejecucion {
 		Set<String> usuarios = obtenerUsuarios(equipo);
 		// No hay usuarios conectados
 		if (usuarios != null) {
-                    usuarios.stream().forEach((usuario) -> {
+                    for (String usuario: usuarios){
                         ejecutarComando(equipo, Function.NOTIFICACION_ORDER(usuario, mensaje), true, true);
-                    });
+                    }
 		}
 	}
 

@@ -14,7 +14,6 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -36,7 +35,7 @@ import org.sunnycake.aton.converter.ConvertidorUsuarioWeb;
 // Equivalente a context:component-scan base-package="..." en el xml, indica
 // dónde buscar los beans controlados por Spring
 @ComponentScan(basePackages = "org.sunnycake.aton")
-public class ConfiguracionAplicacion extends WebMvcConfigurerAdapter {
+public class ConfiguracionAplicacion {
 
     private final Logger logger = LogManager.getLogger(ConfiguracionAplicacion.class);
 
@@ -95,44 +94,5 @@ public class ConfiguracionAplicacion extends WebMvcConfigurerAdapter {
         messageSource.setBasename("mensajes");
         logger.debug("Mensajero MessageSource creado");
         return messageSource;
-    }
-
-    /**
-     * Recursos (Javascript, CSS, ...)
-     *
-     * @param registry
-     */
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("/static/");
-    }
-
-    /**
-     * Configurar los convertidores a ser usados Por ejemplo, se necesita
-     * convertir el id de una sala, a un objeto Sala en el campo de registro de
-     * nuevo equipo
-     * @param registry
-     */
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-        // Integer ID -> Sala sala
-        registry.addConverter(convertidorSala);
-        registry.addConverter(convertidorLaboratorio);
-        registry.addConverter(convertidorEquipo);
-        registry.addConverter(convertidorUsuarioWeb);
-    }
-
-    /**
-     * Optional. It's only required when handling '.' in \@PathVariables which
-     * otherwise ignore everything after last '.' in
-     *
-     * @param matcher
-     * @PathVaidables argument. It's a known bug in Spring
-     * [https://jira.spring.io/browse/SPR-6164], still present in Spring 4.1.7.
-     * This is a workaround for this issue.
-     */
-    @Override
-    public void configurePathMatch(PathMatchConfigurer matcher) {
-        matcher.setUseRegisteredSuffixPatternMatch(true);
     }
 }
