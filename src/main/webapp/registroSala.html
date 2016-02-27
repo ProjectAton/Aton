@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-xs-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Agregar sala</div>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <label for="nombre" class="control-label col-xs-2">Nombre:
+                    </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="nombre" placeholder="Nombre de la sala" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="enseres" class="control-label col-xs-2">Enseres:</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="enseres" placeholder="¿Qué hay en la sala?" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mediosAudiovisuales" class="control-label col-xs-2">Medios:</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="mediosAudiovisuales" placeholder="Medios audiovisuales de la sala" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="laboratorio" class="control-label col-xs-2">Laboratorio:</label>
+                    <div class="col-xs-10">
+                        <select itemValue="id" class="form-control" id="laboratorio" ng-model="laboratorio" >
+                            <option ng-repeat="laboratorio in laboratorios" value="{{laboratorio.id}}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-10">
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div>
+    Icons made by <a href="http://www.flaticon.com/authors/simpleicon" title="SimpleIcon">SimpleIcon</a>, <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed
+    by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
+</div>

@@ -1,46 +1,52 @@
 package org.sunnycake.aton.exec;
 
+/**
+ * Código de salida para la sesión SSH
+ * @author camilo
+ */
 public enum CodigoSalida {
-	SUCCESS("Hecho") {
+    SUCCESS("Hecho") {
 
-		@Override
-		boolean apply(int exitCode) {
-			return exitCode == 0;
-		}
+        @Override
+        boolean apply(int exitCode) {
+            return exitCode == 0;
+        }
 
-	},
-	ERROR("Hecho con error") {
+    },
+    ERROR("Hecho con error") {
 
-		@Override
-		boolean apply(int exitCode) {
-			return exitCode > 0;
-		}
+        @Override
+        boolean apply(int exitCode) {
+            return exitCode > 0;
+        }
 
-	},
-	NONE("Hecho con estado de salida") {
+    },
+    NONE("Hecho con estado de salida") {
 
-		@Override
-		boolean apply(int exitCode) {
-			return exitCode < 0;
-		}
-	};
+        @Override
+        boolean apply(int exitCode) {
+            return exitCode < 0;
+        }
+    };
 
-	private String message;
+    private String message;
 
-	CodigoSalida(String message) {
-		this.message = message;
-	}
+    CodigoSalida(String message) {
+        this.message = message;
+    }
 
-	abstract boolean apply(int exitCode);
+    abstract boolean apply(int exitCode);
 
-	public static CodigoSalida getFor(int exitCode) {
-		for (CodigoSalida status : CodigoSalida.values())
-			if (status.apply(exitCode))
-				return status;
-		return null;
-	}
+    public static CodigoSalida getFor(int exitCode) {
+        for (CodigoSalida status : CodigoSalida.values()) {
+            if (status.apply(exitCode)) {
+                return status;
+            }
+        }
+        return null;
+    }
 
-	public String message() {
-		return message;
-	}
+    public String message() {
+        return message;
+    }
 }

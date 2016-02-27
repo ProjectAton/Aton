@@ -1,9 +1,8 @@
 /**
- *
+ * Paquete de lógica del negocio.
  */
 package org.sunnycake.aton.service;
 
-import java.util.List;
 import java.util.Set;
 
 import org.sunnycake.aton.dto.UsuarioWeb;

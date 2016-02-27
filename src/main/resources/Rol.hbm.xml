@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/01/2016 05:23:04 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="org.sunnycake.aton.dto.Rol" optimistic-lock="version" schema="public" table="rol">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="org.sunnycake.aton.dto.UsuarioWeb" fetch="select" name="usuarioweb">
+      <column length="32" name="usuarioweb" not-null="true"/>
+    </many-to-one>
+    <property name="rol" type="string">
+      <column name="rol"/>
+    </property>
+  </class>
+</hibernate-mapping>

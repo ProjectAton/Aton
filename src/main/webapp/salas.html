@@ -1,0 +1,45 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Salas</div>
+    <div class="panel-body">
+
+        <table class="table table-striped" ng-if="sala.nombre">
+            {{sala.nombre}}
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Laboratorio</th>
+                    <th>Medios</th>
+                    <th>Enseres</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="sala in listaSalas">
+                    <th scope="row">{{sala.id}}</th>
+                    <td>{{sala.nombre}}</td>
+                    <td>{{sala.laboratorio}}</td>
+                    <td>{{sala.mediosAudiovisuales}}</td>
+                    <td>{{sala.enseres}}</td>
+                    <td><a href="</admin/editar-sala-{{sala.id}}/>">Editar</a></td>
+                    <td><a href="</admin/eliminar-sala-{{sala.id}}/>">Eliminar</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="no-encontrado">
+            <i class="flaticon-boxes27"></i>
+            <h1>Aquí no hay salas</h1>
+            <p>Parece que no se han encontrado salas. Si deseas puedes agregar salas desde el siguiente botón:</p>
+        </div>
+
+        <div class="btn-agregar-tabla">
+            <a href="</admin/agregar-sala/>" class="btn btn-default " role="button">Agregar sala</a>
+        </div>
+    </div>
+</div>
+
+<div>
+    Icons made by <a href="http://www.flaticon.com/authors/simpleicon" title="SimpleIcon">SimpleIcon</a>, <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed
+    by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
+</div>

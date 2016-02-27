@@ -4,40 +4,50 @@ import org.sunnycake.aton.dto.Equipo;
 
 import com.jcraft.jsch.UserInfo;
 
+/**
+ * Información para realizar la conexión SSH
+ * @author camilo
+ */
 public class InformacionSSH implements UserInfo {
 
-	private Equipo equipo;
-	
-	public InformacionSSH(Equipo equipo) {
-		this.equipo = equipo;
-	}
+    private final Equipo equipo;
 
-	public String getPassphrase() {
-		return null;
-	}
+    public InformacionSSH(Equipo equipo) {
+        this.equipo = equipo;
+    }
 
-	public String getPassword() {
-		return equipo.getPassword();
-	}
+    @Override
+    public String getPassphrase() {
+        return null;
+    }
 
-	public boolean promptPassword(String message) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public String getPassword() {
+        return equipo.getPassword();
+    }
 
-	public boolean promptPassphrase(String message) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean promptPassword(String message) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
-	public boolean promptYesNo(String message) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean promptPassphrase(String message) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
-	public void showMessage(String message) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+    @Override
+    public boolean promptYesNo(String message) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public void showMessage(String message) {
+        // TODO Auto-generated method stub
+
+    }
+
 }

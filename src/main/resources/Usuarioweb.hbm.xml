@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/01/2016 05:23:04 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="org.sunnycake.aton.dto.UsuarioWeb" optimistic-lock="version" schema="public" table="usuarioweb">
+    <id name="usuario" type="string">
+      <column length="32" name="usuario"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="password" type="string">
+      <column name="password"/>
+    </property>
+    <property name="enabled" type="java.lang.Boolean">
+      <column name="enabled"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="rols" table="rol">
+      <key>
+        <column length="32" name="usuarioweb" not-null="true"/>
+      </key>
+      <one-to-many class="org.sunnycake.aton.dto.Rol"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="ordens" table="orden">
+      <key>
+        <column length="32" name="usuarioweb" not-null="true"/>
+      </key>
+      <one-to-many class="org.sunnycake.aton.dto.Orden"/>
+    </set>
+  </class>
+</hibernate-mapping>

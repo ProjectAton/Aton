@@ -3,8 +3,6 @@
  */
 package org.sunnycake.aton.service.impl;
 
-import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -12,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.FieldError;
 import org.sunnycake.aton.dao.EquipoDAO;
 import org.sunnycake.aton.dto.Equipo;
 import org.sunnycake.aton.dto.Sala;
@@ -135,4 +132,13 @@ public class EquipoServiceImpl implements EquipoService {
         guardarEquipo(equipo);
     }
 
+    public EquipoDAO getDao() {
+        return dao;
+    }
+
+    public void setDao(EquipoDAO dao) {
+        this.dao = dao;
+    }
+
+    
 }

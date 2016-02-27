@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/01/2016 05:23:04 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="org.sunnycake.aton.dto.Equipo" optimistic-lock="version" schema="public" table="equipo">
+    <id name="ip" type="string">
+      <column length="20" name="ip"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="org.sunnycake.aton.dto.Sala" fetch="select" name="sala">
+      <column name="sala"/>
+    </many-to-one>
+    <property name="mac" type="string">
+      <column length="17" name="mac" not-null="true"/>
+    </property>
+    <property name="nombre" type="string">
+      <column length="15" name="nombre"/>
+    </property>
+    <property name="usuario" type="string">
+      <column length="32" name="usuario"/>
+    </property>
+    <property name="password" type="string">
+      <column name="password"/>
+    </property>
+    <property name="descripcion" type="string">
+      <column name="descripcion"/>
+    </property>
+    <property name="mensaje" type="string">
+      <column name="mensaje"/>
+    </property>
+    <property name="seleccionado" type="java.lang.Boolean">
+      <column name="seleccionado"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -3,7 +3,6 @@
  */
 package org.sunnycake.aton.service.impl;
 
-import java.util.List;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -30,7 +29,7 @@ public class UsuarioWebServiceImpl implements UsuarioWebService {
     private Logger logger = LogManager.getLogger(UsuarioWebService.class);
 
     @Autowired
-    private UsuarioWebDAO dao;
+    UsuarioWebDAO dao;
 
     public void guardarUsuarioWeb(UsuarioWeb usuario) {
         try {
@@ -45,9 +44,9 @@ public class UsuarioWebServiceImpl implements UsuarioWebService {
         try {
             entidad = dao.obtenerUsuarioWebPorUsuario(usuarioWeb.getUsuario());
             if (entidad != null) {
-                entidad.setRolesDeUsuario(usuarioWeb.getRolesDeUsuario());
+                entidad.setRols(usuarioWeb.getRols());
                 entidad.setPassword(usuarioWeb.getPassword());
-                entidad.setEnabled(usuarioWeb.isEnabled());
+                entidad.setEnabled(usuarioWeb.getEnabled());
             }
         } catch (ExcepcionConsulta e) {
             logger.error("Ocurrió un error al actualizar el usuario: " + usuarioWeb, e);
@@ -100,4 +99,13 @@ public class UsuarioWebServiceImpl implements UsuarioWebService {
         guardarUsuarioWeb(usuarioWeb);
     }
 
+    public UsuarioWebDAO getDao() {
+        return dao;
+    }
+
+    public void setDao(UsuarioWebDAO dao) {
+        this.dao = dao;
+    }
+
+    
 }

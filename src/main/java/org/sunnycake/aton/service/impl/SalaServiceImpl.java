@@ -31,7 +31,7 @@ public class SalaServiceImpl implements SalaService {
     private Logger logger = LogManager.getLogger(SalaService.class);
 
     @Autowired
-    private SalaDAO dao;
+    SalaDAO dao;
 
     public Sala buscarSalaPorId(int id) {
         try {
@@ -58,7 +58,7 @@ public class SalaServiceImpl implements SalaService {
             if (entidad != null) {
                 entidad.setEnseres(sala.getEnseres());
                 entidad.setLaboratorio(sala.getLaboratorio());
-                entidad.setMediosAudiovisuales(sala.getMediosAudiovisuales());
+                entidad.setMediosaudiovisuales(sala.getMediosaudiovisuales());
             }
         } catch (ExcepcionConsulta e) {
             logger.error("Ocurrió un error al actualizar la sala: " + sala, e);
@@ -100,5 +100,15 @@ public class SalaServiceImpl implements SalaService {
         Sala sala = new Sala(id, nombre, laboratorio, mediosAudiovisuales, enseres);
         guardarSala(sala);
     }
+
+    public SalaDAO getDao() {
+        return dao;
+    }
+
+    public void setDao(SalaDAO dao) {
+        this.dao = dao;
+    }
+    
+    
 
 }

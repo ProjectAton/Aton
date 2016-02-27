@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/01/2016 05:23:04 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="org.sunnycake.aton.dto.Sala" optimistic-lock="version" schema="public" table="sala">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="org.sunnycake.aton.dto.Laboratorio" fetch="select" name="laboratorio">
+      <column name="laboratorio"/>
+    </many-to-one>
+    <property name="nombre" type="string">
+      <column length="32" name="nombre"/>
+    </property>
+    <property name="mediosaudiovisuales" type="string">
+      <column name="mediosaudiovisuales"/>
+    </property>
+    <property name="enseres" type="string">
+      <column name="enseres"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="false" name="equipos" table="equipo">
+      <key>
+        <column name="sala"/>
+      </key>
+      <one-to-many class="org.sunnycake.aton.dto.Equipo"/>
+    </set>
+  </class>
+</hibernate-mapping>

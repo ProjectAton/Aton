@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/01/2016 05:23:04 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="org.sunnycake.aton.dto.Estado" optimistic-lock="version" schema="public" table="estado">
+    <composite-id class="org.sunnycake.aton.dto.EstadoPK" name="id">
+      <key-property name="equipo" type="string">
+        <column length="20" name="equipo"/>
+      </key-property>
+      <key-property name="fecha" type="date">
+        <column length="13" name="fecha"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="org.sunnycake.aton.dto.Equipo" fetch="select" insert="false" name="equipo" update="false">
+      <column length="20" name="equipo" not-null="true"/>
+    </many-to-one>
+    <property name="descripcion" type="string">
+      <column name="descripcion"/>
+    </property>
+  </class>
+</hibernate-mapping>

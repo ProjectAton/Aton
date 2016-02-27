@@ -33,11 +33,11 @@ public class OrdenServiceImpl implements OrdenService {
     private Logger logger = LogManager.getLogger(OrdenService.class);
 
     @Autowired
-    private OrdenDAO ordenDAO;
+    OrdenDAO dao;
 
     public Orden buscarOrdenPorClave(OrdenPK clave) {
         try {
-            return ordenDAO.obtenerOrdenPorClave(clave);
+            return dao.obtenerOrdenPorClave(clave);
         } catch (ExcepcionConsulta e) {
             logger.error("Ocurrió un error al buscar el orden a través de la IP: " + clave, e);
             return null;
@@ -46,7 +46,7 @@ public class OrdenServiceImpl implements OrdenService {
 
     public void guardarOrden(Orden orden) {
         try {
-            ordenDAO.guardarOrden(orden);
+            dao.guardarOrden(orden);
         } catch (ExcepcionConsulta e) {
             logger.error("Ocurrió un error al guardar el orden: " + orden, e);
         }
@@ -54,16 +54,14 @@ public class OrdenServiceImpl implements OrdenService {
 
     public void actualizarOrden(Orden orden) {
         Orden entidad;
-        OrdenPK clave = new OrdenPK();
-        clave.setPkFecha(orden.getPkFecha());
-        clave.setPkEquipo(orden.getPkEquipo());
+        OrdenPK clave = orden.getId();
         try {
-            entidad = ordenDAO.obtenerOrdenPorClave(clave);
+            entidad = dao.obtenerOrdenPorClave(clave);
             if (entidad != null) {
-                entidad.setCodigoSalida(orden.getCodigoSalida());
+                entidad.setCodigosalida(orden.getCodigosalida());
                 entidad.setComando(orden.getComando());
                 entidad.setResultado(orden.getResultado());
-                entidad.setUsuarioWeb(orden.getUsuarioWeb());
+                entidad.setUsuarioweb(orden.getUsuarioweb());
             }
         } catch (ExcepcionConsulta e) {
             logger.error("Ocurrió un error al actualizar el orden: " + orden, e);
@@ -72,7 +70,7 @@ public class OrdenServiceImpl implements OrdenService {
 
     public void eliminarOrdenPorClave(OrdenPK clave) {
         try {
-            ordenDAO.eliminarOrdenPorClave(clave);
+            dao.eliminarOrdenPorClave(clave);
         } catch (ExcepcionConsulta e) {
             logger.error("Ocurrió un error al actualizar el orden: " + clave, e);
         }
@@ -81,7 +79,7 @@ public class OrdenServiceImpl implements OrdenService {
 
     public Set<Orden> buscarTodasLasOrdenes() {
         try {
-            return ordenDAO.obtenerTodos();
+            return dao.obtenerTodos();
         } catch (ExcepcionConsulta e) {
             logger.error("Ocurrió un error al obtener todos los ordens", e);
             return null;
@@ -91,7 +89,7 @@ public class OrdenServiceImpl implements OrdenService {
     public boolean esClaveUnica(OrdenPK clave) {
         Orden orden = null;
         try {
-            orden = ordenDAO.obtenerOrdenPorClave(clave);
+            orden = dao.obtenerOrdenPorClave(clave);
         } catch (ExcepcionConsulta e) {
             logger.error("Ocurrió un error al buscar el orden a través de la IP: " + clave, e);
             e.printStackTrace();
@@ -105,4 +103,13 @@ public class OrdenServiceImpl implements OrdenService {
         guardarOrden(orden);
     }
 
+    public OrdenDAO getDao() {
+        return dao;
+    }
+
+    public void setDao(OrdenDAO dao) {
+        this.dao = dao;
+    }
+
+    
 }

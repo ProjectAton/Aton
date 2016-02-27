@@ -16,74 +16,132 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Implementación de las funciones compartidas por todos los DAO, permitiendo la
  * reutilización de código.
- * 
+ *
  * @author Camilo Sampedro
  *
- * @param <PK>
- *            Clave primaria
- * @param <E>
- *            Clase DTO
+ * @param <PK> Clave primaria
+ * @param <E> Clase DTO
  */
 public abstract class DAOAbstracto<PK extends Serializable, E> {
 
-	protected final Logger logger;
+    /**
+     * Mensajes al archivo de log.
+     */
+    final Logger logger;
 
-	private final Class<E> clasePersistente;
+    private final Class<E> clasePersistente;
 
-	@SuppressWarnings("unchecked")
-	public DAOAbstracto() {
-		this.clasePersistente = (Class<E>) ((ParameterizedType) this.getClass().getGenericSuperclass())
-				.getActualTypeArguments()[1];
-		this.logger = LogManager.getLogger(clasePersistente);
-	}
+    /**
+     * Averigua la clase a la que se le está haciendo el DAO (Entidad) e
+     * inicializa el logger con dicha clase.
+     */
+    @SuppressWarnings("unchecked")
+    public DAOAbstracto() {
+        this.clasePersistente = (Class<E>) ((ParameterizedType) this.getClass().getGenericSuperclass())
+                .getActualTypeArguments()[1];
+        this.logger = LogManager.getLogger(clasePersistente);
+    }
 
-	@Autowired
-	private SessionFactory sessionFactory;
+    @Autowired
+    private SessionFactory sessionFactory;
 
-	protected Session getSesion() {
-		return sessionFactory.getCurrentSession();
-	}
+    /**
+     * Sesion de Hibernate.
+     *
+     * @return Sesion.
+     */
+    protected Session getSesion() {
+        logger.debug("Sesión creada");
+        return sessionFactory.getCurrentSession();
+    }
 
-	@SuppressWarnings("unchecked")
-	public E getEntidadPorClave(PK clave) {
-		return (E) getSesion().get(clasePersistente, clave);
-	}
+    /**
+     * Obtiene la entidad entregando la clave primaria
+     *
+     * @param clave Clave primaria registrada en el DAO abstracto.
+     * @return Entidad encontrada o nulo si no es encontrada.
+     */
+    @SuppressWarnings("unchecked")
+    public E getEntidadPorClave(PK clave) {
+        logger.debug("Buscando por clave " + clave);
+        return (E) getSesion().get(clasePersistente, clave);
+    }
 
-	public void guardarEntidad(E entidad) {
-		getSesion().persist(entidad);
-	}
+    /**
+     * Guardar una entidad en la base de datos.
+     *
+     * @param entidad Entidad a guardar.
+     */
+    public void guardarEntidad(E entidad) {
+        logger.debug("Guardando la entidad: [" + clasePersistente + "]" + entidad);
+        getSesion().persist(entidad);
+    }
 
-	public void actualizarEntidad(E entidad) {
-		getSesion().update(entidad);
-	}
+    /**
+     * Actualiza la información de la entidad en la base de datos.
+     *
+     * @param entidad Entidad a actualizar
+     */
+    public void actualizarEntidad(E entidad) {
+        logger.debug("Actualizando la entidad: [" + clasePersistente + "]" + entidad);
+        getSesion().update(entidad);
+    }
 
-	public void eliminarEntidad(E entidad) {
-		getSesion().delete(entidad);
-	}
+    /**
+     * Elimina la entidad de la base de datos.
+     *
+     * @param entidad Entidad a eliminar.
+     */
+    public void eliminarEntidad(E entidad) {
+        logger.debug("Eliminando la entidad: [" + clasePersistente + "]" + entidad);
+        getSesion().delete(entidad);
+    }
 
-	protected Criteria crearCriteria() {
-		return getSesion().createCriteria(clasePersistente);
-	}
+    /**
+     * Crear criterio para la entidad.
+     *
+     * @return criteria para la entidad
+     */
+    protected Criteria crearCriteria() {
+        logger.debug("Criteria creado");
+        return getSesion().createCriteria(clasePersistente);
+    }
 
-	public Set<E> getTodos() {
-		return castLista(clasePersistente, crearCriteria().list());
-	}
+    /**
+     * Obtener todos los elementos de la base de datos.
+     *
+     * @return Set de elementos (Sin repetidos)
+     */
+    public Set<E> getTodos() {
+        logger.debug("Obteniendo todos los [" + clasePersistente + "]");
+        return castLista(clasePersistente, crearCriteria().list());
+    }
 
-	/**
-	 * Realiza una conversión de todos los elementos de la colección hacia una
-	 * nueva lista, esto para evitar el warning que indica que puede que algunos
-	 * elementos no sean de la misma clase.
-	 * 
-	 * @param clase
-	 *            Clase a la que se desea convertir
-	 * @param coleccion
-	 *            Conjunto de elementos que se desean convertir
-	 * @return List con elementos de la clase "clase"
-	 */
-	public static <T> Set<T> castLista(Class<? extends T> clase, Collection<?> coleccion) {
-		Set<T> r = new HashSet<T>(coleccion.size());
-		for (Object o : coleccion)
-			r.add(clase.cast(o));
-		return r;
-	}
+    /**
+     * Realiza una conversión de todos los elementos de la colección hacia una
+     * nueva lista, esto para evitar el warning que indica que puede que algunos
+     * elementos no sean de la misma clase.
+     *
+     * @param <T> Entidad
+     * @param clase Clase a la que se desea convertir
+     * @param coleccion Conjunto de elementos que se desean convertir
+     * @return List con elementos de la clase "clase"
+     */
+    public static <T> Set<T> castLista(Class<? extends T> clase, Collection<?> coleccion) {
+        Set<T> r = new HashSet<>(coleccion.size());
+        for (Object o : coleccion) {
+            r.add(clase.cast(o));
+        }
+        return r;
+    }
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+    
+    
 }

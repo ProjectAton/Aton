@@ -1,0 +1,66 @@
+<h1>Laboratorio</h1>
+
+{{listaSalas}}
+<div class="panel panel-primary" ng-repeat="sala in listaSalas">
+	<div class="panel-heading">{{sala.nombre}}</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-xs-2 panel-equipo" ng-repeat="equipo in sala.equipos">
+				<div class="panel panel-success">
+					<div class="panel-heading flaticon-robot28" ng-if="equipo.nombre">
+						{{equipo.nombre}}
+					</div>
+					<div class="panel-heading flaticon-robot28" ng-if="!equipo.nombre">
+						{{equipo.ip}}
+					</div>
+					<div class="panel-body interior-equipo">
+
+
+						<div class="btn-group btn-group-justified boton-interior-equipo" role="group" aria-label="...">
+							<div class="btn-group" role="group">
+								<button type="button" class="btn btn-default dropdown-toggle flaticon-info28" data-toggle="dropdown">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li>
+										<p class="dropdown-text-mac">MAC: {{equipo.mac}}
+										</p>
+									</li>
+									<li>
+										<p class="dropdown-text-ip">IP: {{equipo.ip}}
+										</p>
+									</li>
+									<li role="separator" class="divider"></li>
+								</ul>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="no-encontrado" ng-if="!sala.equipos">
+			<i class="flaticon-boxes27"></i>
+			<h1>Aquí no hay equipos</h1>
+			<p>Parece que no se han encontrado equipos.</p>
+		</div>
+
+	</div>
+</div>
+<div class="panel panel-primary" ng-if="!listaSalas">
+	<div class="panel-heading">Vacío</div>
+	<div class="panel-body">
+		<div id="no-encontrado">
+			<i class="flaticon-boxes27"></i>
+			<h1>Aquí no hay salas</h1>
+			<p>Parece que no se han encontrado salas.</p>
+			<p> Por favor dile al administrador de este problema.</p>
+		</div>
+	</div>
+</div>
+
+<div>
+	Icons made by <a href="http://www.flaticon.com/authors/simpleicon" title="SimpleIcon">SimpleIcon</a>, <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed
+	by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
+</div>

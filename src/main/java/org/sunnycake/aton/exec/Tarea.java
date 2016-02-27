@@ -19,6 +19,11 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 
+/**
+ * Información de una ejecución SSH
+ *
+ * @author camilo
+ */
 public class Tarea implements Runnable {
 
     private JSch jsch;
