@@ -26,19 +26,28 @@ import org.sunnycake.aton.service.EquipoService;
 import org.sunnycake.aton.service.SalaService;
 
 /**
- * Controlador de Equipo
+ * Controlador de Equipo.
  *
- * @author Julian Arango
+ * @author Julian Arango, Camilo Sampedro
  */
 @Component
 @Path("equipos")
 public class EquipoController {
 
+    /**
+     * Objeto para realizar logs de los procesos realizados.
+     */
     private final Logger logger = LogManager.getLogger(EquipoController.class.getName());
-
+    
+    /**
+     * Servicio de equipos.
+     */
     @Autowired
     EquipoService equipoService;
     
+    /**
+     * Servicio de salas.
+     */
     @Autowired
     SalaService salaService;
 
@@ -67,20 +76,10 @@ public class EquipoController {
     @Produces(MediaType.APPLICATION_JSON)
     public String obtener() {
         logger.debug("Obteniendo todos los equipos");
-        Set<Sala> salas= salaService.buscarTodasLasSalas();
-        Set<Sala> salasNuevas = new HashSet<>();
+        Set<Sala> salas= salaService.buscarTodasLasSalasSimples();
         logger.debug("Obtenidas.");
-        for(Sala sala : salas){
-            Set<Equipo> equipos= new HashSet<>();
-            for (Equipo equipo: sala.getEquipos()){
-                equipos.add(new Equipo(equipo.getMac(), equipo.getNombre(), "", "", equipo.getIp(), null, equipo.getDescripcion(), equipo.getMensaje(), equipo.getSeleccionado()));
-            }
-            salasNuevas.add(new Sala( sala.getId(), null, sala.getNombre(), sala.getMediosaudiovisuales(), sala.getEnseres(), equipos));
-            logger.debug("Sala: " + sala);
-        }
-        
         Genson genson = new Genson();
-        String retorno = genson.serialize(salasNuevas);
+        String retorno = genson.serialize(salas);
         logger.debug(retorno);
         return retorno;
     }

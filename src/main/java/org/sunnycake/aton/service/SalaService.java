@@ -12,11 +12,16 @@ import org.sunnycake.aton.dto.Sala;
  *
  * Servicio para los objetos de tipo Sala
  *
- * @author camilo
+ * @author Camilo Sampedro
  *
  */
 public interface SalaService {
 
+    /**
+     * Busca la sala según el id ingresado.
+     * @param id Id de la sala a buscar
+     * @return Sala encontrada o null en caso contrario
+     */
     Sala buscarSalaPorId(int id);
 
     void guardarSala(Sala sala);
@@ -28,6 +33,8 @@ public interface SalaService {
     void eliminarSalaPorId(int id);
 
     Set<Sala> buscarTodasLasSalas();
+    
+    Set<Sala> buscarTodasLasSalasSimples();
 
     boolean esIdUnico(int id);
 

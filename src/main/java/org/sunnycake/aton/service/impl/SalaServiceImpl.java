@@ -3,6 +3,8 @@
  */
 package org.sunnycake.aton.service.impl;
 
+import com.owlike.genson.Genson;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.sunnycake.aton.dao.SalaDAO;
+import org.sunnycake.aton.dto.Equipo;
 import org.sunnycake.aton.dto.Laboratorio;
 import org.sunnycake.aton.dto.Sala;
 import org.sunnycake.aton.exception.ExcepcionConsulta;
@@ -107,6 +110,23 @@ public class SalaServiceImpl implements SalaService {
 
     public void setDao(SalaDAO dao) {
         this.dao = dao;
+    }
+
+    @Override
+    public Set<Sala> buscarTodasLasSalasSimples() {
+        Set<Sala> salas = buscarTodasLasSalas();
+        Set<Sala> salasNuevas = new HashSet<>();
+        
+        for(Sala sala : salas){
+            Set<Equipo> equipos= new HashSet<>();
+            for (Equipo equipo: sala.getEquipos()){
+                equipos.add(new Equipo(equipo.getMac(), equipo.getNombre(), "", "", equipo.getIp(), null, equipo.getDescripcion(), equipo.getMensaje(), equipo.getSeleccionado()));
+            }
+            salasNuevas.add(new Sala( sala.getId(), null, sala.getNombre(), sala.getMediosaudiovisuales(), sala.getEnseres(), equipos));
+            logger.debug("Sala: " + sala);
+        }
+        
+        return salasNuevas;        
     }
     
     
