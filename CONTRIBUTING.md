@@ -46,7 +46,7 @@ Ubicación de los servlets que escuchan las peticiones `HTTP` (`GET` y `POST` pr
 ** Paquete: ** 
 ![Método](Captura2.png)
 
-Cualquier controlador nuevo puede simplemente ser agregado en este paquete y será reconocido por la aplicación. Las clases de este paquete deberán tener interacción únicamente con los servicios y la vista (Usuario).
+Cualquier controlador nuevo puede simplemente ser agregado en este paquete y será reconocido por la aplicación. Las clases de este paquete deberán tener interacción únicamente con los **servicios** y la **vista** (Usuario).
 
 ## `org.sunnycake.aton.dao`
 De las siglas *Data Access Object*, se encarga de crear un puente a la librería Hibernate, la cual según la configuración del mapeo realiza transacciones sobre la bsae de datos.
